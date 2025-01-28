@@ -26,7 +26,6 @@
                                             <th>{{ __('Prezzo') }}</th>
                                             <th>{{ __('Tipo') }}</th>
                                             <th>{{ __('Intervallo') }}</th>
-                                            <th>{{ __('Credits') }}</th>
                                             <th>{{ __('Azioni') }}</th>
                                         </tr>
                                     </thead>
@@ -43,7 +42,6 @@
                                                     'year' => 'Annuale',
                                                     default => '-'
                                                 } : '-' }}</td>
-                                                <td>{{ $product->credits ? $product->credits : '-' }}</td>
                                                 <td>
                                                     <div class="d-flex flex-wrap">
                                                         <a href="{{ route('product.edit', ['product' => $product->id]) }}" class="btn btn-link text-primary p-0 d-flex align-items-center me-3">

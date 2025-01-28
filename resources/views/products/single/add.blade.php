@@ -46,34 +46,6 @@
                                 <x-select-input id="subscription_interval" name="subscription_interval" :options="['' => 'Nessuno', 'day' => 'Giornaliero', 'week' => 'Settimanale', 'month' => 'Mensile', 'year' => 'Annuale']" :selected="old('subscription_interval')" class="form-select" />
                             </div>
 
-                            <div class="mb-3">
-                                <x-input-label for="credits" :value="__('Credits')" />
-                                <x-text-input id="credits" class="form-control" type="number" name="credits" :value="old('credits')" />
-                                <x-input-error :messages="$errors->get('credits')" class="invalid-feedback" />
-                            </div>
-
-                            {{-- <div class="mb-3">
-                                <x-input-label for="has_variants" :value="__('Ha Varianti?')" />
-                                <div class="form-check">
-                                    <x-checkbox-input 
-                                        id="has_variants" 
-                                        name="has_variants" 
-                                        :checked="old('has_variants')" 
-                                        value="1"
-                                        class="form-check-input" 
-                                        onchange="toggleVariants()" 
-                                    />
-                                </div>
-                            </div>
-
-                            <div class="mb-3" id="variants_section" style="display: none;">
-                                <h4 class="fw-bold mb-3">Varianti</h4>
-                                <div id="variants_container">
-                                    <!-- Varianti dinamiche verranno aggiunte qui -->
-                                </div>
-                                <button type="button" class="btn btn-success mt-2" onclick="addVariant()">Aggiungi Variante</button>
-                            </div> --}}
-
                             <div class="mb-3" id="features_section">
                                 <h4 class="fw-bold mb-3">Caratteristiche</h4>
                                 <div id="features_container">

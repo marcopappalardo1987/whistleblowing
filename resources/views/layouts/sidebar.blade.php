@@ -18,31 +18,6 @@
                 <span>Dashboard</span>
             </a>
 
-            <!-- Scraping Tools -->
-            <div class="nav-item">
-                <a href="#scrapingSubmenu" 
-                   class="nav-link collapsed" 
-                   data-bs-toggle="collapse"
-                   data-bs-parent="#sidebarAccordion"
-                   role="button" 
-                   aria-expanded="false" 
-                   aria-controls="scrapingSubmenu">
-                    <x-heroicon-o-magnifying-glass />
-                    <span>Scraping Tools</span>
-                    <x-heroicon-o-chevron-right class="ms-auto submenu-arrow" />
-                </a>
-                <div class="collapse submenu" id="scrapingSubmenu">
-                    <a href="{{ route('scraper.google.maps') }}" class="nav-link">
-                        <x-heroicon-o-map />
-                        <span>Google Maps</span>
-                    </a>
-                    <a href="{{ route('scraper.list.manage') }}" class="nav-link">
-                        <x-heroicon-o-list-bullet />
-                        <span>Liste</span>
-                    </a>
-                </div>
-            </div>
-
             <div class="nav-item">
                 <hr class="border-secondary my-2">
             </div>
@@ -104,10 +79,6 @@
                         <x-heroicon-o-credit-card />
                         <span>Abbonamenti</span>
                     </a>
-                    <a href="{{ route('api.settings.dataforseo') }}" class="nav-link">
-                        <x-heroicon-o-server-stack />
-                        <span>API DataForSEO</span>
-                    </a>
                 </div>
             </div>
 
@@ -132,10 +103,6 @@
                     <a href="{{ route('logs.worker') }}" class="nav-link">
                         <x-heroicon-o-cpu-chip />
                         <span>Logs Worker</span>
-                    </a>
-                    <a href="{{ route('logs.DataForSEOErrors') }}" class="nav-link">
-                        <x-heroicon-o-exclamation-triangle />
-                        <span>Logs DataForSeo</span>
                     </a>
                 </div>
             </div>

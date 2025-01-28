@@ -23,7 +23,7 @@ class ProductsController extends Controller
             // Crea il prodotto su Stripe
             $stripeProduct = StripeProduct::create([
                 'name' => $data['name'],
-                'description' => $data['description'] . ' - ' . $data['credits'] . ' ' . __('Credits') ?? '',
+                'description' => $data['description'] ?? '',
                 'active' => true,
             ]);
 
@@ -98,10 +98,6 @@ class ProductsController extends Controller
                 'subscription_interval' => 'required_if:type,subscription|nullable|in:day,week,month,year',
                 'features' => 'nullable|array',
                 'features.*.name' => 'string|max:255',
-                /*'variants' => 'required_if:has_variants,true|array|min:1',
-                'variants.*.name' => 'required_if:has_variants,true|string|max:255',
-                'variants.*.price' => 'required_if:has_variants,true|numeric|min:0',*/
-                'credits' => 'nullable|integer|min:0',
             ]);
 
             /*$validated['has_variants'] = !empty($validated['variants']);
@@ -119,25 +115,6 @@ class ProductsController extends Controller
 
             // Crea il prodotto nel database
             $product = Product::createProduct($validated);
-
-            // Gestisci le varianti
-            /*if (isset($validated['variants'])) {
-                foreach ($validated['variants'] as $variant) {
-                    // Crea il prezzo della variante su Stripe
-                    $stripePriceId = $this->createStripeVariantPrice(
-                        $stripeData['product_id'], 
-                        $variant,
-                        $validated['subscription_interval']
-                    );
-
-                    // Crea la variante nel database
-                    $product->variants()->create([
-                        'name' => $variant['name'],
-                        'price' => (int) $variant['price'],
-                        'stripe_price_id' => $stripePriceId
-                    ]);
-                }
-            }*/
 
             // Gestisci le caratteristiche
             if (isset($validated['features'])) {
@@ -203,77 +180,70 @@ class ProductsController extends Controller
                 'active' => true,
             ]);
 
-            // Se non ci sono varianti, gestisci il prezzo base
-            /*if (!$data['has_variants']) {*/
-                // Se il prezzo è cambiato o non esiste, crea un nuovo prezzo
-                if (!$product->stripe_price_id || $product->price !== $data['price'] || 
-                    $product->subscription_interval !== $data['subscription_interval']) {
-                    
-                    $stripePrice = StripePrice::create([
-                        'product' => $stripeProduct->id,
-                        'unit_amount' => $data['price'] * 100, // Converti in centesimi per Stripe
-                        'currency' => 'eur',
-                        'recurring' => [
-                            'interval' => $data['subscription_interval'],
-                        ],
-                    ]);
 
-                    // Aggiorna gli abbonamenti attivi con il nuovo prezzo
-                    if ($product->type === 'subscription') {
-                        $activeSubscriptions = \App\Models\Subscription::where('stripe_price', $product->stripe_price_id)
-                            ->where('stripe_status', 'active')
-                            ->get();
+            // Se il prezzo è cambiato o non esiste, crea un nuovo prezzo
+            if (!$product->stripe_price_id || $product->price !== $data['price'] || 
+                $product->subscription_interval !== $data['subscription_interval']) {
+                
+                $stripePrice = StripePrice::create([
+                    'product' => $stripeProduct->id,
+                    'unit_amount' => $data['price'] * 100, // Converti in centesimi per Stripe
+                    'currency' => 'eur',
+                    'recurring' => [
+                        'interval' => $data['subscription_interval'],
+                    ],
+                ]);
 
-                        foreach ($activeSubscriptions as $subscription) {
-                            try {
-                                // Recupera l'abbonamento Stripe
-                                $stripeSubscription = \Stripe\Subscription::retrieve($subscription->stripe_id);
-                                
-                                // Aggiorna l'abbonamento con il nuovo prezzo
-                                \Stripe\Subscription::update($subscription->stripe_id, [
-                                    'items' => [
-                                        [
-                                            'id' => $stripeSubscription->items->data[0]->id,
-                                            'price' => $stripePrice->id,
-                                        ],
+                // Aggiorna gli abbonamenti attivi con il nuovo prezzo
+                if ($product->type === 'subscription') {
+                    $activeSubscriptions = \App\Models\Subscription::where('stripe_price', $product->stripe_price_id)
+                        ->where('stripe_status', 'active')
+                        ->get();
+
+                    foreach ($activeSubscriptions as $subscription) {
+                        try {
+                            // Recupera l'abbonamento Stripe
+                            $stripeSubscription = \Stripe\Subscription::retrieve($subscription->stripe_id);
+                            
+                            // Aggiorna l'abbonamento con il nuovo prezzo
+                            \Stripe\Subscription::update($subscription->stripe_id, [
+                                'items' => [
+                                    [
+                                        'id' => $stripeSubscription->items->data[0]->id,
+                                        'price' => $stripePrice->id,
                                     ],
-                                    'proration_behavior' => 'always_invoice',
-                                ]);
+                                ],
+                                'proration_behavior' => 'always_invoice',
+                            ]);
 
-                                // Aggiorna il record dell'abbonamento nel database
-                                $subscription->update([
-                                    'stripe_price' => $stripePrice->id
-                                ]);
+                            // Aggiorna il record dell'abbonamento nel database
+                            $subscription->update([
+                                'stripe_price' => $stripePrice->id
+                            ]);
 
-                                Log::info('Abbonamento aggiornato con successo', [
-                                    'subscription_id' => $subscription->id,
-                                    'new_price_id' => $stripePrice->id
-                                ]);
-                            } catch (\Exception $e) {
-                                Log::error('Errore nell\'aggiornamento dell\'abbonamento', [
-                                    'subscription_id' => $subscription->id,
-                                    'error' => $e->getMessage()
-                                ]);
-                            }
+                            Log::info('Abbonamento aggiornato con successo', [
+                                'subscription_id' => $subscription->id,
+                                'new_price_id' => $stripePrice->id
+                            ]);
+                        } catch (\Exception $e) {
+                            Log::error('Errore nell\'aggiornamento dell\'abbonamento', [
+                                'subscription_id' => $subscription->id,
+                                'error' => $e->getMessage()
+                            ]);
                         }
                     }
-
-                    return [
-                        'product_id' => $stripeProduct->id,
-                        'price_id' => $stripePrice->id
-                    ];
                 }
 
                 return [
                     'product_id' => $stripeProduct->id,
-                    'price_id' => $product->stripe_price_id
+                    'price_id' => $stripePrice->id
                 ];
-            /*}
+            }
 
             return [
                 'product_id' => $stripeProduct->id,
-                'price_id' => null
-            ];*/
+                'price_id' => $product->stripe_price_id
+            ];
 
         } catch (Exception $e) {
             Log::error('Errore nell\'aggiornamento del prodotto su Stripe: ' . $e->getMessage());
@@ -295,18 +265,7 @@ class ProductsController extends Controller
                 'subscription_interval' => 'required_if:type,subscription|nullable|in:day,week,month,year',
                 'features' => 'nullable|array',
                 'features.*.name' => 'string|max:255',
-                /*'variants' => 'nullable|array',
-                'variants.*.id' => 'nullable|integer|exists:product_variants,id',
-                'variants.*.name' => 'string|max:255',
-                'variants.*.price' => 'numeric|min:0',*/
-                'credits' => 'nullable|integer|min:0',
             ]);
-
-            /*$validated['has_variants'] = !empty($validated['variants']);
-
-            if (!$validated['has_variants']) {*/
-                $validated['price'] = ($validated['price']);
-            /*}*/
 
             // Aggiorna o crea il prodotto su Stripe
             $stripeData = $this->updateOrCreateStripeProduct($validated, $product);
@@ -317,26 +276,6 @@ class ProductsController extends Controller
 
             // Aggiorna il prodotto nel database
             $product->updateProduct($validated);
-
-            // Gestisci le varianti
-            /*$product->variants()->delete();
-            if (isset($validated['variants'])) {
-                foreach ($validated['variants'] as $variant) {
-                    // Crea il prezzo della variante su Stripe
-                    $stripePriceId = $this->createStripeVariantPrice(
-                        $stripeData['product_id'], 
-                        $variant, 
-                        $validated['subscription_interval']
-                    );
-
-                    // Crea la variante nel database
-                    $product->variants()->create([
-                        'name' => $variant['name'],
-                        'price' => $variant['price'],
-                        'stripe_price_id' => $stripePriceId
-                    ]);
-                }
-            }*/
 
             // Gestisci le caratteristiche
             $product->features()->delete();

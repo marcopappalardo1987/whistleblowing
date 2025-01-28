@@ -38,8 +38,7 @@ class Product extends Model
         //'has_variants',
         'subscription_duration',
         'subscription_interval',
-        'features',
-        'credits'
+        'features'
     ];
 
     /**
@@ -48,9 +47,7 @@ class Product extends Model
      * @var array
      */
     protected $casts = [
-        //'has_variants' => 'boolean',
-        'subscription_duration' => 'integer',
-        'credits' => 'integer',
+        'subscription_duration' => 'integer'
     ];
 
     /**
@@ -83,21 +80,8 @@ class Product extends Model
                 'subscription_duration' => $data['subscription_duration'] ?? null,
                 'subscription_interval' => $data['subscription_interval'] ?? null,
                 'stripe_product_id' => $data['stripe_product_id'] ?? null,
-                'stripe_price_id' => $data['stripe_price_id'] ?? null,
-                'credits' => $data['credits'] ?? null,
+                'stripe_price_id' => $data['stripe_price_id'] ?? null
             ]);
-
-            /* // Crea le varianti se presenti
-            if (isset($data['variants']) && !empty($data['variants'])) {
-                foreach ($data['variants'] as $variant) {
-                    $product->variants()->create([
-                        'name' => $variant['name'],
-                        'price' => $variant['price'],
-                        'stripe_price_id' => null,
-                        'credits' => $variant['credits'] ?? null,
-                    ]);
-                }
-            }*/
 
             return $product;
 
@@ -133,40 +117,8 @@ class Product extends Model
                 'subscription_duration' => $data['subscription_duration'] ?? $this->subscription_duration,
                 'subscription_interval' => $data['subscription_interval'] ?? $this->subscription_interval,
                 'stripe_product_id' => $data['stripe_product_id'] ?? $this->stripe_product_id,
-                'stripe_price_id' => $stripePriceId,
-                'credits' => $data['credits'] ?? $this->credits,
+                'stripe_price_id' => $stripePriceId
             ]);
-
-            /* // 2. Gestisci le varianti
-            if (isset($data['variants'])) {
-                // Rimuovi le varianti non presenti nell'aggiornamento
-                $currentVariantIds = collect($data['variants'])->pluck('id')->filter();
-                $this->variants()->whereNotIn('id', $currentVariantIds)->delete();
-
-                foreach ($data['variants'] as $variant) {
-                    if (isset($variant['id'])) {
-                        // Aggiorna variante esistente
-                        $existingVariant = $this->variants()->find($variant['id']);
-                        if ($existingVariant) {
-                            // Aggiorna stripe_price_id solo se il prezzo è cambiato
-                            $variantPriceChanged = $existingVariant->price != $variant['price'];
-                            $variant['stripe_price_id'] = $variantPriceChanged ? 
-                                $variant['stripe_price_id'] : 
-                                $existingVariant->stripe_price_id;
-                                
-                            $existingVariant->update($variant);
-                        }
-                    } else {
-                        // Crea nuova variante
-                        $this->variants()->create([
-                            'name' => $variant['name'],
-                            'price' => $variant['price'],
-                            'stripe_price_id' => $variant['stripe_price_id'] ?? null,
-                            'credits' => $variant['credits'] ?? null,
-                        ]);
-                    }
-                }
-            }*/
 
             return $this;
 

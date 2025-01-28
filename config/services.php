@@ -41,10 +41,4 @@ return [
         'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
     ],
 
-    'dataforseo' => [
-        'username' => env('DATAFORSEO_API_USERNAME'),
-        'password' => env('DATAFORSEO_API_PASSWORD'),
-        'environment' => env('DATAFORSEO_API_ENVIROMENT'),
-    ],
-
 ];

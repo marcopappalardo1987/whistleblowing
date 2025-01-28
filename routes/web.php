@@ -1,8 +1,4 @@
 <?php
-
-use App\Http\Controllers\ApiDataForSEOAppendix;
-use App\Http\Controllers\ApiDataForSEOControllerManager;
-use App\Http\Controllers\ApiDataForSEOSerpGoogleMaps;
 use App\Http\Controllers\Frontend\PlansController;
 use App\Http\Controllers\LogsController;
 use App\Http\Controllers\PermissionsController;
@@ -228,89 +224,6 @@ Route::get('/logs/worker', [LogsController::class, 'worker'])
 Route::post('/logs/worker/clear', [LogsController::class, 'clearWorkerLog'])
     ->middleware(['auth', 'verified', 'permission:edit ownerdata'])
     ->name('logs.worker.clear');
-
-Route::get('/logs/DataForSEOErrors', [ApiDataForSEOAppendix::class, 'getAppendixErrors'])
-    ->middleware(['auth', 'verified', 'permission:view ownerdata'])
-    ->name('logs.DataForSEOErrors');
-
-
-/*********************************
- ********************************* 
- * Scraper Routes
- *********************************
- *********************************/
-
-/*  Route::get('/scraper', function () {
-    return view('scraper.index');
-})->middleware(['auth', 'verified', 'permission:view ownerdata'])->name('scraper'); */
-
-Route::get('/scraper/google/maps', function () {
-    $lists = ScrapeList::getListsByUserId(Auth::id());
-    return view('scraper.google.maps', compact('lists'));
-})->middleware(['auth', 'verified', 'permission:view ownerdata'])->name('scraper.google.maps');
-
-Route::post('/scraper/google/maps', [ApiDataForSEOSerpGoogleMaps::class, 'postTask'])
-    ->middleware(['auth', 'verified', 'permission:view ownerdata'])
-    ->name('scraper.google.maps.postTask');
-
-Route::post('/scraper/google/maps/postback', [ApiDataForSEOSerpGoogleMaps::class, 'postback'])
-    ->name('scraper.google.maps.postback');
-
-Route::get('/scraper/list/add', function () {
-    return view('scraper.list.add');
-})->middleware(['auth', 'verified', 'permission:publish ownerdata'])->name('scraper.list.add');
-
-Route::get('/scraper/list/edit/{list_id}', [ScraperListController::class, 'editList'])
-    ->middleware(['auth', 'verified', 'permission:edit ownerdata'])
-    ->name('scraper.list.edit');
-
-Route::post('/scraper/list/edit', [ScraperListController::class, 'updateList'])
-    ->middleware(['auth', 'verified', 'permission:edit ownerdata'])
-    ->name('scraper.list.edit.store');
-
-Route::post('/scraper/list/add', [ScraperListController::class, 'store'])
-    ->middleware(['auth', 'verified', 'permission:publish ownerdata'])
-    ->name('scraper.list.store');
-
-Route::get('/scraper/list/manage', function () {
-    return (new ScraperListController)->getListByUserId(Auth::id());
-})->middleware(['auth', 'verified', 'permission:view ownerdata'])->name('scraper.list.manage');
-
-Route::get('/scraper/list/delete/{list_id}', [ScraperListController::class, 'delete'])
-    ->middleware(['auth', 'verified', 'permission:remove ownerdata'])
-    ->name('scraper.list.delete');
-
-Route::get('/scraper/list/content/view/{list_id}', function ($list_id) {
-    return (new ScrapeListContentController)->getContentByListIdAndUserId($list_id, Auth::id());
-})->middleware(['auth', 'verified', 'permission:view ownerdata'])->name('scraper.list.content.view');
-
-Route::get('/scraper/list/content/add/{list_id}', function ($list_id) {
-    return (new ScrapeListContentController)->addContentToList($list_id, Auth::id());
-})->middleware(['auth', 'verified', 'permission:publish ownerdata'])->name('scraper.list.content.add');
-
-Route::post('/scraper/list/content/view/{list_id}/{content_id?}', [ScrapeListContentController::class, 'storeFromForm'])
-    ->middleware(['auth', 'verified', 'permission:publish ownerdata'])
-    ->name('scraper.list.content.view.store');
-
-Route::get('/scraper/list/content/delete/{contentId}', [ScrapeListContentController::class, 'delete'])
-    ->middleware(['auth', 'verified', 'permission:remove ownerdata'])
-    ->name('scraper.list.content.delete');
-
-Route::post('/scraper/list/content/bulkActions', [ScrapeListContentController::class, 'bulkActions'])
-    ->middleware(['auth', 'verified', 'permission:remove ownerdata'])
-    ->name('scraper.list.content.bulkActions');
-
-Route::get('/scraper/list/content/edit/{contentId}', [ScrapeListContentController::class, 'edit'])
-    ->middleware(['auth', 'verified', 'permission:edit ownerdata'])
-    ->name('scraper.list.content.edit');
-
-Route::post('/scraper/list/content/bulkEmailScraping', [ScrapeListContentController::class, 'bulkEmailScraping'])
-    ->middleware(['auth', 'verified', 'permission:publish ownerdata'])
-    ->name('scraper.list.content.bulkEmailScraping');
-
-Route::get('/scraper/list/content/exportCsv/{list_id}', [ScrapeListContentController::class, 'exportCsv'])
-    ->middleware(['auth', 'verified', 'permission:view ownerdata'])
-    ->name('scraper.list.content.exportCsv');
 
 /*********************************
  ********************************* 

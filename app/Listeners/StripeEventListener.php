@@ -5,7 +5,6 @@ namespace App\Listeners;
 use App\Models\Product;
 use App\Models\Subscription;
 use App\Models\User;
-use App\Models\UserCredits;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Events\WebhookReceived;
@@ -84,12 +83,6 @@ class StripeEventListener
                 Log::error('Product not found for Stripe Price ID', ['stripe_price_id' => $StripePriceId]);
                 return;
             }
-            $productCredits = $product->credits;
-
-            UserCredits::updateOrCreate(
-                ['user_id' => $userId],
-                ['credits' => $productCredits, 'expires_at' => $expiresAt]
-            );
         } catch (\Exception $e) {
             Log::error('Error processing Stripe event', ['message' => $e->getMessage(), 'event' => $event->payload]);
         }

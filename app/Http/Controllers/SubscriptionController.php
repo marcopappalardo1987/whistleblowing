@@ -267,9 +267,7 @@ class SubscriptionController extends Controller
                 if ($subscriptionName && !str_contains(strtolower($stripeProduct->name), strtolower($subscriptionName))) {
                     continue;
                 }
-
-                $credits = User::find($subscription->user_id)->getActiveCredits();
-                /* dd( User::find($subscription->user_id)); */
+                
                 $subscriptionNames->push($stripeProduct->name);
                 
                 $subscriptionData->push([
@@ -284,8 +282,7 @@ class SubscriptionController extends Controller
                     'amount' => number_format($amount, 2, ',', '.') . ' ' . config('cashier.currency_symbol', '€'),
                     'created_at' => $subscription->created_at,
                     'updated_at' => $subscription->updated_at,
-                    'ends_at' => $subscription->ends_at,
-                    'credits' => $credits
+                    'ends_at' => $subscription->ends_at
                 ]);
             } catch (\Exception $e) {
                 \Log::error('Errore nel recupero dati Stripe', [

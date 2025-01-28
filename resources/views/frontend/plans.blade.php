@@ -38,10 +38,6 @@
                             €{{ number_format($product->price, 2) }}
                             <small class="text-body-secondary fw-light">/{{ $product->subscription_interval === 'day' ? 'giorno' : ($product->subscription_interval === 'week' ? 'settimana' : ($product->subscription_interval === 'month' ? 'mese' : 'anno')) }}</small>
                         </h1>
-
-                        <h3 class="h5">
-                            <small class="text-body-secondary fw-light">{{ number_format($product->credits, 0, ',', '.') }} crediti</small>
-                        </h3>
                         
                         @if($product->description)
                             <p class="text-muted mt-3">{{ $product->description }}</p>

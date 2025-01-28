@@ -72,7 +72,6 @@
                                 <th>Stato</th>
                                 <th>Prezzo</th>
                                 <th>Data Attivazione</th>
-                                <th>Crediti</th>
                                 <th>Azioni</th>
                             </tr>
                         </thead>
@@ -99,7 +98,6 @@
                                 </td>
                                 <td>{{ $subscription['amount'] }}</td>
                                 <td>{{ $subscription['created_at'] ? $subscription['created_at']->format('d/m/Y') : '-' }}</td>
-                                <td>{{ $subscription['credits'] }}</td>
                                 <td>
                                     <a href="{{ route('subscriptions.view', ['id' => $subscription['id']]) }}" class="btn btn-sm btn-info">Visualizza</a>
                                     <a href="{{ route('subscriptions.edit', ['id' => $subscription['id']]) }}" class="btn btn-sm btn-primary">Modifica</a>

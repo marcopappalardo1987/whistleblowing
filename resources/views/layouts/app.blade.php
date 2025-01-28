@@ -47,10 +47,6 @@
                                 </ul>
                             </li> --}}
 
-                            <div class="d-flex align-items-center">
-                                <span class="badge bg-secondary"><i class="bi bi-credit-card me-2"></i>{{__('Crediti')}}: {{ Auth::user()->getActiveCredits() }}</span>
-                            </div>
-
                             <!-- Profile -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">

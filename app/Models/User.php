@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Payment;
-use App\Models\UserCredits;
 
 class User extends Authenticatable
 {
@@ -47,27 +46,6 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function credits()
-    {
-        return $this->hasMany(UserCredits::class);
-    }
-
-    /**
-     * Get total active credits for user
-     */
-    public function getActiveCredits(): int
-    {
-        return UserCredits::getActiveCredits($this->id);
-    }
-
-    /**
-     * Check if user has enough active credits
-     */
-    public function hasEnoughCredits(int $required): bool
-    {
-        return $this->getActiveCredits() >= $required;
     }
 
 }

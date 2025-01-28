@@ -54,14 +54,6 @@
                                 <x-select-input id="subscription_interval" name="subscription_interval" :options="['' => 'Nessuno', 'day' => 'Giornaliero', 'week' => 'Settimanale', 'month' => 'Mensile', 'year' => 'Annuale']" :selected="old('subscription_interval', $product->subscription_interval)" class="form-select" />
                             </div>
 
-                            <div class="mb-3">
-                                <x-input-label for="credits" :value="__('Credits')" />
-                                <x-text-input id="credits" class="form-control" type="number" name="credits" :value="old('credits', $product->credits)" />
-                                <x-input-error :messages="$errors->get('credits')" class="invalid-feedback" />
-                            </div>
-
-                            
-
                             <div class="mb-3" id="features_section">
                                 <h4 class="fw-bold mb-3">Caratteristiche</h4>
                                 <div id="features_container">
