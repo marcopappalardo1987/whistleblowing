@@ -1,0 +1,28 @@
+@use 'sass:color';
+
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$primary: #3490dc;
+$secondary: #6c757d;
+$success: #38c172;
+$info: #6cb2eb;
+$warning: #ffed4a;
+$danger: #e3342f;
+$light: #f8f9fa;
+$dark: #343a40;
+
+// Functions
+@function tint-color($color, $weight) {
+  @return color.mix(white, $color, $weight);
+}
+
+@function shade-color($color, $weight) {
+  @return color.mix(black, $color, $weight);
+} 

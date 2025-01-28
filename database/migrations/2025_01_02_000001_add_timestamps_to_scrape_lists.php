@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddTimestampsToScrapeLists extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('scrape_lists', function (Blueprint $table) {
+            if (!Schema::hasColumn('scrape_lists', 'created_at') && !Schema::hasColumn('scrape_lists', 'updated_at')) {
+                $table->timestamps();
+            }
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('scrape_lists', function (Blueprint $table) {
+            if (Schema::hasColumn('scrape_lists', 'created_at') && Schema::hasColumn('scrape_lists', 'updated_at')) {
+                $table->dropTimestamps();
+            }
+        });
+    }
+}

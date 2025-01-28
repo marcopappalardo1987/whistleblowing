@@ -1,0 +1,284 @@
+@use 'sass:color';
+@use 'variables' as *;
+
+// Qui puoi aggiungere i tuoi stili personalizzati
+
+// Stili per i titoli
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600; // Semi-bold
+    color: $dark;     // Usa la variabile di colore di Bootstrap
+}
+
+// Stili specifici per dimensioni
+h1, .h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+h2, .h2 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+}
+
+h3, .h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+h4, .h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+h5, .h5 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+h6, .h6 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+// Navbar customization
+.navbar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    .navbar-brand {
+        img {
+            height: 40px;
+            width: auto;
+        }
+    }
+
+    .nav-link {
+        color: $dark;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: $primary;
+        }
+
+        &.active {
+            color: $primary;
+        }
+    }
+
+    .dropdown-menu {
+        border: none;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        
+        .dropdown-item {
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+
+            &:hover {
+                background-color: rgba($primary, 0.1);
+                color: $primary;
+            }
+
+            &:active {
+                background-color: $primary;
+                color: white;
+            }
+        }
+    }
+
+    // Mobile adjustments
+    @media (max-width: 991.98px) {
+        .navbar-collapse {
+            padding: 1rem 0;
+        }
+
+        .nav-link {
+            padding: 0.5rem 0;
+        }
+
+        .btn {
+            margin: 0.5rem 0;
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+// Layout
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+// Sidebar
+.sidebar {
+    width: 50px;
+    background: #343a40;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &:hover {
+        width: 250px;
+
+        .nav-link span,
+        .submenu-arrow {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 0.8rem 1rem;
+        color: rgba(255,255,255,.8);
+        white-space: nowrap;
+        transition: all 0.3s ease;
+
+        i:not(.submenu-arrow) {
+            min-width: 2rem;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        span {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-left: 0.5rem;
+        }
+
+        .submenu-arrow {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-left: auto;
+            font-size: 0.8rem;
+        }
+
+        &[aria-expanded="true"] .submenu-arrow {
+            transform: rotate(90deg);
+        }
+
+        &:hover {
+            color: #fff;
+            background: rgba(255,255,255,.1);
+        }
+
+        &[aria-expanded="true"] {
+            background: rgba(255,255,255,.1);
+            
+            .submenu-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        &.collapsed .submenu-arrow {
+            transform: rotate(0deg);
+        }
+
+        .submenu-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            color: currentColor;
+            
+            &.submenu-arrow {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+
+    .submenu {
+        background: rgba(0,0,0,.1);
+        
+        .nav-link {
+            padding-left: 3rem;
+            
+            i {
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    // Scrollbar customization
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,.2);
+        border-radius: 3px;
+    }
+}
+
+// Content
+.content {
+    flex: 1;
+    width: calc(100% - 50px);
+    margin-left: 50px;
+    transition: all 0.3s;
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .sidebar {
+        margin-left: -70px;
+        
+        &.show {
+            margin-left: 0;
+            width: 250px;
+
+            .nav-link span,
+            .submenu-arrow {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
+    .content {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .wrapper.toggled {
+        .sidebar {
+            margin-left: 0;
+            width: 250px;
+
+            .nav-link span {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+// Navbar customizations
+.navbar {
+    padding: 0.5rem 1rem;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,.05);
+
+    .dropdown-menu {
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+        border: none;
+    }
+}
+.company-data:hover {
+    background-color: #f8f9fa !important;
+}
