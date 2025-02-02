@@ -16,7 +16,8 @@
         "laravel/tinker": "^2.9",
         "owenvoke/blade-fontawesome": "^2.8",
         "secondnetwork/blade-tabler-icons": "^3.28",
-        "spatie/laravel-permission": "^6.10"
+        "spatie/laravel-permission": "^6.10",
+		"plesk/ext-laravel-integration": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

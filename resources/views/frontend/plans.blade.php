@@ -21,6 +21,9 @@
 
 @section('content')
 <div class="container py-5">
+    <div class="col-12">
+        @include('layouts.alert-message') 
+    </div>
     <div class="text-center mb-5">
         <h1 class="display-4 mb-3">I Nostri Piani</h1>
         <p class="lead text-muted">Scegli il piano più adatto alle tue esigenze</p>

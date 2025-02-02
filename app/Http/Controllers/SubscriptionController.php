@@ -122,12 +122,12 @@ class SubscriptionController extends Controller
     {
         $request->validate([
             'payment_method' => 'required',
-            'product_id' => 'required|exists:products,id',
-            'variant_id' => 'nullable|exists:product_variants,id'
+            'product_id' => 'required|exists:products,id'
         ]);
 
         $user = Auth::user();
         $product = Product::findOrFail($request->product_id);
+        $stripePriceId = $product->stripe_price_id;
 
         try {
             // Verifica se l'utente ha già un abbonamento attivo
@@ -138,14 +138,6 @@ class SubscriptionController extends Controller
 
             // Trova o crea il cliente Stripe
             $stripeCustomer = $this->findOrCreateStripeCustomer($user);
-
-            // Se è stata selezionata una variante
-            if ($request->variant_id) {
-                $variant = $product->variants()->findOrFail($request->variant_id);
-                $stripePriceId = $variant->stripe_price_id;
-            } else {
-                $stripePriceId = $product->stripe_price_id;
-            }
 
             // Gestione del metodo di pagamento
             try {

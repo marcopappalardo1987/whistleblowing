@@ -18,13 +18,6 @@
                 </a>
             @endcan
             
-            @can('view ownerdata')
-                <a href="{{ route('logs.DataForSEOErrors') }}" 
-                   class="btn {{ request()->routeIs('logs.DataForSEOErrors') ? 'btn-primary' : 'btn-outline-primary' }}">
-                    <i class="bi bi-exclamation-triangle me-2"></i>
-                    {{ __('DataForSEO Errors') }}
-                </a>
-            @endcan
         </div>    
     </div>
 </div>

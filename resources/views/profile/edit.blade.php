@@ -21,6 +21,14 @@
                 </div>
             </div>
 
+            <div class="col-12 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <a href="{{ route('company.edit', ['user' => auth()->id()]) }}" class="btn btn-secondary">{{ __('Modifica Dati Azienda') }}</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-12">
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -28,6 +36,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </x-app-layout>

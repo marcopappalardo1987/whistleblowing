@@ -27,54 +27,25 @@ class ProductsController extends Controller
                 'active' => true,
             ]);
 
-            // Crea il prezzo base se non ci sono varianti
-            /*if (!$data['has_variants']) {*/
-                $stripePrice = StripePrice::create([
-                    'product' => $stripeProduct->id,
-                    'unit_amount' => $data['price'] * 100,
-                    'currency' => 'eur',
-                    'recurring' => [
-                        'interval' => $data['subscription_interval'],
-                    ],
-                ]);
-                
-                return [
-                    'product_id' => $stripeProduct->id,
-                    'price_id' => $stripePrice->id
-                ];
-            /*}
-
+            $stripePrice = StripePrice::create([
+                'product' => $stripeProduct->id,
+                'unit_amount' => $data['price'] * 100,
+                'currency' => 'eur',
+                'recurring' => [
+                    'interval' => $data['subscription_interval'],
+                ],
+            ]);
+            
             return [
                 'product_id' => $stripeProduct->id,
-                'price_id' => null
-            ];*/
+                'price_id' => $stripePrice->id
+            ];
 
         } catch (Exception $e) {
             Log::error('Errore nella creazione del prodotto su Stripe: ' . $e->getMessage());
             throw new Exception('Errore nella creazione del prodotto su Stripe: ' . $e->getMessage());
         }
     }
-
-    /*private function createStripeVariantPrice($stripeProductId, $variant, $interval)
-    {
-        try {
-            $stripePrice = StripePrice::create([
-                'product' => $stripeProductId,
-                'unit_amount' => $variant['price'] * 100,
-                'currency' => 'eur',
-                'recurring' => [
-                    'interval' => $interval,
-                ],
-                'nickname' => $variant['name'],
-            ]);
-
-            return $stripePrice->id;
-
-        } catch (Exception $e) {
-            Log::error('Errore nella creazione della variante su Stripe: ' . $e->getMessage());
-            throw new Exception('Errore nella creazione della variante su Stripe: ' . $e->getMessage());
-        }
-    }*/
 
     /**
      * Mostra il form per creare un nuovo prodotto
@@ -99,12 +70,8 @@ class ProductsController extends Controller
                 'features' => 'nullable|array',
                 'features.*.name' => 'string|max:255',
             ]);
-
-            /*$validated['has_variants'] = !empty($validated['variants']);
-
-            if (!$validated['has_variants']) {*/
-                $validated['price'] = (int) ($validated['price']);
-            /*}*/
+            
+            $validated['price'] = (int) ($validated['price']);
 
             // Crea il prodotto su Stripe
             $stripeData = $this->createStripeProduct($validated);

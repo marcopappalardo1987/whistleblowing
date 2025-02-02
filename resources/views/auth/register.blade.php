@@ -90,6 +90,8 @@
                                     required 
                                     autocomplete="new-password">
                             </div>
+                            
+                            <input type="hidden" name="referral_id" value="{{ request()->get('referral_id') }}">
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <a class="text-decoration-none" href="{{ route('login') }}">
@@ -116,6 +118,13 @@
             </div>
         </div>
     </div>
+
+    <?php
+        if (isset($_GET['referral_id'])) {
+            // Memorizza referral_id nei cookie per 1 anno con un nome personalizzato
+            setcookie('wbt_referral_id', $_GET['referral_id'], time() + (525600 * 60), "/"); // 525600 minuti = 1 anno
+        }
+    ?>
 
     @push('styles')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">

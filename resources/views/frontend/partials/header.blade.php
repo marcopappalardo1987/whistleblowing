@@ -19,14 +19,24 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('plans') ? 'active' : '' }}" href="{{ url('/plans') }}">
+                    <a class="nav-link {{ request()->is('plans') ? 'active' : '' }}" href="{{ route('plans') }}">
                         Piani
                     </a>
                 </li>
                 @auth
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
-                    </li>
+                    @if(auth()->user()->can('view affiliate data') || auth()->user()->can('view ownerdata') || auth()->user()->hasRole('azienda'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="nav-link btn btn-link" style="text-decoration: none;">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
+                    @endif
                 @else
                     <li class="nav-item">
                         <a class="btn btn-primary ms-lg-3" href="{{ route('login') }}">Accedi</a>
