@@ -21,7 +21,50 @@ class EmailService
             'view' => 'emails.company-data-updated',
             'subject' => 'Dati Aziendali Aggiornati'
         ],
-        // Aggiungi altri template qui
+        'investigator_invitation' => [
+            'view' => 'emails.investigator-invitation',
+            'subject' => 'Invito come Investigatore'
+        ],
+        'investigator_registration' => [
+            'view' => 'emails.investigator-registration',
+            'subject' => 'Registrazione completa come Investigatore'
+        ],
+        'reminder_5_days' => [
+            'view' => 'emails.report.status.reminder_5_days',
+            'subject' => 'Report in attesa di aggiornamento'
+        ],
+        'reminder_7_days' => [
+            'view' => 'emails.report.status.reminder_7_days',
+            'subject' => 'Report in attesa di aggiornamento'
+        ],
+        'reminder_85_days' => [
+            'view' => 'emails.report.status.reminder_85_days',
+            'subject' => 'Report in attesa di aggiornamento'
+        ],
+        'reminder_90_days' => [
+            'view' => 'emails.report.status.reminder_90_days',
+            'subject' => 'Report in attesa di aggiornamento'
+        ],
+        'new_report_notification' => [
+            'view' => 'emails.report.new-report-notification',
+            'subject' => 'Nuova segnalazione ricevuta'
+        ],
+        'report_reply_notification' => [
+            'view' => 'emails.report.report-reply-notification',
+            'subject' => 'Nuova risposta alla segnalazione'
+        ],
+        'welcome_affiliate' => [
+            'view' => 'emails.affiliate.welcome-affiliate',
+            'subject' => 'Benvenuto nel Programma di Affiliazione'
+        ],
+        'payment_success' => [
+            'view' => 'emails.payment.payment-success',
+            'subject' => 'Conferma di Pagamento'
+        ],
+        'subscription_cancelled' => [
+            'view' => 'emails.subscription.subscription-cancelled',
+            'subject' => 'Ci dispiace vederti andare'
+        ],
     ];
 
     /**

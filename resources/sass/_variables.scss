@@ -9,14 +9,28 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
-$primary: #3490dc;
-$secondary: #6c757d;
-$success: #38c172;
-$info: #6cb2eb;
-$warning: #ffed4a;
-$danger: #e3342f;
-$light: #f8f9fa;
-$dark: #343a40;
+$primary: #143454;
+$secondary: #0a4e75;
+$success: #2a8463;
+$info: #168abb;
+$warning: #d1b23e;
+$danger: #9b2d30;
+$light: #f0fbff;
+$dark: #003a5c;
+$white: #fff;
+
+// Colors
+$color-primary: #143454;
+$color1: #003a5c;
+$color2: #0a4e75;
+$color3: #168abb;
+$color4: #60c5e6;
+$color5: #a1dff7;
+$color6: #f0fbff;
+$colorSuccess: #2a8463;
+$colorDanger: #9b2d30;
+$colorWarning: #d1b23e;
+$colorInfo: #168abb;
 
 // Functions
 @function tint-color($color, $weight) {

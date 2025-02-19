@@ -40,7 +40,6 @@
                         <form method="post" action="{{ route('company.update', ['user' => auth()->id()]) }}" class="mt-4">
                             @csrf
                             @method('patch')
-
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <x-input-label for="legal_name" :value="__('Nome Legale')" />
@@ -52,7 +51,9 @@
                                 <div class="col-md-6">
                                     <x-input-label for="vat_number" :value="__('Numero di Partita IVA')" />
                                     <x-text-input id="vat_number" name="vat_number" type="text" class="form-control" :value="old('vat_number', $companyData->vat_number ?? '')" required />
-                                    <x-input-error :messages="$errors->get('vat_number')" class="invalid-feedback" />
+                                    @error('vat_number')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -60,12 +61,16 @@
                                 <div class="col-md-6">
                                     <x-input-label for="tax_code" :value="__('Codice Fiscale')" />
                                     <x-text-input id="tax_code" name="tax_code" type="text" class="form-control" :value="old('tax_code', $companyData->tax_code ?? '')" />
-                                    <x-input-error :messages="$errors->get('tax_code')" class="invalid-feedback" />
+                                    @error('tax_code')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <x-input-label for="sdi_code" :value="__('Codice SDI')" />
                                     <x-text-input id="sdi_code" name="sdi_code" type="text" class="form-control" :value="old('sdi_code', $companyData->sdi_code ?? '')" />
-                                    <x-input-error :messages="$errors->get('sdi_code')" class="invalid-feedback" />
+                                    @error('sdi_code')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -73,12 +78,16 @@
                                 <div class="col-md-6">
                                     <x-input-label for="full_address" :value="__('Indirizzo Completo')" />
                                     <x-text-input id="full_address" name="full_address" type="text" class="form-control" :value="old('full_address', $companyData->full_address ?? '')" required />
-                                    <x-input-error :messages="$errors->get('full_address')" class="invalid-feedback" />
+                                    @error('full_address')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <x-input-label for="country" :value="__('Paese')" />
                                     <x-text-input id="country" name="country" type="text" class="form-control" :value="old('country', $companyData->country ?? '')" />
-                                    <x-input-error :messages="$errors->get('country')" class="invalid-feedback" />
+                                    @error('country')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -86,12 +95,16 @@
                                 <div class="col-md-6">
                                     <x-input-label for="rea_number" :value="__('Numero REA')" />
                                     <x-text-input id="rea_number" name="rea_number" type="text" class="form-control" :value="old('rea_number', $companyData->rea_number ?? '')" />
-                                    <x-input-error :messages="$errors->get('rea_number')" class="invalid-feedback" />
+                                    @error('rea_number')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <x-input-label for="registration_number" :value="__('Numero di Registrazione')" />
                                     <x-text-input id="registration_number" name="registration_number" type="text" class="form-control" :value="old('registration_number', $companyData->registration_number ?? '')" />
-                                    <x-input-error :messages="$errors->get('registration_number')" class="invalid-feedback" />
+                                    @error('registration_number')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -99,12 +112,16 @@
                                 <div class="col-md-6">
                                     <x-input-label for="email" :value="__('Email')" />
                                     <x-text-input id="email" name="email" type="email" class="form-control" :value="old('email', $companyData->email ?? '')" />
-                                    <x-input-error :messages="$errors->get('email')" class="invalid-feedback" />
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <x-input-label for="phone_number" :value="__('Numero di Telefono')" />
                                     <x-text-input id="phone_number" name="phone_number" type="text" class="form-control" :value="old('phone_number', $companyData->phone_number ?? '')" />
-                                    <x-input-error :messages="$errors->get('phone_number')" class="invalid-feedback" />
+                                    @error('phone_number')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -112,12 +129,16 @@
                                 <div class="col-md-6">
                                     <x-input-label for="administrative_contact" :value="__('Contatto Amministrativo')" />
                                     <x-text-input id="administrative_contact" name="administrative_contact" type="text" class="form-control" :value="old('administrative_contact', $companyData->administrative_contact ?? '')" />
-                                    <x-input-error :messages="$errors->get('administrative_contact')" class="invalid-feedback" />
+                                    @error('administrative_contact')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <x-input-label for="iban" :value="__('IBAN')" />
                                     <x-text-input id="iban" name="iban" type="text" class="form-control" :value="old('iban', $companyData->iban ?? '')" />
-                                    <x-input-error :messages="$errors->get('iban')" class="invalid-feedback" />
+                                    @error('iban')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -125,7 +146,9 @@
                                 <div class="col-md-12">
                                     <x-input-label for="bank_name" :value="__('Nome della Banca')" />
                                     <x-text-input id="bank_name" name="bank_name" type="text" class="form-control" :value="old('bank_name', $companyData->bank_name ?? '')" />
-                                    <x-input-error :messages="$errors->get('bank_name')" class="invalid-feedback" />
+                                    @error('bank_name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 

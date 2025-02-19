@@ -9,15 +9,17 @@
         "andreiio/blade-remix-icon": "^3.3",
         "blade-ui-kit/blade-heroicons": "^2.5",
         "codeat3/blade-carbon-icons": "^2.31",
+        "codeat3/blade-fluentui-system-icons": "^1.33",
         "codeat3/blade-google-material-design-icons": "^1.19",
+        "davidhsianturi/blade-bootstrap-icons": "^1.5",
         "faisal50x/blade-ionicons": "^1.0",
         "laravel/cashier": "^15.6",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "owenvoke/blade-fontawesome": "^2.8",
+        "plesk/ext-laravel-integration": "*",
         "secondnetwork/blade-tabler-icons": "^3.28",
-        "spatie/laravel-permission": "^6.10",
-		"plesk/ext-laravel-integration": "*"
+        "spatie/laravel-permission": "^6.10"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

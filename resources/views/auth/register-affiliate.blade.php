@@ -1,26 +1,12 @@
-@extends('layouts.frontend')
-
-@section('title', 'Registrati come Affiliato - ' . config('app.name'))
-
-@section('meta_description')
-    Registrati come affiliato per guadagnare commissioni sui nostri servizi premium.
-@endsection
-
-@section('og_title', 'Registrati come Affiliato - ' . config('app.name'))
-
-@section('og_description')
-    Unisciti al nostro programma di affiliazione e inizia a guadagnare oggi stesso.
-@endsection
-
-{{-- @section('og_image', asset('images/register-og.jpg')) --}}
-
-@section('additional_metadata')
-    <meta name="keywords" content="registrazione affiliato, programma di affiliazione, guadagna online">
-    <meta name="robots" content="index, follow">
-@endsection
-
-@section('content')
-
+<x-app-frontend 
+    title="Registrati come Affiliato - {{ config('app.name') }}"
+    metaDescription="Registrati come affiliato per guadagnare commissioni sui nostri servizi premium."
+    ogTitle="Registrati come Affiliato - {{ config('app.name') }}"
+    ogDescription="Unisciti al nostro programma di affiliazione e inizia a guadagnare oggi stesso."
+    ogImage="{{ asset('images/register-og.jpg') }}"  {{-- Se hai un'immagine specifica --}}
+    canonicalUrl="{{ url()->current() }}"
+>
+    @include('layouts.alert-message')
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12">
@@ -141,4 +127,4 @@
         }
     </style>
     @endpush
-@endsection
+</x-app-frontend>

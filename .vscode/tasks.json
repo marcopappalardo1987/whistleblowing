@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev",
+			"path": "vendor/davidhsianturi/blade-bootstrap-icons",
+			"problemMatcher": [],
+			"label": "npm: dev - vendor/davidhsianturi/blade-bootstrap-icons",
+			"detail": "npm run development"
+		}
+	]
+}

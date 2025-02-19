@@ -4,15 +4,15 @@
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <h2 class="text-center mb-4">{{ __('Reset Password') }}</h2>
+                        <h2 class="text-center mb-4">{{ __('Reimposta la Password') }}</h2>
 
                         <form method="POST" action="{{ route('password.store') }}">
                             @csrf
 
-                            <!-- Password Reset Token -->
+                            <!-- Token di reimpostazione della password -->
                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                            <!-- Email Address -->
+                            <!-- Indirizzo Email -->
                             <div class="mb-3">
                                 <x-input-label for="email" :value="__('Email')" />
                                 <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
@@ -26,16 +26,16 @@
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
 
-                            <!-- Confirm Password -->
+                            <!-- Conferma Password -->
                             <div class="mb-3">
-                                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                                <x-input-label for="password_confirmation" :value="__('Conferma Password')" />
                                 <x-text-input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
 
                             <div class="text-end mt-4">
                                 <x-primary-button>
-                                    {{ __('Reset Password') }}
+                                    {{ __('Reimposta la Password') }}
                                 </x-primary-button>
                             </div>
                         </form>

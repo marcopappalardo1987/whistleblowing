@@ -2,7 +2,7 @@
     <div class="container">
         {{-- Logo --}}
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="https://marcopappalardo.it/wp-content/uploads/2023/10/Marco-Pappalardo-Logo.svg" alt="{{ config('app.name') }}" height="40">
+            <img src="{{ asset('logo.png') }}" alt="{{ config('app.name') }}" height="40">
         </a>
 
         {{-- Hamburger Button --}}

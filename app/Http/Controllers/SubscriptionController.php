@@ -341,13 +341,17 @@ class SubscriptionController extends Controller
         $subscription = Subscription::findOrFail($id);
         $user = $subscription->user;
 
+       /*  dd($user->subscription()->first()); */
+
         try {
             switch ($request->action) {
                 case 'cancel':
                     if ($request->cancelation_option === 'immediate') {
-                        $user->subscription()->cancelNow();
+                        $user->subscription()->first()->cancelNow();/* 
+                        $subscription->cancelNow(); */
                     } else {
-                        $user->subscription()->cancel();
+                        $user->subscription()->first()->cancel();/* 
+                        $subscription->cancel();
                     }
                     return redirect()->back()->with('success', 'Abbonamento annullato con successo.');
 

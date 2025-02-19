@@ -80,19 +80,6 @@
                                 </select>
                             </div>
 
-                            <!-- <div id="swapFields" class="mb-3" style="display: none;">
-                                <label for="new_plan" class="form-label">Nuovo Piano:</label>
-                                <select id="new_plan" name="new_plan" class="form-select">
-                                    <option value="basic">Piano Base</option>
-                                    <option value="premium">Piano Premium</option>
-                                    <option value="pro">Piano Pro</option>
-                                </select>
-                            </div> -->
-
-                            <!-- <div id="paymentFields" class="mb-3" style="display: none;">
-                                <label for="payment_method" class="form-label">Metodo di Pagamento:</label>
-                                <input type="text" name="payment_method" id="payment_method" class="form-control" placeholder="ID del metodo di pagamento">
-                            </div> -->
                             <button type="submit" class="btn btn-primary mt-3">Esegui</button>
                     </form>
                 </div>

@@ -1,26 +1,12 @@
-@extends('layouts.frontend')
-
-@section('title', 'Registrati - ' . config('app.name'))
-
-@section('meta_description')
-    Crea il tuo account per accedere ai nostri servizi premium.
-@endsection
-
-@section('og_title', 'Registrati - ' . config('app.name'))
-
-@section('og_description')
-    Registrati per accedere a tutti i nostri servizi e funzionalità premium.
-@endsection
-
-{{-- @section('og_image', asset('images/register-og.jpg')) --}}
-
-@section('additional_metadata')
-    <meta name="keywords" content="registrazione, nuovo account, iscrizione">
-    <meta name="robots" content="index, follow">
-@endsection
-
-@section('content')
-@include('layouts.alert-message')
+<x-app-frontend 
+    title="Registrati - {{ config('app.name') }}"
+    metaDescription="Crea il tuo account per accedere ai nostri servizi premium."
+    ogTitle="Registrati - {{ config('app.name') }}"
+    ogDescription="Registrati per accedere a tutti i nostri servizi e funzionalità premium."
+    ogImage="{{ asset('images/register-og.jpg') }}"  {{-- Se hai un'immagine specifica --}}
+    canonicalUrl="{{ url()->current() }}"
+>
+    @include('layouts.alert-message')
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -138,4 +124,4 @@
         }
     </style>
     @endpush
-@endsection
+</x-app-frontend>

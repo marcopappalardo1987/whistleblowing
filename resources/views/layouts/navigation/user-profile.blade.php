@@ -25,11 +25,13 @@
                     <i class="bi bi-person me-2"></i>Profilo
                 </a>
             </li>
+            @role('azienda')
             <li>
                 <a class="dropdown-item" href="{{ route('profile.subscription') }}">
                     <i class="bi bi-credit-card me-2"></i>Abbonamento
                 </a>
             </li>
+            @endrole
             <li><hr class="dropdown-divider"></li>
             <li>
                 <form method="POST" action="{{ route('logout') }}">

@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Assegna il ruolo di default "user"
+        // Assegna il ruolo di default "azienda"
         $user->assignRole('azienda');
 
         // Memorizza il referral se esiste

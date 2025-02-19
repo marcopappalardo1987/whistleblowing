@@ -7,6 +7,8 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -30,6 +32,17 @@
                 <!-- Top Navigation -->
                 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
                     <div class="container-fluid">
+                        @if(isset($subscription))
+                            @if($subscription)
+                                <span class="nav-link text-muted abbonamento-attivo-top-nav">
+                                    Abbonamento attivo: {{ $subscription->product()->first()->name }}
+                                </span>
+                                @else
+                                    <span class="nav-link text-muted abbonamento-attivo-top-nav">
+                                        Abbonamento attivo: Nessun abbonamento attivo
+                                    </span>
+                            @endif
+                        @endif
                         <button class="btn btn-link d-block d-md-none" id="sidebarToggle" style="max-width: 50px">
                             <i class="bi bi-list"></i>
                         </button>
@@ -42,6 +55,7 @@
                 <!-- Main Content -->
                 <main class="p-4">
                     @isset($header)
+                        @include('layouts.alert-message-owner')
                         <h1 class="h3 mb-4">{{ $header }}</h1>
                     @endisset
                     {{ $slot }}

@@ -1,32 +1,18 @@
-@extends('layouts.frontend')
+<x-app-frontend 
+    title="Accedi - {{ config('app.name') }}"
+    metaDescription="Accedi al tuo account per gestire i tuoi servizi e le tue impostazioni."
+    ogTitle="Accedi - {{ config('app.name') }}"
+    ogDescription="Accedi in modo sicuro al tuo account personale."
+    ogImage="{{ asset('images/plans-og.jpg') }}"  {{-- Se hai un'immagine specifica --}}
+    canonicalUrl="{{ url()->current() }}"
+>
 
-@section('title', 'Accedi - ' . config('app.name'))
-
-@section('meta_description')
-    Accedi al tuo account per gestire i tuoi servizi e le tue impostazioni.
-@endsection
-
-@section('og_title', 'Accedi - ' . config('app.name'))
-
-@section('og_description')
-    Accedi in modo sicuro al tuo account personale.
-@endsection
-
-{{-- @section('og_image', asset('images/plans-og.jpg')) --}}
-
-@section('additional_metadata')
-    <meta name="keywords" content="accedi, login, area personale">
-    <meta name="robots" content="index, follow">
-@endsection
-
-@section('content')
-@include('layouts.alert-message')
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <h2 class="text-center mb-4">Accedi</h2>
+                        <h2 class="text-center mb-4">{{__('Accedi')}}</h2>
                         
                         @if (session('status'))
                             <div class="alert alert-success mb-4">
@@ -71,7 +57,7 @@
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 @if (Route::has('password.request'))
-                                    <a class="text-decoration-none" href="{{ route('password.request') }}">
+                                    <a class="text-decoration-none color3" href="{{ route('password.request') }}">
                                         {{ __('Password dimenticata?') }}
                                     </a>
                                 @endif
@@ -92,7 +78,7 @@
                             @if(session('intended_url'))
                                 <p class="mt-3 text-muted small">
                                     <i class="bi bi-info-circle"></i>
-                                    Dopo la registrazione potrai completare il tuo acquisto
+                                    {{__('Dopo la registrazione potrai completare il tuo acquisto')}}
                                 </p>
                             @endif
                         </div>
@@ -114,4 +100,4 @@
         }
     </style>
     @endpush
-@endsection
+</x-app-frontend>
