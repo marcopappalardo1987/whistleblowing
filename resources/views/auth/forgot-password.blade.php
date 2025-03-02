@@ -1,25 +1,67 @@
-<x-guest-layout>
-    <div class="mb-4 small text-muted">
-        {{ __('Hai dimenticato la tua password? Nessun problema. Facci sapere il tuo indirizzo email e ti invieremo un link per reimpostare la password che ti permetterà di sceglierne una nuova.') }}
+@extends('layouts.app-frontend')
+@section('content')
+    @include('layouts.alert-message')
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h2 class="text-center mb-4">{{__('Recupera Password')}}</h2>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <div class="mb-4 small text-muted">
+                            {{ __('Hai dimenticato la tua password? Nessun problema. Facci sapere il tuo indirizzo email e ti invieremo un link per reimpostare la password che ti permetterà di sceglierne una nuova.') }}
+                        </div>
+
+                        <!-- Session Status -->
+                        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                        <form method="POST" action="{{ route(app()->getLocale().'.password.email', ['locale' => app()->getLocale()]) }}">
+                            @csrf
+
+                            <!-- Email Address -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">{{ __('Email') }}</label>
+                                <input id="email" type="email" 
+                                    class="form-control @error('email') is-invalid @enderror" 
+                                    name="email" 
+                                    value="{{ old('email') }}" 
+                                    required 
+                                    autofocus 
+                                    autocomplete="email">
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <a class="text-decoration-none" href="{{ route(app()->getLocale().'.login', ['locale' => app()->getLocale()]) }}">
+                                    {{ __('Torna al login') }}
+                                </a>
+
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Invia link per reimpostare la password') }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div class="mb-3">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <div class="text-end mt-4">
-            <x-primary-button>
-                {{ __('Invia link per reimpostare la password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    @push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        .card {
+            border: none;
+            border-radius: 10px;
+        }
+        .btn-outline-primary:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
+    @endpush
+@endsection

@@ -1,12 +1,16 @@
-<x-guest-layout>
+@extends('layouts.app-frontend-whistleblowing-page')
+@section('content')
+    @include('layouts.alert-message')
     <div class="container py-5">
         <div class="row justify-content-center">
+            <div class="col-12">
+                <h2 class="text-center mb-4">{{ __('Reimposta la Password') }}</h2>
+            </div>
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <h2 class="text-center mb-4">{{ __('Reimposta la Password') }}</h2>
 
-                        <form method="POST" action="{{ route('password.store') }}">
+                        <form method="POST" action="{{ route(app()->getLocale().'.password.store', ['locale' => app()->getLocale()]) }}">
                             @csrf
 
                             <!-- Token di reimpostazione della password -->
@@ -44,4 +48,4 @@
             </div>
         </div>
     </div>
-</x-guest-layout>
+@endsection

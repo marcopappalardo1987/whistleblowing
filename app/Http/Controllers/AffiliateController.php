@@ -23,7 +23,7 @@ class AffiliateController extends Controller
     {
         // Controlla se l'utente esiste già
         if (User::where('email', $request->email)->exists()) {
-            return redirect()->route('login')
+            return redirect()->route(app()->getLocale().'.login', ['locale' => app()->getLocale()])
                 ->with('info', 'Un account con questa email esiste già. Effettua il login.');
         }
 
@@ -63,7 +63,7 @@ class AffiliateController extends Controller
             $user->email
         );
 
-        return redirect()->route('login')
+        return redirect()->route(app()->getLocale().'.login', ['locale' => app()->getLocale()])
             ->with('success', 'Registrazione completata con successo! Ora puoi effettuare il login.');
     }
 

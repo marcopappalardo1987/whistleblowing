@@ -94,9 +94,14 @@ class ResetPassword extends Notification
             return call_user_func(static::$createUrlCallback, $notifiable, $this->token);
         }
 
-        return url(route('password.reset', [
+        // Get the current locale
+        $locale = app()->getLocale();
+
+        // Use the locale in the route
+        return url(route("{$locale}.password.reset", [
             'token' => $this->token,
             'email' => $notifiable->getEmailForPasswordReset(),
+            'locale' => $locale,
         ], false));
     }
 

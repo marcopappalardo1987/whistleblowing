@@ -36,10 +36,10 @@
                     @auth
                         <a href="{{ route('dashboard') }}" class="text-decoration-none">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-decoration-none">Accedi</a>
-                        @if(Route::has('register'))
+                        <a href="{{ route(app()->getLocale().'.login', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">Accedi</a>
+                        @if(Route::has('en.register'))
                             <span class="mx-2">·</span>
-                            <a href="{{ route('register') }}" class="text-decoration-none">Registrati</a>
+                            <a href="{{ route(app()->getLocale().'.register', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">Registrati</a>
                         @endif
                     @endauth
                 </div>

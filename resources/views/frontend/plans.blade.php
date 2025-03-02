@@ -1,65 +1,57 @@
-<x-app-frontend 
-    title="Piani e Prezzi - {{ config('app.name') }}"
-    metaDescription="Scopri i nostri piani e tariffe per i servizi offerti. Scegli il piano più adatto alle tue esigenze."
-    ogTitle="Piani e Prezzi - {{ config('app.name') }}"
-    ogDescription="Confronta i nostri piani e trova quello perfetto per te. Prezzi competitivi e servizi di qualità."
-    ogImage="{{ asset('images/plans-og.jpg') }}"
-    canonicalUrl="{{ url()->current() }}"
->
+@extends('layouts.app-frontend')
+
+@section('content')
     <div class="container py-5">
         <div class="text-center mb-5">
             <h1 class="display-4 mb-3">{{__('I Nostri Piani')}}</h1>
-            <p class="lead text-muted">{{__('Scegli il piano più adatto alle tue esigenze')}}</p>
+            <p class="colorWhite">{{__('Scegli il piano più adatto alle tue esigenze')}}</p>
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-center">
             @foreach ($products as $product)
                 <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm border-0 {{ $loop->iteration === 2 ? 'border-primary' : '' }}">
-                        <div class="card-header py-3 background-color1 border-0 {{ $loop->iteration === 2 ? 'text-bg-primary border-primary' : '' }}">
-                            <h4 class="my-0 fw-normal text-white">{{ $product->name }}</h4>
+                    <div class="card mb-4 rounded-3 shadow-sm overflow-hidden {{ $loop->iteration === 2 ? 'border-color4' : '' }}">
+                        <div class="py-3 bg-color3 border-0 {{ $loop->iteration === 2 ? 'bg-color4 border-color4' : '' }}">
+                            <h4 class="my-0 fw-normal colorWhite">{{ $product->name }}</h4>
                         </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">
+                        <div class="card-body bg-color2">
+                            <h1 class="pricing-card-title colorWhite">
                                 €{{ number_format($product->price, 2) }}
-                                <small class="text-body-secondary fw-light">/{{ $product->subscription_interval === 'day' ? 'giorno' : ($product->subscription_interval === 'week' ? 'settimana' : ($product->subscription_interval === 'month' ? 'mese' : 'anno')) }}</small>
+                                <small class="color6">/{{ $product->subscription_interval === 'day' ? __('giorno') : ($product->subscription_interval === 'week' ? __('settimana') : ($product->subscription_interval === 'month' ? __('mese') : __('anno'))) }}</small>
                             </h1>
                             
                             @if($product->description)
-                                <p class="text-muted mt-3">{{ $product->description }}</p>
+                                <p class="mt-3 colorWhite">{{ __($product->description) }}</p>
                             @endif
 
                             <ul class="list-unstyled mt-3 mb-4">
                                 @foreach ($product->features as $feature)
-                                    <li class="mb-2">
-                                        <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                        {{ $feature->name }}
+                                    <li class="mb-2 colorWhite">
+                                        <i class="bi bi-check-circle-fill colorWhite me-2"></i>
+                                        {{ __($feature->name) }}
                                     </li>
                                 @endforeach
                             </ul>
 
                             @auth
-                                @if($product->has_variants)
+                                {{-- @if($product->has_variants)
                                     <button type="button" 
-                                            class="w-100 btn btn-lg {{ $loop->iteration === 2 ? 'btn-primary' : 'btn-outline-primary' }}"
+                                            class="btn btn-white"
                                             data-bs-toggle="modal" 
                                             data-bs-target="#variantsModal{{ $product->id }}">
                                         Scegli Piano
                                     </button>
-                                @else
-                                    <form action="{{ route('checkout') }}" method="GET">
+                                @else --}}
+                                    <form action="{{ route(app()->getLocale().'.checkout', ['locale' => app()->getLocale()]) }}" method="GET">
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                         <button type="submit" 
-                                                class="w-100 btn btn-lg {{ $loop->iteration === 2 ? 'btn-primary' : 'btn-outline-primary' }}">
-                                            Abbonati Ora
+                                                class="w-100 btn btn-white">
+                                            {{__('Abbonati Ora')}}
                                         </button>
                                     </form>
-                                @endif
+                                {{-- @endif --}}
                             @else
-                                <a href="{{ route('login') }}" 
-                                   class="w-100 btn btn-lg {{ $loop->iteration === 2 ? 'btn-primary' : 'btn-outline-primary' }}">
-                                    Accedi per Abbonarti
-                                </a>
+                                <a href="{{ route(app()->getLocale().'.login', ['locale' => app()->getLocale()]) }}" class="w-100 btn btn-white">{{__('Accedi per Abbonarti')}}</a>
                             @endauth
                         </div>
                     </div>
@@ -77,7 +69,7 @@
                                 <div class="modal-body">
                                     <div class="list-group">
                                         @foreach($product->variants as $variant)
-                                            <form action="{{ route('checkout') }}" method="GET" class="mb-2">
+                                            <form action="{{ route(app()->getLocale().'.checkout', ['locale' => app()->getLocale()]) }}" method="GET" class="mb-2">
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                 <input type="hidden" name="variant_id" value="{{ $variant->id }}">
                                                 <button type="submit" class="list-group-item list-group-item-action">
@@ -160,4 +152,4 @@
         }
     </style>
     @endpush
-</x-app-frontend>
+@endsection

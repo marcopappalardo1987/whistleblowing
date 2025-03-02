@@ -124,7 +124,7 @@ class SubscriptionController extends Controller
             'payment_method' => 'required',
             'product_id' => 'required|exists:products,id'
         ]);
-
+        
         $user = Auth::user();
         $product = Product::findOrFail($request->product_id);
         $stripePriceId = $product->stripe_price_id;
@@ -166,6 +166,7 @@ class SubscriptionController extends Controller
 
             // Crea l'abbonamento
             $subscription = $user->newSubscription('default', $stripePriceId)
+                ->trialDays(1)
                 ->create($request->payment_method);
             
             return redirect()

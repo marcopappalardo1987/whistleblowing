@@ -23,13 +23,18 @@ class CheckUserPlanAndRole
     { 
         $user = Auth::user();
 
+        if(!$user) {
+            return redirect()->route(app()->getLocale() . '.login', ['locale' => app()->getLocale()]);
+        }
+        
         // Controlla se l'utente ha un piano e se il ruolo è 'azienda'
         $subscription = $user->subscription;
         $isActive = $user->subscription && $user->subscription->stripe_status === 'active';
-        /* dd($isActive); */
-        if (!$subscription && $user->getRoleNames()->first() === 'azienda' || $user->getRoleNames()->first() === 'azienda' && !$isActive) {
+        $isTrial = $user->subscription && $user->subscription->stripe_status === 'trialing';
+
+        if (!$subscription && $user->getRoleNames()->first() === 'azienda' || $user->getRoleNames()->first() === 'azienda' && !$isActive && !$isTrial) {
             //dd($user->subscription);
-            return redirect()->route('plans')
+            return redirect()->route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()])
                 ->with('error', 'Per accedere alla dashboard, è necessario avere un piano attivo.');
         }
 
@@ -52,7 +57,7 @@ class CheckUserPlanAndRole
                     ->with('warning', 'Per favore, completa i dati aziendali prima di accedere alla dashboard.');
             }
         }
-
+        
         // Recupera i dettagli dell'abbonamento
         $subscription = $user->subscription; // Usa il metodo per ottenere l'abbonamento
 

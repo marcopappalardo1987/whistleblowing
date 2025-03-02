@@ -137,6 +137,7 @@ class CompanySettingController extends Controller
         $countBranches = Branch::where('company_id', $settings->user_id)->count();
         $user = User::where('id', $settings->user_id)->first();
         $subscriptionIsActive = $user->subscriptionStatus();
+
         return view('frontend.page-whistleblowing', compact('settings', 'company', 'branch', 'countBranches', 'user', 'subscriptionIsActive'));
     }
 

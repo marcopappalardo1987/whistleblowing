@@ -1,11 +1,5 @@
-<x-app-frontend 
-    title="Registrati come Affiliato - {{ config('app.name') }}"
-    metaDescription="Registrati come affiliato per guadagnare commissioni sui nostri servizi premium."
-    ogTitle="Registrati come Affiliato - {{ config('app.name') }}"
-    ogDescription="Unisciti al nostro programma di affiliazione e inizia a guadagnare oggi stesso."
-    ogImage="{{ asset('images/register-og.jpg') }}"  {{-- Se hai un'immagine specifica --}}
-    canonicalUrl="{{ url()->current() }}"
->
+@extends('layouts.app-frontend')
+@section('content')
     @include('layouts.alert-message')
     <div class="container py-5">
         <div class="row justify-content-center">
@@ -83,7 +77,7 @@
                             <input type="hidden" name="referral_id" value="{{ request()->get('referral_id') }}">
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <a class="text-decoration-none" href="{{ route('login') }}">
+                                <a class="text-decoration-none" href="{{ route(app()->getLocale().'.login', ['locale' => app()->getLocale()]) }}">
                                     {{ __('Hai già un account?') }}
                                 </a>
 
@@ -127,4 +121,4 @@
         }
     </style>
     @endpush
-</x-app-frontend>
+@endsection

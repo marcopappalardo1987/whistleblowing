@@ -1,0 +1,164 @@
+@use 'variables' as *;
+
+body.body {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    color: $colorWhite;
+}
+
+body h1, body h2, body h3, body h4, body h5, body h6,
+body h1.h1, body h2.h2, body h3.h3, body h4.h4, body h5.h5, body h6.h6 {
+    font-family: $fontFamilyTitle;
+    font-size: $fontSizeTitle;
+    font-weight: $fontWeightTitle;
+    line-height: $lineHeightTitle;
+    color: $colorWhite;
+}
+
+.color1 {
+    color: $color1;
+}
+.color2 {
+    color: $color2;
+}
+.color3 {
+    color: $color3;
+}
+.color4 {
+    color: $color4;
+}
+.color5 {
+    color: $color5;
+}
+.color6 {
+    color: $color6;
+}
+.color7 {
+    color: $color7;
+}
+.colorWhite {
+    color: $colorWhite;
+}
+.colorWarning {
+    color: $colorWarning;
+}
+.bg-color1 {
+    background-color: $color1;
+}
+.bg-color2 {
+    background-color: $color2;
+}
+.bg-color3 {
+    background-color: $color3;
+}
+.bg-color4 {
+    background-color: $color4;
+}
+.bg-color5 {
+    background-color: $color5;
+}
+.bg-color6 {
+    background-color: $color6;
+}
+.bg-color7 {
+    background-color: $color7;
+}
+.bg-colorWhite {
+    background-color: $colorWhite;
+}
+.bg-colorWarning {
+    background-color: $colorWarning;
+}
+
+.weight-800 {
+    font-weight: 800;
+}
+
+.weight-700 {
+    font-weight: 700;
+}
+
+body.body .body-large {
+    font-size: 14px;
+}
+
+body.body .body-extra-large {
+    font-size: 16px;
+}
+
+@media (min-width: $breakpointXl) {
+    body h1, body h2, body h3,
+    body h1.h1, body h2.h2, body h3.h3 {
+        font-size: $fontSizeTitle;
+        color: $colorWhite;
+        line-height: $lineHeightTitle;
+        font-weight: $fontWeightTitle;
+    }
+
+    body h4, body h5, body h6,
+    body h4.h4, body h5.h5, body h6.h6 {
+        font-size: $fontSizeSubtitle;
+        color: $colorWhite;
+        line-height: $lineHeightSubtitle;
+        font-weight: $fontWeightSubtitle;
+    }
+
+    body p {
+        font-size: $fontSize;
+        line-height: $lineHeight;
+        color: $colorWhite;
+        font-weight: $fontWeight;
+    }
+
+    body h1.extra-large, body h2.extra-large, body h3.extra-large, body h4.extra-large, body h5.extra-large, body h6.extra-large {
+        font-size: $fontSizeExtraLarge;
+        font-weight: $fontWeightExtraLarge;
+        line-height: $lineHeightExtraLarge;
+    }
+
+    body h1.subtitle, body h2.subtitle, body h3.subtitle,
+    body h1.subtitle, body h2.subtitle, body h3.subtitle {
+        font-size: $fontSizeSubtitle;
+        font-weight: $fontWeightSubtitle;
+        line-height: $lineHeightSubtitle;
+    }
+}
+
+@media (max-width: $breakpointXl) {
+    body h1, body h2, body h3,
+    body h1.h1, body h2.h2, body h3.h3 {
+        font-size: $fontSizeTitleMobile;
+        color: $colorWhite;
+        line-height: $lineHeightTitle;
+        font-weight: $fontWeightTitle;
+    }
+
+    body h4, body h5, body h6,
+    body h4.h4, body h5.h5, body h6.h6 {
+        font-size: $fontSizeSubtitleMobile;
+        color: $colorWhite;
+        line-height: $lineHeightSubtitle;
+        font-weight: $fontWeightSubtitle;
+    }
+
+    body p {
+        font-size: $fontSizeMobile;
+        line-height: $lineHeight;
+        color: $colorWhite;
+        font-weight: $fontWeight;
+    }
+
+    body h1.extra-large, body h2.extra-large, body h3.extra-large, body h4.extra-large, body h5.extra-large, body h6.extra-large {
+        font-size: $fontSizeExtraLargeMobile;
+        font-weight: $fontWeightExtraLarge;
+        line-height: $lineHeightExtraLarge;
+    }
+
+    body h1.subtitle, body h2.subtitle, body h3.subtitle,
+    body h1.subtitle, body h2.subtitle, body h3.subtitle {
+        font-size: $fontSizeSubtitleMobile;
+        font-weight: $fontWeightSubtitle;
+        line-height: $lineHeightSubtitle;
+    }
+}
+

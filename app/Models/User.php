@@ -69,9 +69,18 @@ class User extends Authenticatable
     {
         if($this->hasRole('owner')) {
             return true;
+        }
+
+        if(!$this->subscription) {
+            return false;
+        }
+
+        if($this->subscription->stripe_status === 'trialing') {
+            return true;
         }else{
             return "active" == $this->subscription->stripe_status ? true : false;
         }
+        
     }
 
     /**

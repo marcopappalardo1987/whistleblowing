@@ -31,9 +31,9 @@
                                 @auth
                                     <a href="{{ route('dashboard') }}" class="btn btn-outline-dark">Dashboard</a>
                                 @else
-                                    <a href="{{ route('login') }}" class="btn btn-outline-dark me-2">Log in</a>
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="btn btn-outline-dark">Register</a>
+                                    <a href="{{ route(app()->getLocale().'.login', ['locale' => app()->getLocale()]) }}" class="btn btn-outline-dark me-2">Log in</a>
+                                    @if (Route::has('en.register'))
+                                        <a href="{{ route(app()->getLocale().'.register', ['locale' => app()->getLocale()]) }}" class="btn btn-outline-dark">Register</a>
                                     @endif
                                 @endauth
                             </div>

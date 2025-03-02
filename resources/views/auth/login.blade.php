@@ -1,18 +1,14 @@
-<x-app-frontend 
-    title="Accedi - {{ config('app.name') }}"
-    metaDescription="Accedi al tuo account per gestire i tuoi servizi e le tue impostazioni."
-    ogTitle="Accedi - {{ config('app.name') }}"
-    ogDescription="Accedi in modo sicuro al tuo account personale."
-    ogImage="{{ asset('images/plans-og.jpg') }}"  {{-- Se hai un'immagine specifica --}}
-    canonicalUrl="{{ url()->current() }}"
->
+@extends('layouts.app-frontend')
+@section('content')
 
     <div class="container py-5">
         <div class="row justify-content-center">
+            <div class="col-12">
+                <h2 class="text-center mb-4">{{__('Accedi')}}</h2>
+            </div>
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <h2 class="text-center mb-4">{{__('Accedi')}}</h2>
                         
                         @if (session('status'))
                             <div class="alert alert-success mb-4">
@@ -20,7 +16,7 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route(app()->getLocale().'.login.form', ['locale' => app()->getLocale()]) }}">
                             @csrf
 
                             <!-- Email -->
@@ -56,11 +52,11 @@
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                @if (Route::has('password.request'))
-                                    <a class="text-decoration-none color3" href="{{ route('password.request') }}">
+                                {{-- @if (Route::has(app()->getLocale().'.password.request', ['locale' => app()->getLocale()])) --}}
+                                    <a class="text-decoration-none color3" href="{{ route(app()->getLocale().'.password.request', ['locale' => app()->getLocale()]) }}">
                                         {{ __('Password dimenticata?') }}
                                     </a>
-                                @endif
+                                {{-- @endif --}}
 
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Accedi') }}
@@ -72,7 +68,7 @@
 
                         <div class="text-center">
                             <p class="mb-0">Non hai ancora un account?</p>
-                            <a href="{{ route('register') }}" class="btn btn-outline-primary mt-2">
+                            <a href="{{ route(app()->getLocale().'.register', ['locale' => app()->getLocale()]) }}" class="btn btn-outline-primary mt-2">
                                 {{ __('Registrati ora') }}
                             </a>
                             @if(session('intended_url'))
@@ -100,4 +96,4 @@
         }
     </style>
     @endpush
-</x-app-frontend>
+@endsection

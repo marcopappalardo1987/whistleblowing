@@ -1,20 +1,44 @@
 {
+  "_bootstrap.esm-D7-XTmo_.js": {
+    "file": "assets/bootstrap.esm-D7-XTmo_.js",
+    "name": "bootstrap.esm"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-x2iYO4hx.css",
+    "file": "assets/app-CU1MmFZl.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/frontend/js/app.js": {
+    "file": "assets/app-CmZfuw6l.js",
+    "name": "app",
+    "src": "resources/frontend/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_bootstrap.esm-D7-XTmo_.js"
+    ],
+    "css": [
+      "assets/app-B0bZIBd4.css"
+    ]
+  },
+  "resources/frontend/scss/app.scss": {
+    "file": "assets/app-DCKx_HHJ.css",
+    "src": "resources/frontend/scss/app.scss",
+    "isEntry": true
+  },
   "resources/js/app.js": {
-    "file": "assets/app-BxtjlOnp.js",
+    "file": "assets/app-BNDE-bXM.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
+    "imports": [
+      "_bootstrap.esm-D7-XTmo_.js"
+    ],
     "css": [
-      "assets/app--VCppHUM.css"
+      "assets/app-CnBmpvJo.css"
     ]
   },
   "resources/sass/app.scss": {
-    "file": "assets/app--VCppHUM.css",
+    "file": "assets/app-CnBmpvJo.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   }

@@ -20,7 +20,8 @@
         <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.light.css">
 
         <!-- Styles -->
-        @vite(['resources/sass/app.scss'])
+        @vite(['resources/sass/app.scss', 'resources/frontend/js/app.js'])
+        
     </head>
     <body>
         <div class="wrapper">
@@ -35,7 +36,10 @@
                         @if(isset($subscription))
                             @if($subscription)
                                 <span class="nav-link text-muted abbonamento-attivo-top-nav">
-                                    Abbonamento attivo: {{ $subscription->product()->first()->name }}
+                                    {{__('Abbonamento attivo')}}: {{ $subscription->product()->first()->name }}
+                                    @if($subscription->stripe_status === 'trialing')
+                                        <span class="text-muted">({!! __('in prova') !!})</span>
+                                    @endif
                                 </span>
                                 @else
                                     <span class="nav-link text-muted abbonamento-attivo-top-nav">

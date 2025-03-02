@@ -1,11 +1,5 @@
-<x-app-frontend-whistleblowing 
-    title="Segnalazione di Whistleblowing - {{ config('app.name') }}"
-    metaDescription="Utilizza il nostro strumento di whistleblowing per segnalare comportamenti scorretti in modo sicuro e anonimo."
-    ogTitle="Segnalazione di Whistleblowing - {{ config('app.name') }}"
-    ogDescription="Scopri come segnalare in modo sicuro e anonimo. La tua voce conta!"
-    ogImage="{{ asset('images/whistleblowing-og.jpg') }}"
-    canonicalUrl="{{ url()->current() }}"
->
+@extends('layouts.app-frontend-whistleblowing-page')
+@section('content')
 
     <div class="container">
         <div class="row">
@@ -31,7 +25,7 @@
                     [
                         'slug' => $settings->slug, 
                         'branch_id' => request()->route('branch_id')
-                    ]) }}" class="btn btn-primary w-100 p-3">
+                    ]) }}" class="btn btn-white w-100 p-3">
                     <div class="d-flex justify-content-center">
                         <x-heroicon-o-exclamation-circle class="me-2" style="max-width: 40px;" />
                     </div>
@@ -45,7 +39,7 @@
                     [
                         'slug' => $settings->slug, 
                         'branch_id' => request()->route('branch_id')
-                    ]) }}" class="btn btn-danger w-100 p-3">
+                    ]) }}" class="btn btn-secondary w-100 p-3">
                     <div class="d-flex justify-content-center">
                         <x-heroicon-o-magnifying-glass class="me-2" style="max-width: 40px;" />
                     </div>
@@ -59,7 +53,7 @@
                     [
                         'slug' => $settings->slug, 
                         'branch_id' => request()->route('branch_id')
-                    ]) }}" class="btn btn-primary w-100 p-3">
+                    ]) }}" class="btn btn-white w-100 p-3">
                     <div class="d-flex justify-content-center">
                         <x-heroicon-o-calendar class="me-2" style="max-width: 40px;" />
                     </div>
@@ -85,7 +79,7 @@
                         <input type="password" id="password" name="password" class="form-control" required>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">{{__('Cerca Segnalazione')}}</button>
+                <button type="submit" class="btn btn-white">{{__('Cerca Segnalazione')}}</button>
             </form>
         </div>
     @else
@@ -96,5 +90,6 @@
         </div>
     @endif
 
-</x-app-frontend-whistleblowing>
+@endsection
+
 

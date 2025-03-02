@@ -142,7 +142,7 @@ class InvestigatorController extends Controller
             $investigator->email
         );
         
-        return redirect()->route('login')->with('success', __('Registrazione completata con successo. Da questo momento puoi accedere alla piattaforma con le tue credenziali.'));
+        return redirect()->route(app()->getLocale().'.login', ['locale' => app()->getLocale()])->with('success', __('Registrazione completata con successo. Da questo momento puoi accedere alla piattaforma con le tue credenziali.'));
     }
 
     public function list()

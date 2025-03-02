@@ -1,0 +1,171 @@
+@use 'variables' as *;
+
+body.body {
+    background-color: $color1;
+    .header {
+        background-color: $color1;
+        img.logo {
+            max-width: 220px;
+        }
+    }
+}
+
+header {
+    nav#main-nav-desktop li a {
+        color: $colorWhite;
+        transition: 0.3s;
+        position: relative;
+        &:hover {
+            color: $color6;
+        }
+    }
+    .language-dropdown{
+        background-color: transparent;
+        border: none;
+        text-align: end;
+        li img {
+            max-width: 20px;
+        }
+    }
+}
+
+.offcanvas-body { 
+    display: block;
+    max-height: calc(100% - 68px) !important;
+    li {
+        a {
+            color: $color1;
+            font-size: 18px;
+            font-weight: 600;
+            &:hover {
+                color: $color4;
+            }
+        }
+    }
+    .navbar-brand img {
+        width: 220px;
+        max-width: 100%;
+    }
+    .language-dropdown {
+        border: none;
+        width: 100%;
+        text-align: center;
+        img {
+            width: 20px;
+        }
+    }
+}
+
+footer {
+    .footer {
+        background-color: $colorWhite;
+        color: $color1;
+        img.logo {
+            max-width: 100%;
+            width: 220px;
+        }
+        nav.navbar {
+            ul.navbar-nav {
+                li.nav-item {
+                    a.nav-link {
+                        color: $color1; 
+                        &:hover {
+                            color: $color4;
+                        }
+                    }
+                }
+            }
+        }
+        .btn.btn-border-secondary {
+            font-size: 12px;
+            margin: 0 5px;
+            padding: 2px 9px;
+            margin-bottom: 10px;
+        }
+        .copyright {
+            font-size: 12px;
+        }
+    }
+}
+
+.gradient-blue-box {
+    border: 1px solid $colorWhite;
+    background: transparent linear-gradient(121deg, #003A5CF4 0%, #0A4E75 100%) 0% 0% no-repeat padding-box;
+}
+.feature-icon-features-page {
+    margin-right: 10px;
+}
+.left-border-color5 {
+    border-left: 4px solid $color4;
+    padding-left: 10px;
+}
+.dots-bg {
+    background-image: url('/images/background/dots.png');
+}
+.left-border-colorWhite {
+    border-left: 4px solid $colorWhite;
+    padding-left: 10px;
+}
+.btn.btn-primary {
+    background-color: $color1;
+    border: none;
+    &:hover {
+        background-color: $color4;
+    }
+  }
+.btn.btn-outline-primary {
+    border-color: $color1;
+    color: $color1;
+    &:hover {
+        background-color: $color1;
+        color: $colorWhite;
+    }
+}
+@media (max-width: $breakpointLg) {
+    footer {
+        .footer {
+            nav.navbar {
+                ul.navbar-nav {
+                    li.nav-item {
+                        &:not(:last-child) {
+                            border-right: none;
+                        }
+                    }
+                }
+            }
+            .social-link img {
+                max-width: 25px;
+            }
+        }
+    }
+    .gradient-blue-box-icon img {
+        max-width: 35px;
+        max-height: 35px;
+    }
+    .feature-icon-features-page {
+        max-height: 26px;
+    }
+}
+
+@media (min-width: $breakpointLg) {
+    footer {
+        .footer {
+            nav.navbar {
+                ul.navbar-nav {
+                    li.nav-item {
+                        &:not(:last-child) {
+                            border-right: 1px solid $color1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .gradient-blue-box-icon {
+        min-height: 63px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

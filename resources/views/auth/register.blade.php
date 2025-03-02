@@ -1,20 +1,16 @@
-<x-app-frontend 
-    title="Registrati - {{ config('app.name') }}"
-    metaDescription="Crea il tuo account per accedere ai nostri servizi premium."
-    ogTitle="Registrati - {{ config('app.name') }}"
-    ogDescription="Registrati per accedere a tutti i nostri servizi e funzionalità premium."
-    ogImage="{{ asset('images/register-og.jpg') }}"  {{-- Se hai un'immagine specifica --}}
-    canonicalUrl="{{ url()->current() }}"
->
+@extends('layouts.app-frontend')
+@section('content')
     @include('layouts.alert-message')
     <div class="container py-5">
         <div class="row justify-content-center">
+            <div class="col-12">
+                <h2 class="text-center mb-4">{{__('Registrati')}}</h2>
+            </div>
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <h2 class="text-center mb-4">Registrati</h2>
-
-                        <form method="POST" action="{{ route('register') }}">
+                        
+                        <form method="POST" action="{{ route(app()->getLocale().'.register', ['locale' => app()->getLocale()]) }}">
                             @csrf
 
                             <!-- Nome -->
@@ -80,7 +76,7 @@
                             <input type="hidden" name="referral_id" value="{{ request()->get('referral_id') }}">
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <a class="text-decoration-none" href="{{ route('login') }}">
+                                <a class="text-decoration-none" href="{{ route(app()->getLocale().'.login', ['locale' => app()->getLocale()]) }}">
                                     {{ __('Hai già un account?') }}
                                 </a>
 
@@ -124,4 +120,4 @@
         }
     </style>
     @endpush
-</x-app-frontend>
+@endsection

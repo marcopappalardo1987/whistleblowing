@@ -39,7 +39,7 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="btn btn-primary ms-lg-3" href="{{ route('login') }}">Accedi</a>
+                        <a class="btn btn-primary ms-lg-3" href="{{ route(app()->getLocale().'.login', ['locale' => app()->getLocale()]) }}">Accedi</a>
                     </li>
                 @endauth
             </ul>

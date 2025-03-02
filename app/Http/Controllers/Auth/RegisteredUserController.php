@@ -75,7 +75,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('plans')
+        return redirect()->route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()])
             ->with('success', 'Registrazione completata con successo! È necessario acquistare un piano per iniziare a utilizzare il gestore di whistleblowing.');
     }
 }

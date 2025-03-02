@@ -24,12 +24,17 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 
-Route::get('/piani', [PlansController::class, 'index'])
-    ->name('plans');
+Route::get('{locale}/piani', [PlansController::class, 'index'])
+    ->name('it.plans');
+
+Route::get('{locale}/plans', [PlansController::class, 'index'])
+    ->name('en.plans');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/pagamento', [SubscriptionController::class, 'showCheckoutForm'])->name('checkout');
-    Route::post('/pagamento/processo', [SubscriptionController::class, 'processCheckout'])->name('checkout.process');
+    Route::get('{locale}/pagamento', [SubscriptionController::class, 'showCheckoutForm'])->name('it.checkout');
+    Route::get('{locale}/payment', [SubscriptionController::class, 'showCheckoutForm'])->name('en.checkout');
+    Route::post('{locale}/pagamento/processo', [SubscriptionController::class, 'processCheckout'])->name('it.checkout.process');
+    Route::post('{locale}/payment/process', [SubscriptionController::class, 'processCheckout'])->name('en.checkout.process');
 });
 
 // Registrazione affiliato
@@ -108,11 +113,11 @@ Route::post('/whistleblower/segnalazione/{id}/rispondi', [ReportController::clas
     ->middleware(['auth', 'verified', 'permission:edit report'])
     ->name('whistleblower.report.reply');
 
-Route::middleware(CheckUserPlanAndRole::class)->group(function () {
+Route::middleware([CheckUserPlanAndRole::class])->group(function () {
 
     // Define a route for the dashboard that requires authentication and verification
     Route::get('/', [DashboardController::class, 'dashboard'])
-    ->middleware(['auth', 'verified'])
+    /* ->middleware(['auth', 'verified']) */
     ->name('dashboard'); // Apply auth and verified middleware
 
     /**
@@ -468,6 +473,49 @@ Route::patch('/abbonamenti/modifica/{id}', [SubscriptionController::class, 'upda
 Route::get('/abbonamenti/visualizza/{id}', [SubscriptionController::class, 'showSubscriptionByStripeId'])
     ->middleware(['auth', 'verified', 'permission:view subscriptions'])
     ->name('subscriptions.view');
+
+/*********************************
+ ********************************* 
+ * Frontend Routes
+ *********************************
+ *********************************/
+
+Route::middleware('set-locale')->group(function () {
+    /* Route::get('/', function () { return redirect('https://www.whistleblowingtool.com'); })->name('it.frontend.home');
+    Route::get('/en', function () { return redirect('https://www.whistleblowingtool.com/en'); })->name('en.frontend.home'); */
+
+    /* Route::get('{locale}/', [PageHomeController::class, 'index'])->name('home')->where('locale', '[a-z]{2}')->defaults('locale', app()->getLocale()); */
+
+    Route::get('/funzionalita', function () { return redirect('https://www.whistleblowingtool.com/it/funzionalita'); })->name('it.frontend.features');
+    Route::get('{locale}/features', function () { return redirect('https://www.whistleblowingtool.com/en/features'); })->name('en.frontend.features');
+
+    Route::get('{locale}/novita', function () { return redirect('https://www.whistleblowingtool.com/it/novita'); })->name('it.frontend.blog');
+    Route::get('{locale}/news', function () { return redirect('https://www.whistleblowingtool.com/en/news'); })->name('en.frontend.blog');
+
+    Route::get('{locale}/richiedi-demo', function () { return redirect('https://www.whistleblowingtool.com/it/richiedi-demo'); })->name('it.frontend.demo');
+    Route::get('{locale}/request-demo', function () { return redirect('https://www.whistleblowingtool.com/en/request-demo'); })->name('en.frontend.demo');
+
+    Route::get('{locale}/assistenza', function () { return redirect('https://www.whistleblowingtool.com/it/assistenza'); })->name('it.frontend.assistance');
+    Route::get('{locale}/assistance', function () { return redirect('https://www.whistleblowingtool.com/en/assistance'); })->name('en.frontend.assistance');
+
+    Route::get('{locale}/affiliazione', function () { return redirect('https://www.whistleblowingtool.com/it/affiliazione'); })->name('it.frontend.affiliate');
+    Route::get('{locale}/affiliate', function () { return redirect('https://www.whistleblowingtool.com/en/affiliate'); })->name('en.frontend.affiliate');
+
+    Route::get('{locale}/politica-sulla-privacy', function () { return redirect('https://www.whistleblowingtool.com/it/politica-sulla-privacy'); })->name('it.frontend.privacy-policy');
+    Route::get('{locale}/privacy-policy', function () { return redirect('https://www.whistleblowingtool.com/en/privacy-policy'); })->name('en.frontend.privacy-policy');
+
+    Route::get('{locale}/politica-sui-cookie', function () { return redirect('https://www.whistleblowingtool.com/it/politica-sui-cookie'); })->name('it.frontend.cookie-policy');
+    Route::get('{locale}/cookie-policy', function () { return redirect('https://www.whistleblowingtool.com/en/cookie-policy'); })->name('en.frontend.cookie-policy');
+
+    Route::post('{locale}/invio-richiesta-assistenza', function () { return redirect('https://www.whistleblowingtool.com/it/invio-richiesta-assistenza'); })->name('it.frontend.support.request');
+    Route::post('{locale}/support-request', function () { return redirect('https://www.whistleblowingtool.com/en/support-request'); })->name('en.frontend.support.request');
+
+});
+
+//Redirect Esterni
+Route::get('/social/linkedin', function () { return redirect('https://www.linkedin.com/company/whistleblowing-tool'); })->name('social.linkedin');
+Route::get('/social/facebook', function () { return redirect('https://www.facebook.com/whistleblowingtool'); })->name('social.facebook');
+Route::get('/social/instagram', function () { return redirect('https://www.instagram.com/whistleblowingtool'); })->name('social.instagram');
 
 // Require the authentication routes defined in auth.php
 require __DIR__.'/auth.php';
