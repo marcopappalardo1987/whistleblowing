@@ -20,9 +20,9 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Nome</th>
-                                        <th>Email</th>
-                                        <th>Data di Registrazione</th>
+                                        <th>{{__('Nome')}}</th>
+                                        <th>{{__('Email')}}</th>
+                                        <th>{{__('Data di Registrazione')}}</th>
                                     </tr>
                                 </thead>
                             <tbody>

@@ -46,16 +46,16 @@
 
                             <div class="mb-3">
                                 <x-input-label for="type" :value="__('Tipo di Pagamento')" />
-                                <x-select-input id="type" name="type" :options="['subscription' => 'Abbonamento', 'one_time' => 'Una Tantum']" :selected="old('type', $product->type)" class="form-select" onchange="toggleSubscriptionInterval()" />
+                                <x-select-input id="type" name="type" :options="['subscription' => __('Abbonamento'), 'one_time' => __('Una Tantum')]" :selected="old('type', $product->type)" class="form-select" onchange="toggleSubscriptionInterval()" />
                             </div>
 
                             <div class="mb-3" id="subscription_interval_div" style="display: none;">
                                 <x-input-label for="subscription_interval" :value="__('Intervallo di Abbonamento')" />
-                                <x-select-input id="subscription_interval" name="subscription_interval" :options="['' => 'Nessuno', 'day' => 'Giornaliero', 'week' => 'Settimanale', 'month' => 'Mensile', 'year' => 'Annuale']" :selected="old('subscription_interval', $product->subscription_interval)" class="form-select" />
+                                <x-select-input id="subscription_interval" name="subscription_interval" :options="['' => __('Nessuno'), 'day' => __('Giornaliero'), 'week' => __('Settimanale'), 'month' => __('Mensile'), 'year' => __('Annuale')]" :selected="old('subscription_interval', $product->subscription_interval)" class="form-select" />
                             </div>
 
                             <div class="mb-3" id="features_section">
-                                <h4 class="fw-bold mb-3">Caratteristiche</h4>
+                                <h4 class="fw-bold mb-3">{{__('Caratteristiche')}}</h4>
                                 <div id="features_container">
                                     @foreach($product->features as $index => $feature)
                                         <div class="mb-2 p-2 border rounded">
@@ -63,7 +63,7 @@
                                                 <div class="col">
                                                     <input type="text" 
                                                            name="features[{{ $index }}][name]" 
-                                                           placeholder="Nome Caratteristica" 
+                                                           placeholder="{{__('Nome Caratteristica')}}" 
                                                            class="form-control" 
                                                            value="{{ old("features.$index.name", $feature->name) }}" 
                                                            required />
@@ -79,11 +79,11 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <button type="button" class="btn btn-success mt-2" onclick="addFeature()">Aggiungi Caratteristica</button>
+                                <button type="button" class="btn btn-success mt-2" onclick="addFeature()">{{__('Aggiungi Caratteristica')}}</button>
                             </div>
 
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary">Aggiorna Prodotto</button>
+                                <button type="submit" class="btn btn-primary">{{__('Aggiorna Prodotto')}}</button>
                             </div>
                         </form>
 
@@ -121,7 +121,7 @@
                     <div class="col">
                         <input type="text" 
                                name="features[${featureIndex}][name]" 
-                               placeholder="Nome Caratteristica" 
+                               placeholder="{{__('Nome Caratteristica')}}" 
                                class="form-control" 
                                required />
                     </div>

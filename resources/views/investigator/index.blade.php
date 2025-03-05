@@ -28,7 +28,7 @@
             <div class="col-md-3">
                 <div class="background-color-danger p-4 text-center rounded-3 mb-3">
                     <h1 class="text-white mb-0">{{ $reports->whereIn('status', ['waiting_for_information', 'expiring', 'expired', 'reopened'])->count() }}</h1>
-                    <div class="text-white">{{ $reports->whereIn('status', ['waiting_for_information', 'expiring', 'expired', 'reopened'])->count() === 1 ? __('Stato particolare') : __('Stati Particolare') }}</div>
+                    <div class="text-white">{{ $reports->whereIn('status', ['waiting_for_information', 'expiring', 'expired', 'reopened'])->count() === 1 ? __('Stato particolare') : __('Stati Particolari') }}</div>
                 </div>
             </div>
             <div class="col-md-3">

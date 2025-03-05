@@ -36,10 +36,10 @@
                                                 <td>{{ $product->getFormattedPriceAttribute() }}</td>
                                                 <td>{{ $product->type === 'subscription' ? __('Abbonamento') : __('Prodotto') }}</td>
                                                 <td>{{ $product->subscription_interval ? match($product->subscription_interval) {
-                                                    'day' => 'Giornaliero',
-                                                    'week' => 'Settimanale', 
-                                                    'month' => 'Mensile',
-                                                    'year' => 'Annuale',
+                                                    'day' => __('Giornaliero'),
+                                                    'week' => __('Settimanale'), 
+                                                    'month' => __('Mensile'),
+                                                    'year' => __('Annuale'),
                                                     default => '-'
                                                 } : '-' }}</td>
                                                 <td>

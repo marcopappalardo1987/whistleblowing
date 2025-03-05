@@ -10,6 +10,23 @@
         </ul>
     </li> --}}
 
+        <li class="nav-item dropdown me-3">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"  role="button" data-bs-toggle="dropdown">
+                <img src="{{ asset('images/flags/'.app()->getLocale().'.svg') }}" alt="{{ strtoupper(app()->getLocale()) }}" class="flag-icon" style="width: 20px;">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                @foreach(['it', 'en'] as $locale)
+                    @if($locale !== app()->getLocale())
+                        <li>
+                            <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale' => $locale]) }}">
+                                <img src="{{ asset('images/flags/'.$locale.'.svg') }}" alt="{{ strtoupper($locale) }}" class="flag-icon">
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
+        </li>
+
     <!-- Profile -->
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
@@ -22,13 +39,13 @@
         <ul class="dropdown-menu dropdown-menu-end">
             <li>
                 <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                    <i class="bi bi-person me-2"></i>Profilo
+                    <i class="bi bi-person me-2"></i>{{__('Profilo')}}
                 </a>
             </li>
             @role('azienda')
             <li>
                 <a class="dropdown-item" href="{{ route('profile.subscription') }}">
-                    <i class="bi bi-credit-card me-2"></i>Abbonamento
+                    <i class="bi bi-credit-card me-2"></i>{{__('Abbonamento')}}
                 </a>
             </li>
             @endrole
@@ -37,7 +54,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button class="dropdown-item text-danger" type="submit">
-                        <i class="bi bi-box-arrow-right me-2"></i>Logout
+                        <i class="bi bi-box-arrow-right me-2"></i>{{__('Logout')}}
                     </button>
                 </form>
             </li>

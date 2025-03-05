@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', __('Laravel')) }}</title>
 
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
@@ -36,14 +36,14 @@
                         @if(isset($subscription))
                             @if($subscription)
                                 <span class="nav-link text-muted abbonamento-attivo-top-nav">
-                                    {{__('Abbonamento attivo')}}: {{ $subscription->product()->first()->name }}
+                                    {{ __('Abbonamento attivo') }}: {{ $subscription->product()->first()->name }}
                                     @if($subscription->stripe_status === 'trialing')
-                                        <span class="text-muted">({!! __('in prova') !!})</span>
+                                        <span class="text-muted">({{ __('in prova') }})</span>
                                     @endif
                                 </span>
                                 @else
                                     <span class="nav-link text-muted abbonamento-attivo-top-nav">
-                                        Abbonamento attivo: Nessun abbonamento attivo
+                                        {{ __('Abbonamento attivo') }}: {{ __('Nessun abbonamento attivo') }}
                                     </span>
                             @endif
                         @endif

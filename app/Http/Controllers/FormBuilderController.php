@@ -11,7 +11,7 @@ class FormBuilderController extends Controller
     
     public function store(Request $request)
     {
-        
+        /* dd($request->all()); */
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -44,7 +44,7 @@ class FormBuilderController extends Controller
             foreach ($validatedData['fields'] as $field) {
                 $form->fields()->create([
                     'label' => $field['label'],
-                    'name' => $field['name'],
+                    /* 'name' => $field['name'], */
                     'type' => $field['type'],
                     'order' => $field['order'],
                     'help_text' => $field['help_text'] ?? null,
@@ -129,7 +129,7 @@ class FormBuilderController extends Controller
         if (isset($validatedData['fields'])) {
             foreach ($validatedData['fields'] as $field) {
                 $newField = $form->fields()->updateOrCreate(
-                    ['name' => $field['name']], // Usa il nome del campo come identificatore
+                    /* ['name' => $field['name']], */ // Usa il nome del campo come identificatore
                     [
                         'label' => $field['label'],
                         'type' => $field['type'],

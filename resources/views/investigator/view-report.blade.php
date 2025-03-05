@@ -30,7 +30,7 @@
                     <div class="col-md-10 mb-5">
                         <div class="{{ $class }} p-4">
                             <div class="message-writer">
-                                <span class="badge background-color3">{{ $form->writer != 'whistleblower' ? 'investigatore' : $form->writer }}</span>
+                                <span class="badge background-color3">{{ $form->writer != 'whistleblower' ? __('investigatore') : __('whistleblower') }}</span>
                             </div>
                             <div class="message-content py-3">
                                 @foreach($form->metadata as $metadata)
@@ -41,7 +41,7 @@
                                         @endphp
                                         <span>
                                             @if (str_contains($metaValue, 'storage/reports'))
-                                                <a href="{{ $metaValue }}" class="btn btn-sm btn-primary mt-1">Apri allegato</a>  
+                                                <a href="{{ $metaValue }}" class="btn btn-sm btn-primary mt-1">{{ __('Apri allegato') }}</a>  
                                             @else
                                                 <span>{{ $metaValue }}</span>
                                             @endif

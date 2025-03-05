@@ -70,6 +70,59 @@
                             <div class="form-fields-container">
                                 <h4 class="mb-3">{{ __('Campi del Form') }}</h4>
                                 <div class="fields-repeater">
+                                    {{-- <template id="field-template">
+                                        <div class="field-item border p-3 mb-3">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <x-input-label :value="__('Etichetta')" />
+                                                    <x-text-input type="text" name="fields[%index%][label]" class="field-label" maxlength="255" required />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <x-input-label :value="__('Tipo')" />
+                                                    <select name="fields[%index%][type]" class="form-select field-type">
+                                                        <option value="text">{{ __('Text') }}</option>
+                                                        <option value="textarea">{{ __('Textarea') }}</option>
+                                                        <option value="select">{{ __('Select') }}</option>
+                                                        <option value="radio">{{ __('Radio') }}</option>
+                                                        <option value="checkbox">{{ __('Checkbox') }}</option>
+                                                        <option value="file">{{ __('File') }}</option>
+                                                        <option value="date">{{ __('Data') }}</option>
+                                                        <option value="date-time">{{ __('Data e Ora') }}</option>
+                                                        <option value="public-data">{{ __('Dati Utente Pubblici') }}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <x-input-label :value="__('Ordine')" />
+                                                    <x-text-input type="number" name="fields[%index%][order]" class="field-order" value="0" />
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <button type="button" class="btn btn-danger remove-field mt-4" onclick="removeField(this)">
+                                                        <x-bi-trash />
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    <x-input-label :value="__('Testo di aiuto')" />
+                                                    <textarea name="fields[%index%][help_text]" class="form-control field-help"></textarea>
+                                                </div>
+                                                <div class="col-md-6 options-container" style="display: none;">
+                                                    <x-input-label :value="__('Opzioni (una per riga)')" />
+                                                    <textarea name="fields[%index%][options]" class="form-control field-options"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" name="fields[%index%][required]" value="1">
+                                                        <label class="form-check-label">{{ __('Campo obbligatorio') }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template> --}}
                                     <template id="field-template">
                                         <div class="field-item border p-3 mb-3">
                                             <div class="row">
@@ -80,20 +133,30 @@
                                                 <div class="col-md-3">
                                                     <x-input-label :value="__('Tipo')" />
                                                     <select name="fields[%index%][type]" class="form-select field-type">
-                                                        <option value="text">Text</option>
-                                                        <option value="textarea">Textarea</option>
-                                                        <option value="select">Select</option>
-                                                        <option value="radio">Radio</option>
-                                                        <option value="checkbox">Checkbox</option>
-                                                        <option value="file">File</option>
-                                                        <option value="date">Data</option>
-                                                        <option value="date-time">Data e Ora</option>
-                                                        <option value="public-data">Dati Utente Pubblici</option>
+                                                        <option value="text">{{ __('Text') }}</option>
+                                                        <option value="textarea">{{ __('Textarea') }}</option>
+                                                        <option value="select">{{ __('Select') }}</option>
+                                                        <option value="radio">{{ __('Radio') }}</option>
+                                                        <option value="checkbox">{{ __('Checkbox') }}</option>
+                                                        <option value="file">{{ __('File') }}</option>
+                                                        <option value="date">{{ __('Data') }}</option>
+                                                        <option value="date-time">{{ __('Data e Ora') }}</option>
+                                                        <option value="public-data">{{ __('Dati Utente Pubblici') }}</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <x-input-label :value="__('Ordine')" />
                                                     <x-text-input type="number" name="fields[%index%][order]" class="field-order" value="0" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <x-input-label :value="__('Lunghezza')" />
+                                                    <select name="fields[%index%][column_length]" class="form-select field-length">
+                                                        <option value="100" selected>{{ __('100') }}</option>
+                                                        <option value="75">{{ __('75') }}</option>
+                                                        <option value="50">{{ __('50') }}</option>
+                                                        <option value="25">{{ __('25') }}</option>
+                                                        <option value="20">{{ __('20') }}</option>
+                                                    </select>
                                                 </div>
                                                 <div class="col-md-1">
                                                     <button type="button" class="btn btn-danger remove-field mt-4" onclick="removeField(this)">
@@ -133,15 +196,15 @@
                                                 <div class="col-md-3">
                                                     <x-input-label :value="__('Tipo')" />
                                                     <select name="fields[{{ $index }}][type]" class="form-select field-type">
-                                                        <option value="text" {{ old('fields.'.$index.'.type', $field->type) == 'text' ? 'selected' : '' }}>Text</option>
-                                                        <option value="textarea" {{ old('fields.'.$index.'.type', $field->type) == 'textarea' ? 'selected' : '' }}>Textarea</option>
-                                                        <option value="select" {{ old('fields.'.$index.'.type', $field->type) == 'select' ? 'selected' : '' }}>Select</option>
-                                                        <option value="radio" {{ old('fields.'.$index.'.type', $field->type) == 'radio' ? 'selected' : '' }}>Radio</option>
-                                                        <option value="checkbox" {{ old('fields.'.$index.'.type', $field->type) == 'checkbox' ? 'selected' : '' }}>Checkbox</option>
-                                                        <option value="file" {{ old('fields.'.$index.'.type', $field->type) == 'file' ? 'selected' : '' }}>File</option>
-                                                        <option value="date" {{ old('fields.'.$index.'.type', $field->type) == 'date' ? 'selected' : '' }}>Data</option>
-                                                        <option value="date-time" {{ old('fields.'.$index.'.type', $field->type) == 'date-time' ? 'selected' : '' }}>Data e Ora</option>
-                                                        <option value="public-data" {{ old('fields.'.$index.'.type', $field->type) == 'public-data' ? 'selected' : '' }}>Dati Utente Pubblici</option>
+                                                        <option value="text" {{ old('fields.'.$index.'.type', $field->type) == 'text' ? 'selected' : '' }}>{{ __('Text') }}</option>
+                                                        <option value="textarea" {{ old('fields.'.$index.'.type', $field->type) == 'textarea' ? 'selected' : '' }}>{{ __('Textarea') }}</option>
+                                                        <option value="select" {{ old('fields.'.$index.'.type', $field->type) == 'select' ? 'selected' : '' }}>{{ __('Select') }}</option>
+                                                        <option value="radio" {{ old('fields.'.$index.'.type', $field->type) == 'radio' ? 'selected' : '' }}>{{ __('Radio') }}</option>
+                                                        <option value="checkbox" {{ old('fields.'.$index.'.type', $field->type) == 'checkbox' ? 'selected' : '' }}>{{ __('Checkbox') }}</option>
+                                                        <option value="file" {{ old('fields.'.$index.'.type', $field->type) == 'file' ? 'selected' : '' }}>{{ __('File') }}</option>
+                                                        <option value="date" {{ old('fields.'.$index.'.type', $field->type) == 'date' ? 'selected' : '' }}>{{ __('Data') }}</option>
+                                                        <option value="date-time" {{ old('fields.'.$index.'.type', $field->type) == 'date-time' ? 'selected' : '' }}>{{ __('Data e Ora') }}</option>
+                                                        <option value="public-data" {{ old('fields.'.$index.'.type', $field->type) == 'public-data' ? 'selected' : '' }}>{{ __('Dati Utente Pubblici') }}</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2">
@@ -231,10 +294,16 @@
 
                 // Gestione campi per public-data
                 const labelInput = fieldItem.querySelector('.field-label').closest('.col-md-3');
-                const nameInput = fieldItem.querySelector('.field-name').closest('.col-md-3');
+                /* const nameInput = fieldItem.querySelector('.field-name').closest('.col-md-3'); */
                 const orderInput = fieldItem.querySelector('.field-order').closest('.col-md-2');
-                const helpText = fieldItem.querySelector('.field-help').closest('.col-md-5');
-                const lengthInput = fieldItem.querySelector('.field-length').closest('.col-md-2');
+                const helpText = fieldItem.querySelector('.field-help')?.closest('.col-md-5');
+                if (helpText) {
+                    helpText.style.display = 'none';
+                }
+                const lengthInput = fieldItem.querySelector('.field-length')?.closest('.col-md-2');
+                if (lengthInput) {
+                    lengthInput.style.display = 'none';
+                }
                 const requiredCheckbox = fieldItem.querySelector('input[type="checkbox"]').closest('.col-md-6');
                 const typeSelectCol = typeSelect.closest('.col-md-3, .col-md-11'); // Cerca entrambe le classi
 
@@ -243,7 +312,6 @@
                     labelInput.style.display = 'none';
                     nameInput.style.display = 'none';
                     orderInput.style.display = 'none';
-                    lengthInput.style.display = 'none';
                     helpText.style.display = 'none';
                     requiredCheckbox.style.display = 'none';
                     // Espandi la select a tutta la larghezza
@@ -253,10 +321,9 @@
                 } else {
                     // Mostra tutti i campi
                     labelInput.style.display = '';
-                    nameInput.style.display = '';
+                    /* nameInput.style.display = ''; */
                     orderInput.style.display = '';
-                    lengthInput.style.display = '';
-                    helpText.style.display = '';
+                    /* helpText.style.display = ''; */
                     requiredCheckbox.style.display = '';
                     // Ripristina la larghezza originale della select
                     if (typeSelectCol) {

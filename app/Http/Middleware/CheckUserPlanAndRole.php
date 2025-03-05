@@ -44,7 +44,7 @@ class CheckUserPlanAndRole
             $subscription = $company->subscription;
             
             if (!$subscription->stripe_status) {
-                return redirect()->route('plans')
+                return redirect()->route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()])
                     ->with('error', 'L\'azienda non ha un piano attivo. Contatta l\'amministratore dell\'azienda.');
             }
             return $next($request);

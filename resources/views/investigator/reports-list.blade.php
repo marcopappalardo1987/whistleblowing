@@ -31,7 +31,7 @@
                                             <th>{{ __('ID') }}</th>
                                             <th>{{ __('Stato') }}</th>
                                             <th>{{ __('Data') }}</th>
-                                            <th>{{ _('Aggiornamento')}}</th>
+                                            <th>{{ __('Aggiornamento') }}</th>
                                             <th>{{ __('Azioni') }}</th>
                                         </tr>
                                     </thead>
@@ -41,7 +41,7 @@
                                                 <td>{{ $report->id }}</td>
                                                 <td>
                                                     <span class="badge bg-warning">
-                                                        {{ ucfirst($report->status) }}
+                                                        {{ ucfirst(__($report->status)) }}
                                                     </span>
                                                 </td>
                                                 <td>{{ $report->created_at->format('d/m/Y H:i') }}</td>

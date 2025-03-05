@@ -5,7 +5,7 @@
             <!-- Logo -->
             <a href="{{route('dashboard')}}" class="nav-link">
                 <x-heroicon-o-squares-2x2 class="text-white" style="width: 20px" />
-                <span>Whistleblowing Tool</span>
+                <span>{{__('WhistleblowingTool')}}</span>
             </a>
         </div>
 

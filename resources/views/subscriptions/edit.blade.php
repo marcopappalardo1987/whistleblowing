@@ -11,14 +11,14 @@
     <div class="card mt-4">
         <div class="card-body">
             <div class="content-page">
-                <h3 class="h4 mb-4">Dettagli Sottoscrizione</h3>
+                <h3 class="h4 mb-4">{{ __('Dettagli Sottoscrizione') }}</h3>
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <p><strong>ID:</strong> {{ $subscriptionData['id'] }}</p>
-                        <p><strong>ID Stripe:</strong> {{ $subscriptionData['stripe_id'] }}</p>
-                        <p><strong>Nome Utente:</strong> {{ $subscriptionData->user->name }}</p>
-                        <p><strong>Email Utente:</strong> {{ $subscriptionData->user->email }}</p>
-                        <p><strong>Abbonamento:</strong> {{ $subscriptionData->product->name }}</p>
+                        <p><strong>{{ __('ID') }}:</strong> {{ $subscriptionData['id'] }}</p>
+                        <p><strong>{{ __('ID Stripe') }}:</strong> {{ $subscriptionData['stripe_id'] }}</p>
+                        <p><strong>{{ __('Nome Utente') }}:</strong> {{ $subscriptionData->user->name }}</p>
+                        <p><strong>{{ __('Email Utente') }}:</strong> {{ $subscriptionData->user->email }}</p>
+                        <p><strong>{{ __('Abbonamento') }}:</strong> {{ $subscriptionData->product->name }}</p>
                     </div>
                     <div class="col-md-6">
                         @php
@@ -33,11 +33,11 @@
                                 default => 'bg-secondary'
                             };
                         @endphp
-                        <p><strong>Stato:</strong> <span class="badge {{ $statusClass }}">{{ ucfirst($subscriptionData['stripe_status']) }}</span></p>
-                        <p><strong>Prezzo:</strong> {{ $subscriptionData->product->price }} {{ config('cashier.currency_symbol', '€') }}</p>
-                        <p><strong>Scadenza Prova Gratuita:</strong> {{ $subscriptionData->trial_ends_at ? $subscriptionData->trial_ends_at->format('d/m/Y H:i') : '-' }}</p>
-                        <p><strong>Data Attivazione:</strong> {{ $subscriptionData['created_at'] ? $subscriptionData['created_at']->format('d/m/Y H:i') : '-' }}</p>
-                        <p><strong>Data di Scadenza:</strong> {{ $subscriptionData['ends_at'] ? $subscriptionData['ends_at']->format('d/m/Y H:i') : '-' }}</p>
+                        <p><strong>{{ __('Stato') }}:</strong> <span class="badge {{ $statusClass }}">{{ ucfirst($subscriptionData['stripe_status']) }}</span></p>
+                        <p><strong>{{ __('Prezzo') }}:</strong> {{ $subscriptionData->product->price }} {{ config('cashier.currency_symbol', '€') }}</p>
+                        <p><strong>{{ __('Scadenza Prova Gratuita') }}:</strong> {{ $subscriptionData->trial_ends_at ? $subscriptionData->trial_ends_at->format('d/m/Y H:i') : '-' }}</p>
+                        <p><strong>{{ __('Data Attivazione') }}:</strong> {{ $subscriptionData['created_at'] ? $subscriptionData['created_at']->format('d/m/Y H:i') : '-' }}</p>
+                        <p><strong>{{ __('Data di Scadenza') }}:</strong> {{ $subscriptionData['ends_at'] ? $subscriptionData['ends_at']->format('d/m/Y H:i') : '-' }}</p>
                     </div>
                 </div>
             </div>
@@ -47,44 +47,44 @@
     <div class="card mt-4">
         <div class="card-body">
             <div class="content-page">
-                <h3 class="h4 mb-4">Opzioni di Modifica Abbonamento</h3>
+                <h3 class="h4 mb-4">{{ __('Opzioni di Modifica Abbonamento') }}</h3>
                 <div class="row mb-3">
                     <form action="{{ route('subscriptions.update', ['id' => $subscriptionData['id']]) }}" method="POST">
                         @csrf
                         @method('PATCH')
                             <div class="form-group">
-                                <label for="action" class="form-label">Azione:</label>
+                                <label for="action" class="form-label">{{ __('Azione') }}:</label>
                                 <select name="action" id="action" class="form-select" onchange="toggleFields()">
-                                    <option value="">Seleziona un'azione</option>
-                                    <option value="cancel">Annulla Abbonamento</option>
-                                    <option value="resume">Riprendi Abbonamento</option>
-                                    <!-- <option value="swap">Cambia Piano</option>
-                                    <option value="update_payment">Modifica Metodo di Pagamento</option> -->
+                                    <option value="">{{ __('Seleziona un\'azione') }}</option>
+                                    <option value="cancel">{{ __('Annulla Abbonamento') }}</option>
+                                    <option value="resume">{{ __('Riprendi Abbonamento') }}</option>
+                                    <!-- <option value="swap">{{ __('Cambia Piano') }}</option>
+                                    <option value="update_payment">{{ __('Modifica Metodo di Pagamento') }}</option> -->
                                 </select>
                             </div>
 
                             <div id="cancelFields" class="mb-3" style="display: none;">
-                                <label for="cancelation_option" class="form-label">Opzione di Cancellazione:</label>
+                                <label for="cancelation_option" class="form-label">{{ __('Opzione di Cancellazione') }}:</label>
                                 <select id="cancelation_option" name="cancelation_option" class="form-select">
-                                    <option value="end_of_billing_cycle">Cancellazione a Fine Ciclo di Fatturazione</option>
-                                    <option value="immediate">Cancellazione Immediata</option>
+                                    <option value="end_of_billing_cycle">{{ __('Cancellazione a Fine Ciclo di Fatturazione') }}</option>
+                                    <option value="immediate">{{ __('Cancellazione Immediata') }}</option>
                                 </select>
                             </div>
 
                             <!-- <div id="swapFields" class="mb-3" style="display: none;">
-                                <label for="new_plan" class="form-label">Nuovo Piano:</label>
+                                <label for="new_plan" class="form-label">{{ __('Nuovo Piano') }}:</label>
                                 <select id="new_plan" name="new_plan" class="form-select">
-                                    <option value="basic">Piano Base</option>
-                                    <option value="premium">Piano Premium</option>
-                                    <option value="pro">Piano Pro</option>
+                                    <option value="basic">{{ __('Piano Base') }}</option>
+                                    <option value="premium">{{ __('Piano Premium') }}</option>
+                                    <option value="pro">{{ __('Piano Pro') }}</option>
                                 </select>
                             </div> -->
 
                             <!-- <div id="paymentFields" class="mb-3" style="display: none;">
-                                <label for="payment_method" class="form-label">Metodo di Pagamento:</label>
-                                <input type="text" name="payment_method" id="payment_method" class="form-control" placeholder="ID del metodo di pagamento">
+                                <label for="payment_method" class="form-label">{{ __('Metodo di Pagamento') }}:</label>
+                                <input type="text" name="payment_method" id="payment_method" class="form-control" placeholder="{{ __('ID del metodo di pagamento') }}">
                             </div> -->
-                            <button type="submit" class="btn btn-primary mt-3">Esegui</button>
+                            <button type="submit" class="btn btn-primary mt-3">{{ __('Esegui') }}</button>
                     </form>
                 </div>
             </div>

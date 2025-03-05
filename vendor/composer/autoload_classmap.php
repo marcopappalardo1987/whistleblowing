@@ -7,6 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AndreiIonita\\BladeRemixIcon\\BladeRemixIconServiceProvider' => $vendorDir . '/andreiio/blade-remix-icon/src/BladeRemixIconServiceProvider.php',
+    'App\\Console\\Commands\\Notifiche5Giorni' => $baseDir . '/app/Console/Commands/Notifiche5Giorni.php',
+    'App\\Console\\Commands\\Notifiche7Giorni' => $baseDir . '/app/Console/Commands/Notifiche7Giorni.php',
+    'App\\Console\\Commands\\Notifiche85Giorni' => $baseDir . '/app/Console/Commands/Notifiche85Giorni.php',
+    'App\\Console\\Commands\\Notifiche90Giorni' => $baseDir . '/app/Console/Commands/Notifiche90Giorni.php',
     'App\\Http\\Controllers\\AffiliateCommissionsController' => $baseDir . '/app/Http/Controllers/AffiliateCommissionsController.php',
     'App\\Http\\Controllers\\AffiliateController' => $baseDir . '/app/Http/Controllers/AffiliateController.php',
     'App\\Http\\Controllers\\AffiliateEarningController' => $baseDir . '/app/Http/Controllers/AffiliateEarningController.php',
@@ -41,7 +45,9 @@ return array(
     'App\\Http\\Controllers\\SubscriptionProfileController' => $baseDir . '/app/Http/Controllers/SubscriptionProfileController.php',
     'App\\Http\\Controllers\\UsersController' => $baseDir . '/app/Http/Controllers/UsersController.php',
     'App\\Http\\Middleware\\CheckUserPlanAndRole' => $baseDir . '/app/Http/Middleware/CheckUserPlanAndRole.php',
+    'App\\Http\\Middleware\\SetLocale' => $baseDir . '/app/Http/Middleware/SetLocale.php',
     'App\\Http\\Requests\\Auth\\LoginRequest' => $baseDir . '/app/Http/Requests/Auth/LoginRequest.php',
+    'App\\Http\\Requests\\CompanyDataRequest' => $baseDir . '/app/Http/Requests/CompanyDataRequest.php',
     'App\\Http\\Requests\\ProfileUpdateRequest' => $baseDir . '/app/Http/Requests/ProfileUpdateRequest.php',
     'App\\Listeners\\LogSuccessfulLogin' => $baseDir . '/app/Listeners/LogSuccessfulLogin.php',
     'App\\Listeners\\StripeEventListener' => $baseDir . '/app/Listeners/StripeEventListener.php',
@@ -195,6 +201,7 @@ return array(
     'Carbon\\WrapperClock' => $vendorDir . '/nesbot/carbon/src/Carbon/WrapperClock.php',
     'Codeat3\\BladeCarbonIcons\\BladeCarbonIconsServiceProvider' => $vendorDir . '/codeat3/blade-carbon-icons/src/BladeCarbonIconsServiceProvider.php',
     'Codeat3\\BladeFluentUiSystemIcons\\BladeFluentUiSystemIconsServiceProvider' => $vendorDir . '/codeat3/blade-fluentui-system-icons/src/BladeFluentUiSystemIconsServiceProvider.php',
+    'Codeat3\\BladeFontistoIcons\\BladeFontistoIconsServiceProvider' => $vendorDir . '/codeat3/blade-fontisto-icons/src/BladeFontistoIconsServiceProvider.php',
     'Codeat3\\BladeGoogleMaterialDesignIcons\\BladeGoogleMaterialDesignIconsServiceProvider' => $vendorDir . '/codeat3/blade-google-material-design-icons/src/BladeGoogleMaterialDesignIconsServiceProvider.php',
     'Collator' => $vendorDir . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',

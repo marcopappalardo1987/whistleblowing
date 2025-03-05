@@ -16,18 +16,18 @@
                 <form action="{{ route('subscriptions.all') }}" method="GET" class="mb-4">
                     <div class="row g-3">
                         <div class="col-md-2">
-                            <label for="per_page" class="form-label">Mostra:</label>
+                            <label for="per_page" class="form-label">{{ __('Mostra:') }}</label>
                             <select name="per_page" id="per_page" class="form-select">
                                 @foreach($perPageOptions as $option)
                                     <option value="{{ $option }}" {{ $perPage == $option ? 'selected' : '' }}>
-                                        {{ $option }} elementi
+                                        {{ $option }} {{ __('elementi') }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="col-md-2">
-                            <label for="status" class="form-label">Stato:</label>
+                            <label for="status" class="form-label">{{ __('Stato') }}:</label>
                             <select name="status" id="status" class="form-select">
                                 @foreach($statusOptions as $value => $label)
                                     <option value="{{ $value }}" {{ $currentStatus == $value ? 'selected' : '' }}>
@@ -38,26 +38,26 @@
                         </div>
 
                         <div class="col-md-2">
-                            <label for="user_email" class="form-label">Email:</label>
+                            <label for="user_email" class="form-label">{{ __('Email') }}:</label>
                             <input type="text" name="user_email" id="user_email" class="form-control" 
-                                   value="{{ $currentEmail }}" placeholder="Filtra per email">
+                                   value="{{ $currentEmail }}" placeholder="{{ __('Filtra per email') }}">
                         </div>
 
                         <div class="col-md-2">
-                            <label for="user_name" class="form-label">Nome utente:</label>
+                            <label for="user_name" class="form-label">{{ __('Nome utente') }}:</label>
                             <input type="text" name="user_name" id="user_name" class="form-control" 
-                                   value="{{ $currentName }}" placeholder="Filtra per nome">
+                                   value="{{ $currentName }}" placeholder="{{ __('Filtra per nome') }}">
                         </div>
 
                         <div class="col-md-2">
-                            <label for="subscription_name" class="form-label">Abbonamento:</label>
+                            <label for="subscription_name" class="form-label">{{ __('Abbonamento') }}:</label>
                             <input type="text" name="subscription_name" id="subscription_name" class="form-control" 
-                                   value="{{ $currentSubscriptionName }}" placeholder="Filtra per abbonamento">
+                                   value="{{ $currentSubscriptionName }}" placeholder="{{ __('Filtra per abbonamento') }}">
                         </div>
 
                         <div class="col-md-2 d-flex align-items-end">
-                            <button type="submit" class="btn btn-primary me-2">Filtra</button>
-                            <a href="{{ route('subscriptions.all') }}" class="btn btn-secondary">Reset</a>
+                            <button type="submit" class="btn btn-primary me-2">{{ __('Filtra') }}</button>
+                            <a href="{{ route('subscriptions.all') }}" class="btn btn-secondary">{{ __('Reset') }}</a>
                         </div>
                     </div>
                 </form>
@@ -66,13 +66,13 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Nome Utente</th>
-                                <th>Email</th>
-                                <th>Abbonamento</th>
-                                <th>Stato</th>
-                                <th>Prezzo</th>
-                                <th>Data Attivazione</th>
-                                <th>Azioni</th>
+                                <th>{{ __('Nome Utente') }}</th>
+                                <th>{{ __('Email') }}</th>
+                                <th>{{ __('Abbonamento') }}</th>
+                                <th>{{ __('Stato') }}</th>
+                                <th>{{ __('Prezzo') }}</th>
+                                <th>{{ __('Data Attivazione') }}</th>
+                                <th>{{ __('Azioni') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,8 +99,8 @@
                                 <td>{{ $subscription['amount'] }}</td>
                                 <td>{{ $subscription['created_at'] ? $subscription['created_at']->format('d/m/Y') : '-' }}</td>
                                 <td>
-                                    <a href="{{ route('subscriptions.view', ['id' => $subscription['id']]) }}" class="btn btn-sm btn-info">Visualizza</a>
-                                    <a href="{{ route('subscriptions.edit', ['id' => $subscription['id']]) }}" class="btn btn-sm btn-primary">Modifica</a>
+                                    <a href="{{ route('subscriptions.view', ['id' => $subscription['id']]) }}" class="btn btn-sm btn-info">{{ __('Visualizza') }}</a>
+                                    <a href="{{ route('subscriptions.edit', ['id' => $subscription['id']]) }}" class="btn btn-sm btn-primary">{{ __('Modifica') }}</a>
                                 </td>
                             </tr>
                             @endforeach

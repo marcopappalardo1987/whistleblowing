@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <x-slot name="header">
-        {{ __('Manage Application') }}
+        {{ __('Gestione Applicazione') }}
     </x-slot>
     
     @include('layouts.navigation-roles-and-permissions')

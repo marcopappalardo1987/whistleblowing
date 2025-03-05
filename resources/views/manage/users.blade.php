@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Manage Users') }}
+        {{ __('Gestione Utenti') }}
     </x-slot>
 
     @include('layouts.alert-message')
@@ -12,19 +12,19 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title mb-3">{{ __('User List') }}</h3>
+                        <h3 class="card-title mb-3">{{ __('Elenco Utenti') }}</h3>
 
                         @if($users->isEmpty())
-                            <p>{{ __('No users found.') }}</p>
+                            <p>{{ __('Nessun utente trovato.') }}</p>
                         @else
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>{{ __('Name') }}</th>
+                                            <th>{{ __('Nome') }}</th>
                                             <th>{{ __('Email') }}</th>
-                                            <th>{{ __('Role') }}</th>
-                                            <th>{{ __('Actions') }}</th>
+                                            <th>{{ __('Ruolo') }}</th>
+                                            <th>{{ __('Azioni') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -38,7 +38,7 @@
                                                             {{ $role->name }}
                                                         @endforeach
                                                     @else
-                                                        {{ __('No Role Assigned') }}
+                                                        {{ __('Nessun ruolo assegnato') }}
                                                     @endif
                                                 </td>
                                                 <td>

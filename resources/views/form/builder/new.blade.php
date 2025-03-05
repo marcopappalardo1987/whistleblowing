@@ -80,15 +80,15 @@
                                                     <div class="col-md-3">
                                                         <x-input-label :value="__('Tipo')" />
                                                         <select name="fields[%index%][type]" class="form-select field-type">
-                                                            <option value="text">Text</option>
-                                                            <option value="textarea">Textarea</option>
-                                                            <option value="select">Select</option>
-                                                            <option value="radio">Radio</option>
-                                                            <option value="checkbox">Checkbox</option>
-                                                            <option value="file">File</option>
-                                                            <option value="date">Data</option>
-                                                            <option value="date-time">Data e Ora</option>
-                                                            <option value="public-data">Dati Utente Pubblici</option>
+                                                            <option value="text">{{ __('Text') }}</option>
+                                                            <option value="textarea">{{ __('Textarea') }}</option>
+                                                            <option value="select">{{ __('Select') }}</option>
+                                                            <option value="radio">{{ __('Radio') }}</option>
+                                                            <option value="checkbox">{{ __('Checkbox') }}</option>
+                                                            <option value="file">{{ __('File') }}</option>
+                                                            <option value="date">{{ __('Data') }}</option>
+                                                            <option value="date-time">{{ __('Data e Ora') }}</option>
+                                                            <option value="public-data">{{ __('Dati Utente Pubblici') }}</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-2">
@@ -98,11 +98,11 @@
                                                     <div class="col-md-3">
                                                         <x-input-label :value="__('Lunghezza')" />
                                                         <select name="fields[%index%][column_length]" class="form-select field-length">
-                                                            <option value="100" selected>100</option>
-                                                            <option value="75">75</option>
-                                                            <option value="50">50</option>
-                                                            <option value="25">25</option>
-                                                            <option value="20">20</option>
+                                                            <option value="100" selected>{{ __('100') }}</option>
+                                                            <option value="75">{{ __('75') }}</option>
+                                                            <option value="50">{{ __('50') }}</option>
+                                                            <option value="25">{{ __('25') }}</option>
+                                                            <option value="20">{{ __('20') }}</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-1">
@@ -153,13 +153,13 @@
                 @else
                     @if($maxForms > 0)
                         <div class="alert alert-danger">
-                            <p>{{__('Non puoi creare più form. Hai raggiunto il limite massimo di form consentito con il tuo piano.')}}</p>
-                            <a href="{{ route('plans') }}" class="btn btn-primary">{{__('Vai alla pagina dei piani')}}</a>
+                            <p>{{ __('Non puoi creare più form. Hai raggiunto il limite massimo di form consentito con il tuo piano.') }}</p>
+                            <a href="{{ route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()]) }}" class="btn btn-primary">{{ __('Vai alla pagina dei piani') }}</a>
                         </div>
                     @else
                         <div class="alert alert-danger">
-                            <p>{{__('Il tuo piano non consente di creare form personalizzati.')}}</p>
-                            <a href="{{ route('plans') }}" class="btn btn-primary">{{__('Vedi i piani disponibili')}}</a>
+                            <p>{{ __('Il tuo piano non consente di creare form personalizzati.') }}</p>
+                            <a href="{{ route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()]) }}" class="btn btn-primary">{{ __('Vedi i piani disponibili') }}</a>
                         </div>
                     @endif
                 @endif
@@ -169,7 +169,7 @@
     <!-- End Generation Here -->
 
     @push('scripts')
-    <script>
+{{--     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let fieldIndex = 0;
             const container = document.querySelector('.fields-repeater');
@@ -261,6 +261,118 @@
 
             titleInput.addEventListener('input', function() {
                 // Slug generation logic removed as per instructions
+            });
+        });
+</script> --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let fieldIndex = 0;
+            const container = document.querySelector('.fields-repeater');
+            const template = document.querySelector('#field-template');
+
+            // Funzione per gestire la visualizzazione delle opzioni e dei campi
+            function handleTypeChange(typeSelect) {
+                const fieldItem = typeSelect.closest('.field-item');
+                const optionsContainer = fieldItem.querySelector('.options-container');
+                
+                // Gestione options-container
+                optionsContainer.style.display = 
+                    ['select', 'radio', 'checkbox'].includes(typeSelect.value) ? 'block' : 'none';
+                
+                if (typeSelect.value === 'date') {
+                    optionsContainer.style.display = 'none';
+                }
+
+                // Gestione campi per public-data
+                const labelInput = fieldItem.querySelector('.field-label').closest('.col-md-3');
+                /* const nameInput = fieldItem.querySelector('.field-name').closest('.col-md-3'); */
+                const orderInput = fieldItem.querySelector('.field-order').closest('.col-md-2');
+                const helpText = fieldItem.querySelector('.field-help').closest('.col-md-5');
+                const lengthInput = fieldItem.querySelector('.field-length').closest('.col-md-2');
+                const requiredCheckbox = fieldItem.querySelector('input[type="checkbox"]').closest('.col-md-6');
+                const typeSelectCol = typeSelect.closest('.col-md-3, .col-md-11'); // Cerca entrambe le classi
+
+                if (typeSelect.value === 'public-data') {
+                    // Nascondi i campi non necessari
+                    labelInput.style.display = 'none';
+                    nameInput.style.display = 'none';
+                    orderInput.style.display = 'none';
+                    lengthInput.style.display = 'none';
+                    helpText.style.display = 'none';
+                    requiredCheckbox.style.display = 'none';
+                    // Espandi la select a tutta la larghezza
+                    if (typeSelectCol) {
+                        typeSelectCol.className = 'col-md-11';
+                    }
+                } else {
+                    // Mostra tutti i campi
+                    labelInput.style.display = '';
+                    /* nameInput.style.display = ''; */
+                    orderInput.style.display = '';
+                    lengthInput.style.display = '';
+                    helpText.style.display = '';
+                    requiredCheckbox.style.display = '';
+                    // Ripristina la larghezza originale della select
+                    if (typeSelectCol) {
+                        typeSelectCol.className = 'col-md-3';
+                    }
+                }
+            }
+
+            // Aggiungi l'evento change ai campi esistenti
+            document.querySelectorAll('.field-type').forEach(select => {
+                select.addEventListener('change', function() {
+                    handleTypeChange(this);
+                });
+                // Trigger iniziale per impostare lo stato corretto
+                handleTypeChange(select);
+            });
+
+            // Funzione per aggiungere un nuovo campo
+            document.querySelector('.add-field').addEventListener('click', function() {
+                // Clona il contenuto del template
+                const clone = document.importNode(template.content, true);
+                
+                // Sostituisce tutti i placeholder %index% con l'indice corrente
+                clone.querySelectorAll('input, select, textarea').forEach(element => {
+                    if (element.name) {
+                        element.name = element.name.replace(/%index%/g, fieldIndex);
+                    }
+                });
+
+                // Aggiunge il nuovo campo al container
+                container.appendChild(clone);
+
+                // Gestione della visualizzazione delle opzioni
+                const newFieldElement = container.lastElementChild;
+                const typeSelect = newFieldElement.querySelector('.field-type');
+
+                typeSelect.addEventListener('change', function() {
+                    handleTypeChange(this);
+                });
+
+                // Gestione rimozione campo
+                newFieldElement.querySelector('.remove-field').addEventListener('click', function() {
+                    newFieldElement.remove();
+                });
+
+                // Incrementa l'indice per il prossimo campo
+                fieldIndex++;
+            });
+
+            // Funzione per rimuovere un campo
+            window.removeField = function(button) {
+                const fieldItem = button.closest('.field-item');
+                if (fieldItem) {
+                    fieldItem.remove();
+                }
+            };
+
+            // Generazione automatica dello slug dal titolo
+            const titleInput = document.querySelector('#title');
+
+            titleInput.addEventListener('input', function() {
+                // Slug generation logic removed as slug field is eliminated
             });
         });
     </script>

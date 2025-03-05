@@ -15,8 +15,8 @@
                     <h3 class="h5">{{__('Registrazione nuovo affiliato')}}</h3>
                     <div class="input-group mb-3">
                         <input type="text" id="referralLink" class="form-control" value="{{ route('register.affiliate', ['referral_id' => auth()->user()->id]) }}" readonly>
-                        <button class="btn btn-outline-secondary" type="button" onclick="copyReferralLink()">Copia Link</button>
-                        <button class="btn btn-outline-success" type="button" onclick="shareOnWhatsApp()">Condividi su WhatsApp</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="copyReferralLink()">{{__('Copia Link')}}</button>
+                        <button class="btn btn-outline-success" type="button" onclick="shareOnWhatsApp()">{{__('Condividi su WhatsApp')}}</button>
                     </div>
                     <script>
                         function copyReferralLink() {
@@ -43,7 +43,7 @@
                     <div class="card-body">
                     <h3 class="h5">{{__('Registrazione azienda')}}</h3>
                     <div class="input-group mb-3">
-                        <input type="text" id="referralLinkCompany" class="form-control" value="{{ route('register', ['referral_id' => auth()->user()->id]) }}" readonly>
+                        <input type="text" id="referralLinkCompany" class="form-control" value="{{ route(app()->getLocale() . '.register', ['locale' => app()->getLocale(), 'referral_id' => auth()->user()->id]) }}" readonly>
                         <button class="btn btn-outline-secondary" type="button" onclick="copyReferralLinkCompany()">Copia Link</button>
                         <button class="btn btn-outline-success" type="button" onclick="shareCompanyOnWhatsApp()">Condividi su WhatsApp</button>
                     </div>
@@ -58,7 +58,7 @@
 
                         function shareCompanyOnWhatsApp() {
                             var referralLink = document.getElementById("referralLinkCompany").value;
-                            var introText = "Iscrivi la tua azienda al nostro programma di whistleblowing per garantire un ambiente di lavoro sicuro e responsabile. Ecco il link per registrarsi: ";
+                            var introText = "{{__('Iscrivi la tua azienda al nostro programma di whistleblowing per garantire un ambiente di lavoro sicuro e responsabile. Ecco il link per registrarsi:')}} ";
                             var whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(introText + referralLink);
                             window.open(whatsappUrl, '_blank');
                         }

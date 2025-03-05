@@ -39,7 +39,7 @@
                                     @if($user->roles->contains('name', 'owner'))
                                         <p class="mt-1 block text-sm text-gray-500">{{ __('Owner (Cannot be modified)') }}</p>
                                     @else
-                                        <x-select-input name="roles[]" id="roles" :options="$roles->pluck('name', 'name')" :selected="$user->roles->pluck('name')->toArray()" />
+                                        <x-select-input name="roles[]" id="roles" :options="$roles->pluck('name', 'name')" :selected="$user->roles->pluck('name')->first()" />
                                     @endif
                                     <x-input-error :messages="$errors->get('roles')" />
                                 </div>

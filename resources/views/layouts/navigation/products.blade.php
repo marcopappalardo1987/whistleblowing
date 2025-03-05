@@ -1,6 +1,6 @@
 <div class="card shadow-sm mb-4">
     <div class="card-body">
-        <h3 class="card-title h5 mb-3">Prodotti</h3>
+        <h3 class="card-title h5 mb-3">{{__('Prodotti')}}</h3>
         <div class="d-flex flex-wrap gap-2">
             @can('view products')
                 <a href="{{ route('products') }}" 

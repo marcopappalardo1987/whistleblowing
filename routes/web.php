@@ -486,20 +486,20 @@ Route::middleware('set-locale')->group(function () {
 
     /* Route::get('{locale}/', [PageHomeController::class, 'index'])->name('home')->where('locale', '[a-z]{2}')->defaults('locale', app()->getLocale()); */
 
-    Route::get('/funzionalita', function () { return redirect('https://www.whistleblowingtool.com/it/funzionalita'); })->name('it.frontend.features');
-    Route::get('{locale}/features', function () { return redirect('https://www.whistleblowingtool.com/en/features'); })->name('en.frontend.features');
+    Route::get('/funzionalita', function () { return redirect('https://www.whistleblowingtool.com/it/funzionalita-software-whistleblowing'); })->name('it.frontend.features');
+    Route::get('{locale}/features', function () { return redirect('https://www.whistleblowingtool.com/en/features-software-whistleblowing'); })->name('en.frontend.features');
 
-    Route::get('{locale}/novita', function () { return redirect('https://www.whistleblowingtool.com/it/novita'); })->name('it.frontend.blog');
-    Route::get('{locale}/news', function () { return redirect('https://www.whistleblowingtool.com/en/news'); })->name('en.frontend.blog');
+    Route::get('{locale}/novita', function () { return redirect('https://www.whistleblowingtool.com/it/whistleblowing-e-normativa-aziendale'); })->name('it.frontend.blog');
+    Route::get('{locale}/news', function () { return redirect('https://www.whistleblowingtool.com/en/whistleblowing-and-company-regulations'); })->name('en.frontend.blog');
 
-    Route::get('{locale}/richiedi-demo', function () { return redirect('https://www.whistleblowingtool.com/it/richiedi-demo'); })->name('it.frontend.demo');
-    Route::get('{locale}/request-demo', function () { return redirect('https://www.whistleblowingtool.com/en/request-demo'); })->name('en.frontend.demo');
+    /* Route::get('{locale}/richiedi-demo', function () { return redirect('https://www.whistleblowingtool.com/it/richiedi-demo'); })->name('it.frontend.demo');
+    Route::get('{locale}/request-demo', function () { return redirect('https://www.whistleblowingtool.com/en/request-demo'); })->name('en.frontend.demo'); */
 
-    Route::get('{locale}/assistenza', function () { return redirect('https://www.whistleblowingtool.com/it/assistenza'); })->name('it.frontend.assistance');
-    Route::get('{locale}/assistance', function () { return redirect('https://www.whistleblowingtool.com/en/assistance'); })->name('en.frontend.assistance');
+    Route::get('{locale}/assistenza', function () { return redirect('https://www.whistleblowingtool.com/it/procedura-di-whistleblowing-aziendale'); })->name('it.frontend.assistance');
+    Route::get('{locale}/assistance', function () { return redirect('https://www.whistleblowingtool.com/en/whistleblowing-procedure'); })->name('en.frontend.assistance');
 
-    Route::get('{locale}/affiliazione', function () { return redirect('https://www.whistleblowingtool.com/it/affiliazione'); })->name('it.frontend.affiliate');
-    Route::get('{locale}/affiliate', function () { return redirect('https://www.whistleblowingtool.com/en/affiliate'); })->name('en.frontend.affiliate');
+    Route::get('{locale}/affiliazione', function () { return redirect('https://www.whistleblowingtool.com/it/programma-di-affiliazione-whistleblowing'); })->name('it.frontend.affiliate');
+    Route::get('{locale}/affiliate', function () { return redirect('https://www.whistleblowingtool.com/en/whistleblowing-affiliate-program'); })->name('en.frontend.affiliate');
 
     Route::get('{locale}/politica-sulla-privacy', function () { return redirect('https://www.whistleblowingtool.com/it/politica-sulla-privacy'); })->name('it.frontend.privacy-policy');
     Route::get('{locale}/privacy-policy', function () { return redirect('https://www.whistleblowingtool.com/en/privacy-policy'); })->name('en.frontend.privacy-policy');

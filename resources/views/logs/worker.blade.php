@@ -19,7 +19,7 @@
 
     <div class="card bg-dark mt-4">
         <div class="card-body text-light">
-            <h3 class="card-title h5 mb-4">Contenuto del file Worker Log</h3>
+            <h3 class="card-title h5 mb-4">{{ __('Contenuto del file Worker Log') }}</h3>
             <pre class="bg-dark text-light p-3">
                 {{ file_get_contents(storage_path('logs/worker.log')) }}
             </pre>

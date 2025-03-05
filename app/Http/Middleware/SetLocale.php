@@ -17,14 +17,16 @@ class SetLocale
             $locale = $request->segment(1); // Ottieni la prima parte dell'URL
             
             // Se la lingua non è valida, imposta la lingua predefinita
-            if (!in_array($locale, $availableLocales)) { 
+            if(in_array($request->get('locale'), $availableLocales)){
+                $locale = $request->get('locale');
+            }elseif(!in_array($locale, $availableLocales)) { 
                 if (isset($_COOKIE['wb_locale']) && in_array($_COOKIE['wb_locale'], $availableLocales)) {
                     $locale = $_COOKIE['wb_locale'];
                 } else {
                     $locale = 'it'; // Lingua predefinita
                 }
             }
-
+            
             // Imposta la lingua dell'applicazione
             App::setLocale($locale);
             Session::put('locale', $locale);

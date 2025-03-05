@@ -90,8 +90,7 @@
                             <hr class="my-4">
                             <div class="text-center">
                                 <p class="text-muted small">
-                                    <i class="bi bi-info-circle"></i>
-                                    Dopo la registrazione potrai completare il tuo acquisto
+                                    {{ __('Dopo la registrazione potrai completare il tuo acquisto') }}
                                 </p>
                             </div>
                         @endif

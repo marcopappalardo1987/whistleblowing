@@ -5,11 +5,11 @@
     <title>{{ $subject }}</title>
 </head>
 <body style="color: #003a5c;">
-    <h1>{{__('Registrazione completa come Investigatore')}}</h1>
+    <h1>{{ __('Registrazione completa come Investigatore') }}</h1>
     
-    <p>{{__('Gentile')}} {{ $data['investigator_name'] }},</p>
+    <p>{{ __('Gentile') }} {{ $data['investigator_name'] }},</p>
     
-    <p>{{__('La tua registrazione come investigatore per l\'azienda')}} {{ $data['company_name'] }} {{__('è stata completata con successo.')}}</p>
+    <p>{{ __('La tua registrazione come investigatore per l\'azienda') }} {{ $data['company_name'] }} {{__('è stata completata con successo.')}}</p>
     
     <div style="background-color: #f8fafc; padding: 15px; border-radius: 5px; border: 1px solid #0a4e75; margin: 20px 0;">
         <h2 style="color: #0a4e75;">{{__('Dettagli dell\'account:')}}</h2>

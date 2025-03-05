@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('plans') ? 'active' : '' }}" href="{{ route('plans') }}">
+                    <a class="nav-link {{ request()->is('plans') ? 'active' : '' }}" href="{{ route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()]) }}">
                         Piani
                     </a>
                 </li>

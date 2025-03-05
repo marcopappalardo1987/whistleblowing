@@ -108,6 +108,7 @@ return array(
     'Database\\Factories\\' => array($baseDir . '/database/factories', $vendorDir . '/laravel/pint/database/factories'),
     'Cron\\' => array($vendorDir . '/dragonmantank/cron-expression/src/Cron'),
     'Codeat3\\BladeGoogleMaterialDesignIcons\\' => array($vendorDir . '/codeat3/blade-google-material-design-icons/src'),
+    'Codeat3\\BladeFontistoIcons\\' => array($vendorDir . '/codeat3/blade-fontisto-icons/src'),
     'Codeat3\\BladeFluentUiSystemIcons\\' => array($vendorDir . '/codeat3/blade-fluentui-system-icons/src'),
     'Codeat3\\BladeCarbonIcons\\' => array($vendorDir . '/codeat3/blade-carbon-icons/src'),
     'Carbon\\Doctrine\\' => array($vendorDir . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine'),

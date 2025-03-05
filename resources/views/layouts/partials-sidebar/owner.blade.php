@@ -4,7 +4,7 @@
     <!-- Dashboard -->
     <a href="{{ route('dashboard') }}" class="nav-link">
         <x-heroicon-o-home />
-        <span>Dashboard</span>
+        <span>{{__('Dashboard')}}</span>
     </a>
 
     <div class="nav-item">
@@ -21,18 +21,18 @@
            aria-expanded="false" 
            aria-controls="productsSubmenu">
             <x-heroicon-o-shopping-cart />
-            <span>Prodotti</span>
+            <span>{{__('Prodotti')}}</span>
             <x-heroicon-o-chevron-right class="ms-auto submenu-arrow" />
         </a>
         <div class="collapse submenu" id="productsSubmenu">
             <a href="{{ route('products') }}" class="nav-link">
                 <x-heroicon-o-rectangle-stack />
-                <span>Lista Prodotti</span>
+                <span>{{__('Lista Prodotti')}}</span>
             </a>
             @can('publish products')
             <a href="{{ route('product.add') }}" class="nav-link">
                 <x-heroicon-o-plus-circle />
-                <span>Aggiungi Prodotto</span>
+                <span>{{__('Aggiungi Prodotto')}}</span>
             </a>
             @endcan
         </div>
@@ -48,17 +48,17 @@
         aria-expanded="false"
         aria-controls="formBuilderSubmenu">
             <x-fluentui-form-48-o />
-            <span>Form Builder</span>
+            <span>{{__('Form Builder')}}</span>
             <x-fluentui-form-48-o class="ms-auto submenu-arrow"/>
         </a>
         <div class="collapse submenu" id="formBuilderSubmenu">
             <a href="{{ route('form.builder.new') }}" class="nav-link">
                 <x-heroicon-o-plus-circle />
-                <span>Crea Nuovo Form</span>
+                <span>{{__('Crea Nuovo Form')}}</span>
             </a>
             <a href="{{ route('form.builder.list') }}" class="nav-link">
                 <x-heroicon-o-document />
-                <span>Elenco Form</span>
+                <span>{{__('Elenco Form')}}</span>
             </a>
         </div>
     </div>
@@ -73,29 +73,29 @@
             aria-expanded="false" 
             aria-controls="appSubmenu">
             <x-heroicon-o-cog-6-tooth />
-            <span>Gestione APP</span>
+            <span>{{__('Gestione APP')}}</span>
             <x-heroicon-o-chevron-right class="ms-auto submenu-arrow" />
         </a>
         <div class="collapse submenu" id="appSubmenu">
             <a href="{{ route('users') }}" class="nav-link">
                 <x-heroicon-o-users />
-                <span>Utenti</span>
+                <span>{{__('Utenti')}}</span>
             </a>
             <a href="{{ route('roles') }}" class="nav-link">
                 <x-heroicon-o-user-group />
-                <span>Ruoli</span>
+                <span>{{__('Ruoli')}}</span>
             </a>
             <a href="{{ route('permissions') }}" class="nav-link">
                 <x-heroicon-o-shield-check />
-                <span>Permessi</span>
+                <span>{{__('Permessi')}}</span>
             </a>
             <a href="{{ route('subscriptions.all') }}" class="nav-link">
                 <x-heroicon-o-credit-card />
-                <span>Abbonamenti</span>
+                <span>{{__('Abbonamenti')}}</span>
             </a>
             <a href="{{ route('affiliate.settings.commissions') }}" class="nav-link">
                 <x-heroicon-o-banknotes />
-                <span>Commissioni</span>
+                <span>{{__('Commissioni')}}</span>
             </a>
         </div>
     </div>
@@ -110,17 +110,17 @@
            aria-expanded="false"
            aria-controls="logsSubmenu">
             <x-heroicon-o-document-text />
-            <span>Logs</span>
+            <span>{{__('Logs')}}</span>
             <x-heroicon-o-chevron-right class="ms-auto submenu-arrow" />
         </a>
         <div class="collapse submenu" id="logsSubmenu">
             <a href="{{ route('logs.laravel') }}" class="nav-link">
                 <x-heroicon-o-document-chart-bar />
-                <span>Logs Laravel</span>
+                <span>{{__('Logs Laravel')}}</span>
             </a>
             <a href="{{ route('logs.worker') }}" class="nav-link">
                 <x-heroicon-o-cpu-chip />
-                <span>Logs Worker</span>
+                <span>{{__('Logs Worker')}}</span>
             </a>
         </div>
     </div>

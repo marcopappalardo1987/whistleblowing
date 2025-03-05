@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-4">    
                 <div class="total-earnings-col" role="alert">
-                    <span class="total-earnings-label">{{ __('Totale Guadagni: ') }}</span>
+                    <span class="total-earnings-label">{{ __('Totale Guadagni') }}: </span>
                     <span class="total-earnings-value">{{ $totalEarnings }} €</span>
                 </div>
             </div>

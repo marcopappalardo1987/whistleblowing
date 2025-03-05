@@ -37,12 +37,12 @@
                 @if($maxBranches - $branchesCount <= 0)
                     <div class="alert alert-danger">
                         <p>{{ __('Hai raggiunto il numero massimo di branch consentito.') }}</p>
-                        <a href="{{ route('plans') }}" class="btn btn-primary">{{__('Vedi i piani disponibili')}}</a>
+                        <a href="{{ route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()]) }}" class="btn btn-primary">{{ __('Vedi i piani disponibili') }}</a>
                     </div>
                 @else
                     <div class="alert alert-danger">
                         <p>{{ __('Il tuo piano non consente di creare branch.') }}</p>
-                        <a href="{{ route('plans') }}" class="btn btn-primary">{{__('Vedi i piani disponibili')}}</a>
+                        <a href="{{ route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()]) }}" class="btn btn-primary">{{ __('Vedi i piani disponibili') }}</a>
                     </div>
                 @endif
             @endif

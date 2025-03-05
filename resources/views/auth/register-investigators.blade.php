@@ -5,7 +5,7 @@
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <h2 class="text-center mb-4">{{__('Registrati come Investigatore')}}</h2>
+                        <h2 class="text-center mb-4">{{ __('Registrati come Investigatore') }}</h2>
 
                         <form method="POST" action="{{ route('register.investigator.store') }}">
                             @csrf
@@ -69,7 +69,7 @@
                             <div class="text-center">
                                 <p class="text-muted small">
                                     <i class="bi bi-info-circle"></i>
-                                    Dopo la registrazione potrai completare il tuo acquisto
+                                    {{ __('Dopo la registrazione potrai completare il tuo acquisto') }}
                                 </p>
                             </div>
                         @endif

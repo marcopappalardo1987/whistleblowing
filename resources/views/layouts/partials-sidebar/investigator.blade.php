@@ -4,7 +4,7 @@
     <div class="nav-item">
         <a href="{{ route('dashboard') }}" class="nav-link">
             <x-heroicon-o-home />
-            <span>Dashboard</span>
+            <span>{{__('Dashboard')}}</span>
         </a>
     </div>
 

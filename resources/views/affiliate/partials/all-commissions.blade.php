@@ -9,7 +9,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">{{ __('Livello') }}</th>
-                                <th scope="col">{{ __('Commissione (%)') }}</th>
+                                <th scope="col">{{ __('Commissione') }} (%)</th>
                                 <th scope="col">{{ __('Azioni') }}</th>
                             </tr>
                         </thead>

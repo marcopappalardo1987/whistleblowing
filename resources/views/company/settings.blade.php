@@ -43,7 +43,7 @@
                             <div class="col-sm-2 mb-3">
                                 @if(isset($settings) && $settings->first() && $settings->first()->logo_url)
                                     <div class="mt-2">
-                                        <img src="{{ $settings->first()->logo_url }}" alt="Logo" style="max-width: 200px; display: block;">
+                                        <img src="{{ $settings->first()->logo_url }}" alt="{{ __('Logo') }}" style="max-width: 200px; display: block;">
                                     </div>
                                 @endif
                             </div>
@@ -62,14 +62,12 @@
 </div>
 <!-- End Generation Here -->
 
-<!-- Start of Selection -->
 @if(isset($settings) && $settings->first() && $settings->first()->slug)
         <div class="row mt-5">
             <div class="col-12">
-                <h5>{{__('Link alla tua pagina di Whistleblowing')}}</h5>
+                <h5>{{ __('Link alla tua pagina di Whistleblowing') }}</h5>
             <p class="mb-3">
-                {{__('Puoi visualizzare il tuo link dedicato al whistleblowing qui sotto. 
-                    Clicca sul pulsante per aprirlo in una nuova finestra e copia il link per utilizzarlo nel tuo sito.')}}
+                {{ __('Puoi visualizzare il tuo link dedicato al whistleblowing qui sotto.') }} {{ __('Clicca sul pulsante per aprirlo in una nuova finestra e copia il link per utilizzarlo nel tuo sito.') }}
                 </p>
             </div>
         </div>
@@ -99,9 +97,9 @@
     </div>
 @else
     <div class="alert alert-warning mt-4">
-        <h5>{{__('Nessun link disponibile')}}</h5>
+        <h5>{{ __('Nessun link disponibile') }}</h5>
         <p>
-            {{__('Per ottenere il tuo link dedicato al whistleblowing, devi prima configurare uno slug nelle impostazioni qui sopra.')}}
+            {{ __('Per ottenere il tuo link dedicato al whistleblowing, devi prima configurare uno slug nelle impostazioni qui sopra.') }}
         </p>
     </div>
 @endif
@@ -109,14 +107,10 @@
 <script>
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(function() {
-            alert('{{__('Link copiato negli appunti!')}}');
+            alert('{{ __('Link copiato negli appunti!') }}');
         }, function(err) {
-            console.error('{{__('Errore nella copia: ')}}', err);
+            console.error('{{ __('Errore nella copia: ') }}', err);
         });
     }
 </script>
-<!-- End of Selection -->
-
-    
-    
 </x-app-layout>

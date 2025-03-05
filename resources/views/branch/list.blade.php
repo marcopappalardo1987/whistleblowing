@@ -17,8 +17,8 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Nome</th>
-                                    <th>Azioni</th>
+                                    <th>{{ __('Nome') }}</th>
+                                    <th>{{ __('Azioni') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,12 +42,12 @@
             @elseif($maxBranches == 0)
                 <div class="alert alert-danger">
                     <p>{{ __('Il tuo piano non consente di creare branch.') }}</p>
-                    <a href="{{ route('plans') }}" class="btn btn-primary">{{__('Vedi i piani disponibili')}}</a>
+                    <a href="{{ route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()]) }}" class="btn btn-primary">{{ __('Vedi i piani disponibili') }}</a>
                 </div>
             @else
                 <div class="alert alert-danger">
                     <p>{{ __('Non hai ancora aggiunto nessun branch.') }}</p>
-                    <a href="{{ route('branch.add') }}" class="btn btn-primary">{{__('Aggiungi il tuo primo Branch')}}</a>
+                    <a href="{{ route('branch.add') }}" class="btn btn-primary">{{ __('Aggiungi il tuo primo Branch') }}</a>
                 </div>
             @endif
         </div>

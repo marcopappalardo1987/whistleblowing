@@ -17,8 +17,8 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '29ffe97919493792170d47eb03a68da9' => __DIR__ . '/..' . '/blade-ui-kit/blade-icons/src/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -207,6 +207,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         array (
             'Cron\\' => 5,
             'Codeat3\\BladeGoogleMaterialDesignIcons\\' => 39,
+            'Codeat3\\BladeFontistoIcons\\' => 27,
             'Codeat3\\BladeFluentUiSystemIcons\\' => 33,
             'Codeat3\\BladeCarbonIcons\\' => 25,
             'Carbon\\Doctrine\\' => 16,
@@ -642,6 +643,10 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         array (
             0 => __DIR__ . '/..' . '/codeat3/blade-google-material-design-icons/src',
         ),
+        'Codeat3\\BladeFontistoIcons\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeat3/blade-fontisto-icons/src',
+        ),
         'Codeat3\\BladeFluentUiSystemIcons\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeat3/blade-fluentui-system-icons/src',
@@ -683,6 +688,10 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
 
     public static $classMap = array (
         'AndreiIonita\\BladeRemixIcon\\BladeRemixIconServiceProvider' => __DIR__ . '/..' . '/andreiio/blade-remix-icon/src/BladeRemixIconServiceProvider.php',
+        'App\\Console\\Commands\\Notifiche5Giorni' => __DIR__ . '/../..' . '/app/Console/Commands/Notifiche5Giorni.php',
+        'App\\Console\\Commands\\Notifiche7Giorni' => __DIR__ . '/../..' . '/app/Console/Commands/Notifiche7Giorni.php',
+        'App\\Console\\Commands\\Notifiche85Giorni' => __DIR__ . '/../..' . '/app/Console/Commands/Notifiche85Giorni.php',
+        'App\\Console\\Commands\\Notifiche90Giorni' => __DIR__ . '/../..' . '/app/Console/Commands/Notifiche90Giorni.php',
         'App\\Http\\Controllers\\AffiliateCommissionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/AffiliateCommissionsController.php',
         'App\\Http\\Controllers\\AffiliateController' => __DIR__ . '/../..' . '/app/Http/Controllers/AffiliateController.php',
         'App\\Http\\Controllers\\AffiliateEarningController' => __DIR__ . '/../..' . '/app/Http/Controllers/AffiliateEarningController.php',
@@ -717,7 +726,9 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'App\\Http\\Controllers\\SubscriptionProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/SubscriptionProfileController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
         'App\\Http\\Middleware\\CheckUserPlanAndRole' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckUserPlanAndRole.php',
+        'App\\Http\\Middleware\\SetLocale' => __DIR__ . '/../..' . '/app/Http/Middleware/SetLocale.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
+        'App\\Http\\Requests\\CompanyDataRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CompanyDataRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Listeners\\LogSuccessfulLogin' => __DIR__ . '/../..' . '/app/Listeners/LogSuccessfulLogin.php',
         'App\\Listeners\\StripeEventListener' => __DIR__ . '/../..' . '/app/Listeners/StripeEventListener.php',
@@ -871,6 +882,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'Carbon\\WrapperClock' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/WrapperClock.php',
         'Codeat3\\BladeCarbonIcons\\BladeCarbonIconsServiceProvider' => __DIR__ . '/..' . '/codeat3/blade-carbon-icons/src/BladeCarbonIconsServiceProvider.php',
         'Codeat3\\BladeFluentUiSystemIcons\\BladeFluentUiSystemIconsServiceProvider' => __DIR__ . '/..' . '/codeat3/blade-fluentui-system-icons/src/BladeFluentUiSystemIconsServiceProvider.php',
+        'Codeat3\\BladeFontistoIcons\\BladeFontistoIconsServiceProvider' => __DIR__ . '/..' . '/codeat3/blade-fontisto-icons/src/BladeFontistoIconsServiceProvider.php',
         'Codeat3\\BladeGoogleMaterialDesignIcons\\BladeGoogleMaterialDesignIconsServiceProvider' => __DIR__ . '/..' . '/codeat3/blade-google-material-design-icons/src/BladeGoogleMaterialDesignIconsServiceProvider.php',
         'Collator' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',

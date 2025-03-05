@@ -47,7 +47,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <small>*{{__('Se non hai un form per le segnalazioni o per gli appuntamenti, puoi crearlo nella sezione "Form", "Nuovo form"')}} {{__('o')}} <a class="text-decoration-none" href="{{ route('form.builder.new') }}">{{__('clicca qui')}}</a> {{__('per crearlo')}}</small>
+                            <small>*{{ __('Se non hai un form per le segnalazioni o per gli appuntamenti, puoi crearlo nella sezione "Form", "Nuovo form"') }} {{ __('o') }} <a class="text-decoration-none" href="{{ route('form.builder.new') }}">{{ __('clicca qui') }}</a> {{ __('per crearlo') }}</small>
                         </div>
                     </div>
                 </form>

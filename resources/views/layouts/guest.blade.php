@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', __('Laravel')) }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -34,12 +34,12 @@
             @if(Route::has('login'))
                 <div class="mt-4 text-center text-muted">
                     @auth
-                        <a href="{{ route('dashboard') }}" class="text-decoration-none">Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class="text-decoration-none">{{ __('Dashboard') }}</a>
                     @else
-                        <a href="{{ route(app()->getLocale().'.login', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">Accedi</a>
+                        <a href="{{ route(app()->getLocale().'.login', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">{{ __('Accedi') }}</a>
                         @if(Route::has('en.register'))
                             <span class="mx-2">·</span>
-                            <a href="{{ route(app()->getLocale().'.register', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">Registrati</a>
+                            <a href="{{ route(app()->getLocale().'.register', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">{{ __('Registrati') }}</a>
                         @endif
                     @endauth
                 </div>
