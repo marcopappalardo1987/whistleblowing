@@ -10,23 +10,6 @@
         </ul>
     </li> --}}
 
-        <li class="nav-item dropdown me-3">
-            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"  role="button" data-bs-toggle="dropdown">
-                <img src="{{ asset('images/flags/'.app()->getLocale().'.svg') }}" alt="{{ strtoupper(app()->getLocale()) }}" class="flag-icon" style="width: 20px;">
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-                @foreach(['it', 'en'] as $locale)
-                    @if($locale !== app()->getLocale())
-                        <li>
-                            <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale' => $locale]) }}">
-                                <img src="{{ asset('images/flags/'.$locale.'.svg') }}" alt="{{ strtoupper($locale) }}" class="flag-icon">
-                            </a>
-                        </li>
-                    @endif
-                @endforeach
-            </ul>
-        </li>
-
     <!-- Profile -->
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
@@ -60,4 +43,22 @@
             </li>
         </ul>
     </li>
+
+    <li class="nav-item dropdown me-3 d-flex align-items-center">
+        <a class="nav-link d-flex align-items-center" href="#"  role="button" data-bs-toggle="dropdown">
+            <img src="{{ asset('images/flags/'.app()->getLocale().'.svg') }}" alt="{{ strtoupper(app()->getLocale()) }}" class="flag-icon" style="width: 20px;">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end p-0" style="min-width: 20px;">
+            @foreach(['it', 'en', 'es', 'fr'] as $locale)
+                @if($locale !== app()->getLocale())
+                    <li>
+                        <a class="dropdown-item p-0 text-center" href="{{ route(Route::currentRouteName(), ['locale' => $locale]) }}">
+                            <img src="{{ asset('images/flags/'.$locale.'.svg') }}" alt="{{ strtoupper($locale) }}" class="flag-icon p-2" style="width: 40px;">
+                        </a>
+                    </li>
+                @endif
+            @endforeach
+        </ul>
+    </li>
+
 </ul>

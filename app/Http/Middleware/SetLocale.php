@@ -13,7 +13,7 @@ class SetLocale
     public function handle($request, Closure $next)
     {
         try {
-            $availableLocales = ['en', 'it']; // Lingue supportate
+            $availableLocales = ['en', 'it', 'es', 'fr']; // Lingue supportate
             $locale = $request->segment(1); // Ottieni la prima parte dell'URL
             
             // Se la lingua non è valida, imposta la lingua predefinita
