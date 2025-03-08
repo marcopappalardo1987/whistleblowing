@@ -4,7 +4,8 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="text-center mb-4">{{__('Accedi')}}</h2>
+                <h2 class="text-center mb-0">{{__('Accedi')}}</h2>
+                <p class="text-center mb-4">{{__('Accedi per continuare')}}</p>
             </div>
             <div class="col-md-6">
                 <div class="card shadow">
