@@ -51,8 +51,17 @@
         <ul class="dropdown-menu dropdown-menu-end p-0" style="min-width: 20px;">
             @foreach(['it', 'en', 'es', 'fr'] as $locale)
                 @if($locale !== app()->getLocale())
+
+                    @php
+                        $url = url()->full();
+                        $url = preg_replace('/([&?])locale=[^&]*/', '$1locale=' . $locale, $url);
+                        if (!str_contains($url, 'locale=')) {
+                            $url .= (parse_url($url, PHP_URL_QUERY) ? '&' : '?') . 'locale=' . $locale;
+                        }
+                    @endphp
+
                     <li>
-                        <a class="dropdown-item p-0 text-center" href="{{ route(Route::currentRouteName(), ['locale' => $locale]) }}">
+                        <a class="dropdown-item p-0 text-center" href="{{ $url }}">
                             <img src="{{ asset('images/flags/'.$locale.'.svg') }}" alt="{{ strtoupper($locale) }}" class="flag-icon p-2" style="width: 40px;">
                         </a>
                     </li>

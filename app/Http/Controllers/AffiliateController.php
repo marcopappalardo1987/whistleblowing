@@ -52,8 +52,8 @@ class AffiliateController extends Controller
         $emailData = [
             'affiliate_name' => $request->name,
             'affiliate_id' => $user->id,
-            'affiliate_link' => url('/affiliate/private-area/referal-link'), // Assuming this is the link to the affiliate's private area
-            'commission_rate' => 10 // Set a default commission rate or retrieve it from a config or database
+            'affiliate_link' => url('/area-privata/referal-link'), // Assuming this is the link to the affiliate's private area
+            /* 'commission_rate' => 10 */ // Set a default commission rate or retrieve it from a config or database
         ];
 
         // Invia email di benvenuto

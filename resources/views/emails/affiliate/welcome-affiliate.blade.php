@@ -16,12 +16,12 @@
             👤 <strong>{{__('ID Affiliato:')}}</strong> #{{ $data['affiliate_id'] }}
         </p>
         <p style="margin-bottom: 10px;">
-            🔗 <strong>{{__('Il tuo link di affiliazione:')}}</strong><br>
+            🔗 <strong>{{__('Qui puoi trovare i link da condividere per consentire ai tuoi affiliati di registrarsi:')}}</strong><br>
             <a href="{{ $data['affiliate_link'] }}" style="color: #0a4e75; word-break: break-all;">{{ $data['affiliate_link'] }}</a>
         </p>
-        <p>
+        {{-- <p>
             💰 <strong>{{__('Commissione base:')}}</strong> {{ $data['commission_rate'] }}%
-        </p>
+        </p> --}}
     </div>
     
     <div style="background-color: #edf7ed; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb; margin: 20px 0;">
