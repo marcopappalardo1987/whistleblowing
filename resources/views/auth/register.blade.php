@@ -80,6 +80,8 @@
                                     {{ __('Hai già un account?') }}
                                 </a>
 
+                                @honeypot
+                                
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrati') }}
                                 </button>
