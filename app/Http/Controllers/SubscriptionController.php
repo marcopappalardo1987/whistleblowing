@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use Stripe\Stripe;
+use App\Models\User;
+use Stripe\Customer;
 use App\Models\Product;
 use App\Models\Subscription;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Stripe\Exception\CardException;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Cashier\Exceptions\IncompletePayment;
-use Exception;
-use Stripe\Exception\CardException;
-use Stripe\Customer;
-use Stripe\Stripe;
 
 /**
  * Controller per la gestione degli abbonamenti
@@ -72,6 +73,7 @@ class SubscriptionController extends Controller
             return $user->createAsStripeCustomer();
 
         } catch (Exception $e) {
+            Log::error('Errore nella sincronizzazione con Stripe: ' . $e->getMessage());
             throw new Exception('Errore nella sincronizzazione con Stripe: ' . $e->getMessage());
         }
     }
@@ -89,6 +91,7 @@ class SubscriptionController extends Controller
         
         // Verifica che sia un abbonamento
         if ($product->type !== 'subscription') {
+            Log::error('Questo prodotto non è un abbonamento');
             return redirect()->back()->with('error', 'Questo prodotto non è un abbonamento');
         }
 
@@ -108,6 +111,7 @@ class SubscriptionController extends Controller
             ]);
 
         } catch (Exception $e) {
+            Log::error('Errore nella configurazione del pagamento: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Errore nella configurazione del pagamento: ' . $e->getMessage());
         }
     }
@@ -166,7 +170,7 @@ class SubscriptionController extends Controller
 
             // Crea l'abbonamento
             $subscription = $user->newSubscription('default', $stripePriceId)
-                ->trialDays(1)
+                ->trialDays(7)
                 ->create($request->payment_method);
             
             return redirect()
@@ -174,6 +178,7 @@ class SubscriptionController extends Controller
                 ->with('success', 'Abbonamento attivato con successo!');
 
             } catch (CardException $e) {
+                Log::error('Errore con la carta: ' . $e->getMessage());
                 return redirect()
                     ->route('checkout', ['product_id' => $request->product_id])
                     ->withInput()
@@ -181,13 +186,15 @@ class SubscriptionController extends Controller
             }
 
         } catch (IncompletePayment $exception) {
+            Log::error('Errore nel processo di checkout: ' . $exception->getMessage());
             return redirect()->route('cashier.payment', [
                 $exception->payment->id,
                 'redirect' => route('dashboard')
             ]);
         } catch (Exception $e) {
+            Log::error('Errore nel processo di checkout: ' . $e->getMessage());
             return redirect()
-                ->route('checkout', ['product_id' => $request->product_id])
+                ->route(app()->getLocale() . '.checkout', ['product_id' => $request->product_id, 'locale' => app()->getLocale()])
                 ->withInput()
                 ->with('error', 'Si è verificato un errore: ' . $e->getMessage());
         }
@@ -278,7 +285,7 @@ class SubscriptionController extends Controller
                     'ends_at' => $subscription->ends_at
                 ]);
             } catch (\Exception $e) {
-                \Log::error('Errore nel recupero dati Stripe', [
+                Log::error('Errore nel recupero dati Stripe', [
                     'subscription_id' => $subscription->id,
                     'error' => $e->getMessage()
                 ]);
@@ -378,6 +385,7 @@ class SubscriptionController extends Controller
                     return redirect()->back()->with('error', 'Azione non valida.');
             }
         } catch (Exception $e) {
+            Log::error('Errore nell\'aggiornamento dell\'abbonamento: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Errore: ' . $e->getMessage());
         }
     }
