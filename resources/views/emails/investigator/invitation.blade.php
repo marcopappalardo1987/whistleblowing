@@ -3,7 +3,7 @@
 <head>
     <title>{{ $subject }}</title>
 </head>
-<body style="color: #003a5c;">
+<body style="max-width: 600px; margin: 0 auto; padding: 20px; color: #003a5c;">
     <h1>{{__('Invito come Investigatore')}}</h1>
     
     <p>{{__('Gentile')}} {{ $data['investigator_name'] }},</p>

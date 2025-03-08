@@ -66,13 +66,16 @@ class InvestigatorController extends Controller
                 'branch_name' => $branch->name,
                 'registration_url' => config('app.url') . route('register.investigator', [], false),
             ];
-            
 
-            $this->emailService->send(
-                'investigator_invitation',
-                $emailData,
-                $investigator->email
-            );
+            try{
+                $this->emailService->send(
+                    'investigator_invitation',
+                    $emailData,
+                    $investigator->email
+                );
+            }catch(\Exception $e){
+                Log::error('Errore nell\'invio dell\'email di invito: ' . $e->getMessage());
+            }
 
             return redirect()->route('investigator.invite')
                 ->with('success', __('Investigatore invitato con successo'));
@@ -135,12 +138,15 @@ class InvestigatorController extends Controller
             'branch_name' => $branch->name
         ];
         
-
-        $this->emailService->send(
-            'investigator_registration',
-            $emailData,
-            $investigator->email
-        );
+        try{
+            $this->emailService->send(
+                'investigator_registration',
+                $emailData,
+                $investigator->email
+            );
+        }catch(\Exception $e){
+            Log::error('Errore nell\'invio dell\'email di registrazione: ' . $e->getMessage());
+        }
         
         return redirect()->route(app()->getLocale().'.login', ['locale' => app()->getLocale()])->with('success', __('Registrazione completata con successo. Da questo momento puoi accedere alla piattaforma con le tue credenziali.'));
     }

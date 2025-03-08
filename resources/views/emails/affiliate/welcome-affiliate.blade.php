@@ -3,7 +3,7 @@
 <head>
     <title>{{ $subject }}</title>
 </head>
-<body style="color: #003a5c;">
+<body style="max-width: 600px; margin: 0 auto; padding: 20px; color: #003a5c;">
     <h1>{{__('Benvenuto nel Programma di Affiliazione')}}</h1>
     
     <p>{{__('Gentile')}} {{ $data['affiliate_name'] }},</p>
@@ -19,9 +19,6 @@
             🔗 <strong>{{__('Qui puoi trovare i link da condividere per consentire ai tuoi affiliati di registrarsi:')}}</strong><br>
             <a href="{{ $data['affiliate_link'] }}" style="color: #0a4e75; word-break: break-all;">{{ $data['affiliate_link'] }}</a>
         </p>
-        {{-- <p>
-            💰 <strong>{{__('Commissione base:')}}</strong> {{ $data['commission_rate'] }}%
-        </p> --}}
     </div>
     
     <div style="background-color: #edf7ed; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb; margin: 20px 0;">
@@ -33,15 +30,6 @@
             <li>{{__('Monitora le tue performance e i guadagni nella dashboard')}}</li>
         </ol>
     </div>
-    
-    {{-- <div style="background-color: #fff3cd; padding: 15px; border-radius: 5px; border: 1px solid #ffeeba; margin: 20px 0;">
-        <h3 style="color: #856404; margin-top: 0;">{{__('Risorse utili:')}}</h3>
-        <ul style="color: #856404; padding-left: 20px;">
-            <li style="margin-bottom: 10px;">{{__('Guide e tutorial nella sezione Risorse')}}</li>
-            <li style="margin-bottom: 10px;">{{__('Materiali promozionali pronti all\'uso')}}</li>
-            <li>{{__('Supporto dedicato per gli affiliati')}}</li>
-        </ul>
-    </div> --}}
     
     <p>{{__('Se hai domande o hai bisogno di assistenza, non esitare a contattare il nostro team di supporto.')}}</p>
     

@@ -14,19 +14,23 @@ class EmailService
      */
     protected const EMAIL_TEMPLATES = [
         'welcome' => [
-            'view' => 'emails.welcome',
+            'view' => 'emails.company.welcome',
             'subject' => 'Benvenuto!'
         ],
+        'admin_welcome' => [
+            'view' => 'emails.company.admin-welcome',
+            'subject' => 'Nuovo utente registrato'
+        ],
         'company_data_updated' => [
-            'view' => 'emails.company-data-updated',
+            'view' => 'emails.company.data-updated',
             'subject' => 'Dati Aziendali Aggiornati'
         ],
         'investigator_invitation' => [
-            'view' => 'emails.investigator-invitation',
+            'view' => 'emails.investigator.invitation',
             'subject' => 'Invito come Investigatore'
         ],
         'investigator_registration' => [
-            'view' => 'emails.investigator-registration',
+            'view' => 'emails.investigator.registration',
             'subject' => 'Registrazione completa come Investigatore'
         ],
         'reminder_5_days' => [
@@ -57,14 +61,26 @@ class EmailService
             'view' => 'emails.affiliate.welcome-affiliate',
             'subject' => 'Benvenuto nel Programma di Affiliazione'
         ],
+        'admin_welcome_affiliate' => [
+            'view' => 'emails.affiliate.admin-welcome-affiliate',
+            'subject' => 'Nuovo Affiliato Registrato'
+        ],
         'payment_success' => [
             'view' => 'emails.payment.payment-success',
             'subject' => 'Conferma di Pagamento'
         ],
+        'admin_payment_success' => [
+            'view' => 'emails.payment.admin-payment-success',
+            'subject' => 'Nuovo pagamento'
+        ],
         'subscription_cancelled' => [
-            'view' => 'emails.subscription.subscription-cancelled',
+            'view' => 'emails.subscription.cancelled',
             'subject' => 'Ci dispiace vederti andare'
         ],
+        'admin_subscription_cancelled' => [
+            'view' => 'emails.subscription.admin-cancelled',
+            'subject' => 'Abbonamento Cancellato'
+        ]
     ];
 
     /**

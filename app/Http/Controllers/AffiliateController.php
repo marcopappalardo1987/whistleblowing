@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\EmailService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -50,18 +51,32 @@ class AffiliateController extends Controller
         }
 
         $emailData = [
-            'affiliate_name' => $request->name,
+            'affiliate_name' => $user->name,
             'affiliate_id' => $user->id,
             'affiliate_link' => url('/area-privata/referal-link'), // Assuming this is the link to the affiliate's private area
-            /* 'commission_rate' => 10 */ // Set a default commission rate or retrieve it from a config or database
+            'affiliate_email' => $user->email
         ];
 
         // Invia email di benvenuto
-        $this->emailService->send(
-            'welcome_affiliate',
-            $emailData,
-            $user->email
-        );
+        try{
+            $sentUserEmail = $this->emailService->send(
+                'welcome_affiliate',
+                $emailData,
+                $user->email
+            );
+        }catch(\Exception $e){
+            Log::error('Errore nell\'invio dell\'email di benvenuto all\'affiliato: ' . $e->getMessage());
+        }
+
+        try{
+            $sentAdminEmail = $this->emailService->send(
+                'admin_welcome_affiliate',
+                $emailData,
+                config('mail.admin_email')
+            );
+        }catch(\Exception $e){
+            Log::error('Errore nell\'invio dell\'email di benvenuto all\'amministratore: ' . $e->getMessage());
+        }
 
         return redirect()->route(app()->getLocale().'.login', ['locale' => app()->getLocale()])
             ->with('success', 'Registrazione completata con successo! Ora puoi effettuare il login.');

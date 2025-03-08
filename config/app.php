@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'SeoPowerPlus'),
+    'name' => env('APP_NAME', 'Whistleblowing Tool'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://dash.whistleblowingtool.com'),
 
     /*
     |--------------------------------------------------------------------------

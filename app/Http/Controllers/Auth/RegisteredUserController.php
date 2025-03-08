@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\Affiliate;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use App\Services\EmailService;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Affiliate;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Services\EmailService;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
 
 class RegisteredUserController extends Controller
 {
@@ -65,13 +66,30 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         // Invia email di benvenuto
-        $this->emailService->send(
-            'welcome',
-            [
-                'user_name' => $user->name,
-            ],
-            $user->email
-        );
+        try{
+            $this->emailService->send(
+                'welcome',
+                [
+                    'user_name' => $user->name,
+                ],
+                $user->email
+            );
+        }catch(\Exception $e){
+            Log::error('Errore nell\'invio dell\'email di benvenuto all\'utente: ' . $e->getMessage());
+        }
+
+        try{
+            $this->emailService->send(
+                'admin_welcome',
+                [
+                    'company_name' => $user->name,
+                    'company_email' => $user->email
+                ],
+                config('mail.admin_email')
+            );
+        }catch(\Exception $e){
+            Log::error('Errore nell\'invio dell\'email di benvenuto all\'amministratore: ' . $e->getMessage());
+        }
 
         Auth::login($user);
 

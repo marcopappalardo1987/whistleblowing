@@ -3,7 +3,7 @@
 <head>
     <title>{{ $subject }}</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+<body style="max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
     
     <h1 style="color: #2d3748;">{{__('👋 Ci dispiace vederti andare')}}</h1>
     

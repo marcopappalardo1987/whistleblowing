@@ -101,16 +101,32 @@ class StripeEventListener
                     $event->payload['data']['object']['ended_at']
                 )->format('d/m/Y');
 
-                $this->emailService->send(
-                    'subscription_cancelled',
-                    [
-                        'user_name' => $user->name,
+                try{
+                    $this->emailService->send(
+                        'subscription_cancelled',
+                        [
+                            'user_name' => $user->name,
                         'end_date' => $endDate
                     ],
-                    $user->email
-                );
+                        $user->email
+                    );
+                }catch(\Exception $e){
+                    Log::error('Errore nell\'invio dell\'email di annullamento dell\'abbonamento: ' . $e->getMessage());
+                } 
 
-                Log::info('Subscription cancellation email sent to: ' . $user->email);
+                try{
+                    $this->emailService->send(
+                        'admin_subscription_cancelled',
+                        [
+                            'user_name' => $user->name,
+                            'end_date' => $endDate
+                        ],  
+                        config('mail.admin_email')
+                    );
+                }catch(\Exception $e){
+                    Log::error('Errore nell\'invio dell\'email di annullamento dell\'abbonamento all\'admin: ' . $e->getMessage());
+                } 
+                
             }
 
         } catch (\Exception $e) {
@@ -228,18 +244,38 @@ class StripeEventListener
             }
             
             // Invio email di benvenuto
-            $this->emailService->send(
-                'payment_success',
-                [
-                    'user_name' => $user->name,
-                    'order_id' => $product->id, // Assuming product ID is used as order ID
-                    'product_name' => $product->name,
-                    'amount' => $costoAbbonamentoEuro, // Assuming product price is available
-                    'payment_date' => now()->toDateString(), // Current date as payment date
-                ],
-                $user->email // Added recipient email address
-            );
+            try{
+                $this->emailService->send(
+                    'payment_success',
+                    [
+                        'user_name' => $user->name,
+                        'order_id' => $product->id, // Assuming product ID is used as order ID
+                        'product_name' => $product->name,
+                        'amount' => $costoAbbonamentoEuro, // Assuming product price is available
+                        'payment_date' => now()->toDateString(), // Current date as payment date
+                    ],
+                    $user->email // Added recipient email address
+                );
+            }catch(\Exception $e){
+                Log::error('Errore nell\'invio dell\'email di benvenuto: ' . $e->getMessage());
+            }
 
+            // Invio email di benvenuto all'admin
+            try{
+                $this->emailService->send(
+                    'admin_payment_success',
+                    [
+                        'user_name' => $user->name, 
+                        'order_id' => $product->id, // Assuming product ID is used as order ID  
+                        'product_name' => $product->name,
+                        'amount' => $costoAbbonamentoEuro, // Assuming product price is available
+                        'payment_date' => now()->toDateString(), // Current date as payment date
+                    ],
+                    config('mail.admin_email')
+                );
+            }catch(\Exception $e){
+                Log::error('Errore nell\'invio dell\'email di benvenuto all\'admin: ' . $e->getMessage());
+            }
 
         } catch (\Exception $e) {
             Log::error('Error processing Stripe event', ['message' => $e->getMessage(), 'event' => $event->payload]);
