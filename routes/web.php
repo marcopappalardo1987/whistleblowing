@@ -1,11 +1,16 @@
 <?php
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Controllers\LogsController;
+use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\AffiliateController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\CheckUserPlanAndRole;
 use App\Http\Controllers\CompanyDataController;
 use App\Http\Controllers\FormBuilderController;
@@ -19,10 +24,6 @@ use App\Http\Controllers\CompanySettingFormsController;
 use App\Http\Controllers\PermissionsAssignerController;
 use App\Http\Controllers\SubscriptionProfileController;
 use App\Http\Controllers\AffiliateCommissionsController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RolesController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
 
 Route::get('{locale}/piani', [PlansController::class, 'index'])
     ->name('it.plans');
@@ -43,6 +44,7 @@ Route::get('/registrazione/affiliato', function () {
 })->name('register.affiliate');
 
 Route::post('/registrazione/affiliato', [AffiliateController::class, 'registerAffiliate'])
+    ->middleware(ProtectAgainstSpam::class)
     ->name('register.affiliate.store');
 
 // Registrazione investigatore
@@ -50,6 +52,7 @@ Route::get('/registrazione/investigatore', [InvestigatorController::class, 'regi
     ->name('register.investigator');
 
 Route::post('/registrazione/investigatore', [InvestigatorController::class, 'registerStore'])
+    ->middleware(ProtectAgainstSpam::class)
     ->name('register.investigator.store');
 
 //Commissioni

@@ -2,10 +2,15 @@
 @section('content')
     <div class="container py-5">
         <div class="row justify-content-center">
+            <div class="col-12">
+                @include('layouts.alert-message') 
+            </div>
+            <div class="col-12">
+                <h2 class="text-center mb-4">{{ __('Registrati come Investigatore') }}</h2>
+            </div>
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <h2 class="text-center mb-4">{{ __('Registrati come Investigatore') }}</h2>
 
                         <form method="POST" action="{{ route('register.investigator.store') }}">
                             @csrf
@@ -57,6 +62,8 @@
                                 <a class="text-decoration-none" href="{{ route(app()->getLocale().'.login', ['locale' => app()->getLocale()]) }}">
                                     {{ __('Hai già un account?') }}
                                 </a>
+
+                                @honeypot
 
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrati') }}

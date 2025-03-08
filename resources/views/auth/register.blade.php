@@ -4,6 +4,9 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12">
+                @include('layouts.alert-message') 
+            </div>
+            <div class="col-12">
                 <h2 class="text-center mb-4">{{__('Registrati')}}</h2>
             </div>
             <div class="col-md-6">
