@@ -88,14 +88,18 @@ class SubscriptionController extends Controller
     {
         // Ottieni il prodotto selezionato
         $product = Product::findOrFail($request->product_id);
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->route(app()->getLocale() . '.login', ['locale' => app()->getLocale()]);
+        }
         
         // Verifica che sia un abbonamento
         if ($product->type !== 'subscription') {
             Log::error('Questo prodotto non è un abbonamento');
             return redirect()->back()->with('error', 'Questo prodotto non è un abbonamento');
         }
-
-        $user = Auth::user();
 
         try {
             // Trova o crea il cliente Stripe
@@ -348,8 +352,6 @@ class SubscriptionController extends Controller
 
         $subscription = Subscription::findOrFail($id);
         $user = $subscription->user;
-
-       /*  dd($user->subscription()->first()); */
 
         try {
             switch ($request->action) {

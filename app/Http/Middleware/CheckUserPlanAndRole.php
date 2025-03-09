@@ -66,4 +66,15 @@ class CheckUserPlanAndRole
 
         return $next($request);
     }
+
+    public function CheckoutRoutes(User $user)
+    {
+        // Check if the user is authenticated
+        if (!Auth::check()) {
+            return redirect()->route(app()->getLocale() . '.login', ['locale' => app()->getLocale()]);
+        }
+        
+        return true;
+    }
+
 }

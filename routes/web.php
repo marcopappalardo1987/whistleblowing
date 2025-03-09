@@ -26,12 +26,11 @@ use App\Http\Controllers\PermissionsAssignerController;
 use App\Http\Controllers\SubscriptionProfileController;
 use App\Http\Controllers\AffiliateCommissionsController;
 
-Route::middleware([CheckUserPlanAndRole::class])->group(function () {
-    Route::get('{locale}/pagamento', [SubscriptionController::class, 'showCheckoutForm'])->name('it.checkout');
-    Route::get('{locale}/payment', [SubscriptionController::class, 'showCheckoutForm'])->name('en.checkout');
-    Route::post('{locale}/pagamento/processo', [SubscriptionController::class, 'processCheckout'])->name('it.checkout.process');
-    Route::post('{locale}/payment/process', [SubscriptionController::class, 'processCheckout'])->name('en.checkout.process');
-});
+
+Route::get('{locale}/pagamento', [SubscriptionController::class, 'showCheckoutForm'])->name('it.checkout');
+Route::get('{locale}/payment', [SubscriptionController::class, 'showCheckoutForm'])->name('en.checkout');
+Route::post('{locale}/pagamento/processo', [SubscriptionController::class, 'processCheckout'])->name('it.checkout.process');
+Route::post('{locale}/payment/process', [SubscriptionController::class, 'processCheckout'])->name('en.checkout.process');
 
 // Registrazione affiliato
 Route::get('/registrazione/affiliato', function () {
