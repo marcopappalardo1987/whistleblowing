@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
+use App\Http\Controllers\Api\ApiProduct;
 use App\Http\Controllers\LogsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UsersController;
@@ -519,6 +520,9 @@ Route::middleware('set-locale')->group(function () {
 Route::get('/social/linkedin', function () { return redirect('https://www.linkedin.com/company/whistleblowing-tool'); })->name('social.linkedin');
 Route::get('/social/facebook', function () { return redirect('https://www.facebook.com/whistleblowingtool'); })->name('social.facebook');
 Route::get('/social/instagram', function () { return redirect('https://www.instagram.com/whistleblowingtool'); })->name('social.instagram');
+
+// API Routes
+Route::get('/api/products', [ApiProduct::class, 'getData']);
 
 // Require the authentication routes defined in auth.php
 require __DIR__.'/auth.php';
