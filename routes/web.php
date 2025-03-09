@@ -26,13 +26,7 @@ use App\Http\Controllers\PermissionsAssignerController;
 use App\Http\Controllers\SubscriptionProfileController;
 use App\Http\Controllers\AffiliateCommissionsController;
 
-Route::get('{locale}/piani', [PlansController::class, 'index'])
-    ->name('it.plans');
-
-Route::get('{locale}/plans', [PlansController::class, 'index'])
-    ->name('en.plans');
-
-Route::middleware(['auth'])->group(function () {
+Route::middleware([CheckUserPlanAndRole::class])->group(function () {
     Route::get('{locale}/pagamento', [SubscriptionController::class, 'showCheckoutForm'])->name('it.checkout');
     Route::get('{locale}/payment', [SubscriptionController::class, 'showCheckoutForm'])->name('en.checkout');
     Route::post('{locale}/pagamento/processo', [SubscriptionController::class, 'processCheckout'])->name('it.checkout.process');
@@ -513,6 +507,10 @@ Route::middleware('set-locale')->group(function () {
 
     Route::post('{locale}/invio-richiesta-assistenza', function () { return redirect('https://www.whistleblowingtool.com/it/invio-richiesta-assistenza'); })->name('it.frontend.support.request');
     Route::post('{locale}/support-request', function () { return redirect('https://www.whistleblowingtool.com/en/support-request'); })->name('en.frontend.support.request');
+
+    Route::get('{locale}/piani', function () { return redirect('https://whistleblowingtool.com/it/piani'); })->name('it.plans');
+
+    Route::get('{locale}/plans', function () { return redirect('https://whistleblowingtool.com/en/plans'); })->name('en.plans');
 
 });
 
