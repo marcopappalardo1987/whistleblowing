@@ -14,9 +14,7 @@ class ApiProduct extends Controller
     {
         $products = Product::with('features')->get();
 
-        return response()->json([
-            'products' => $products
-        ]);
+        return response()->json($products);
     }
 
 }
