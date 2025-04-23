@@ -4,6 +4,8 @@
     <title>{{ $subject }}</title>
 </head>
 <body style="max-width: 600px; margin: 0 auto; padding: 20px; color: #003a5c;">
+    
+    <img class="logo" src="{{ asset('logo.png') }}" alt="{{ __('Whistleblowing Tool Logo') }}" style="max-width: 165px;">
     <h1>{{__('Invito come Investigatore')}}</h1>
     
     <p>{{__('Gentile')}} {{ $data['investigator_name'] }},</p>

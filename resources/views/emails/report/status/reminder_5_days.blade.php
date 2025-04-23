@@ -4,6 +4,8 @@
     <title>{{ $subject }}</title>
 </head>
 <body>
+    
+    <img class="logo" src="{{ asset('logo.png') }}" alt="{{ __('Whistleblowing Tool Logo') }}" style="max-width: 165px;">
     <h1>{{__('Promemoria: Aggiornamento Stato Segnalazione')}}</h1>
     
     <p>{{__('Gentile')}} {{ $data['investigator_name'] }},</p>

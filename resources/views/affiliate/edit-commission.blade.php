@@ -6,7 +6,7 @@
 
     @include('layouts.alert-message')
 
-    <div class="content-page mt-4">
+    <div class="content-page">
         <div class="row">
             <div class="col-12">
                 <div class="card">

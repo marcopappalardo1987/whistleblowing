@@ -4,7 +4,7 @@
         {{ __('Form associati') }}
     </x-slot>
 
-    <div class="content-page mt-4">
+    <div class="content-page">
         <div class="row">
             <div class="col-12">
                 @include('layouts.alert-message')
@@ -19,7 +19,7 @@
                         <div class="col-sm-6 mb-3">
                             <x-input-label for="wb_form_builder_id" :value="__('Form per le segnalazioni')" />
                             <select id="wb_form_builder_id" name="wb_form_notice_id" required class="form-select">
-                                <option value="" disabled>{{ __('Seleziona un form') }}</option>
+                                <option value="" disabled selected>{{ __('Seleziona un form') }}</option>
                                 @foreach($forms_notice as $form)
                                     <option value="{{ $form->id }}" {{ old('wb_form_notice_id', $selectedNoticeId) == $form->id ? 'selected' : '' }}>{{ $form->title }}</option>
                                 @endforeach

@@ -16,7 +16,7 @@
                         </div>
                         <a href="{{ route('investigator.list') }}" class="btn btn-primary" style="width: auto;">{{ __('Vai all\'elenco degli investigatori') }}</a>
                     @else
-                        <form action="{{ route('investigator.invite.store') }}" method="POST" class="mt-4">
+                        <form action="{{ route('investigator.invite.store') }}" method="POST" class="mt-2">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4 mb-3">
@@ -36,7 +36,15 @@
                                     </select>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">{{ __('Invita') }}</button>
+
+                            <div class="mb-4 small background-color5 p-3 rounded-3">
+                                {!! __('Quando inviti un <strong>investigatore</strong>, la persona che hai invitato riceverà una <em>email di invito</em> per la <strong>gestione delle segnalazioni</strong>.') !!}
+                                <br>
+                                {!! __('Per accettare l\'invito, la persona dovrà cliccare sul <strong>link</strong> presente nell\'<em>email di invito</em> e <strong>registrarsi</strong> con la stessa email che hai utilizzato per l\'invito.') !!}
+                                <br>
+                                {!! __('Una volta <strong>registrata</strong>, la persona potrà <em>accedere al software</em> utilizzando la stessa email e la <strong>password</strong> che hai impostato.') !!}
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-3">{{ __('Invita') }}</button>
                         </form>
                     @endif
                 </div>

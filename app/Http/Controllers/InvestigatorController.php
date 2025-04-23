@@ -25,7 +25,7 @@ class InvestigatorController extends Controller
     }
 
     public function invite()
-    {
+    { 
         $branches = Branch::where('company_id', Auth::user()->id)->get();
         $countInvestigators = Investigator::countInvestigators();
         return view('investigators.invite', compact('branches', 'countInvestigators'));
@@ -39,7 +39,7 @@ class InvestigatorController extends Controller
             return redirect()->route('investigator.invite')->with('error', __('Email non valida.'));
         }
 
-        if (Investigator::where('email', $email)->exists()) {
+        if (Investigator::where('email', $email)->exists() || User::where('email', $email)->exists()) {
             return redirect()->route('investigator.invite')->with('error', __('L\'email è già in uso, non è possibile invitarlo.'));
         }
 

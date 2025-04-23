@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ $subject }}</title>
+    <img class="logo" src="{{ asset('logo.png') }}" alt="{{ __('Whistleblowing Tool Logo') }}" style="max-width: 165px;"><title>{{ $subject }}</title>
 </head>
 <body style="max-width: 600px; margin: 0 auto; padding: 20px; color: #003a5c;">
+    
+    <img class="logo" src="{{ asset('logo.png') }}" alt="{{ __('Whistleblowing Tool Logo') }}" style="max-width: 165px;">
     <h1>{{__('Benvenuto nel Programma di Affiliazione')}}</h1>
     
     <p>{{__('Gentile')}} {{ $data['affiliate_name'] }},</p>

@@ -5,6 +5,8 @@
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #003a5c;">
     <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        
+        <img class="logo" src="{{ asset('logo.png') }}" alt="{{ __('Whistleblowing Tool Logo') }}" style="max-width: 165px;">
         <h1 style="color: #0a4e75; margin-bottom: 20px;">{{ __('Benvenuto!') }}</h1>
         
         <p>{{ __('Gentile :user_name,', ['user_name' => $data['user_name']]) }}</p>

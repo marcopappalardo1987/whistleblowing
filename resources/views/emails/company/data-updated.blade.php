@@ -5,6 +5,7 @@
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
     
+    <img class="logo" src="{{ asset('logo.png') }}" alt="{{ __('Whistleblowing Tool Logo') }}" style="max-width: 165px;">
     <h1 style="color: #2d3748;">{{__('📊 Aggiornamento Dati Aziendali')}}</h1>
     
     <p>{{__('Gentile')}} {{ $data['user_name'] }},</p>

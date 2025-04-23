@@ -4,7 +4,7 @@
     "name": "bootstrap.esm"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CrSbrU-f.css",
+    "file": "assets/app-D6qo-l70.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -26,7 +26,7 @@
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-BNDE-bXM.js",
+    "file": "assets/app-Vx4jBIRV.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -34,11 +34,11 @@
       "_bootstrap.esm-D7-XTmo_.js"
     ],
     "css": [
-      "assets/app-CnBmpvJo.css"
+      "assets/app-BAPiS6wE.css"
     ]
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-CnBmpvJo.css",
+    "file": "assets/app-BAPiS6wE.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   }

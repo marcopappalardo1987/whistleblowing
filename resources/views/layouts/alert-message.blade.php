@@ -11,3 +11,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
+
+@if(session('button'))
+    <a href="{{ session('button.url') }}" class="btn btn-primary">
+        {{ session('button.text') }}
+    </a>
+@endif

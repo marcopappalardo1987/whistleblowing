@@ -3,6 +3,9 @@
 
     <div class="container py-5">
         <div class="row justify-content-center">
+
+            @include('layouts.alert-message')
+            
             <div class="col-12">
                 <h2 class="text-center mb-4">{{__('Accedi')}}</h2>
             </div>

@@ -32,7 +32,7 @@
             <div class="content">
                 <!-- Top Navigation -->
                 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-                    <div class="container-fluid">
+                    <div class="container">
                         @if(isset($subscription))
                             @if($subscription)
                                 <span class="nav-link text-muted abbonamento-attivo-top-nav">
@@ -59,10 +59,19 @@
                 <!-- Main Content -->
                 <main class="p-4">
                     @isset($header)
-                        @include('layouts.alert-message-owner')
-                        <h1 class="h3 mb-4">{{ $header }}</h1>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @include('layouts.alert-message-owner')
+                                    <h1 class="h3 mb-4">{{ $header }}</h1>
+                                </div>
+                            </div>
+                        </div>
                     @endisset
-                    {{ $slot }}
+
+                    <div class="container">
+                        {{ $slot }}
+                    </div>
                 </main>
             </div>
         </div>

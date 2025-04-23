@@ -11,14 +11,21 @@ class CompanySettingFormsController extends Controller
 {
     public function showRelatedForms()
     {
-        $forms_notice = WbFormBuilder::where(function($query) {
-                $query->where('user_id', 1)
+        // Get all users with the 'owner' role
+        $ownerUsers = \App\Models\User::whereHas('roles', function($query) {
+            $query->where('name', 'owner');
+        })->pluck('id')->toArray();
+
+        $forms_notice = WbFormBuilder::where(function($query) use ($ownerUsers) {
+                $query->whereIn('user_id', $ownerUsers)
                       ->orWhere('user_id', Auth::id());
             })
             ->where('location', 'notice')
             ->get();
-        $forms_appointment = WbFormBuilder::where(function($query) {
-                $query->where('user_id', 1)
+
+        
+        $forms_appointment = WbFormBuilder::where(function($query) use ($ownerUsers) {
+                $query->whereIn('user_id', $ownerUsers)
                       ->orWhere('user_id', Auth::id());
             })
             ->where('location', 'appointment')

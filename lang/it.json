@@ -56,5 +56,11 @@
     "Manage Users": "Gestisci Utenti",
     "Manage Role": "Gestisci Ruolo",
     "Assign Permissions": "Assegna Permessi",
-    "Login": "Accedi"
+    "Login": "Accedi",
+    "Text": "Testo",
+    "Textarea": "Area di testo",
+    "Select": "Selettore di opzione",
+    "Radio": "Pulsante di opzione",
+    "Checkbox": "Casella di selezione",
+    "File": "File"
 }

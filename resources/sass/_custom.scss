@@ -332,7 +332,15 @@ a {
 .investigator-message {
     border-radius: 30px 30px 3px 30px;
 }
-
+.btn.tooltip-btn {
+    background-color: #143454;
+    padding: 0px;
+    width: 17px;
+    height: 17px;
+    font-size: 10px;
+    color: #fff;
+    border-radius: 50px;
+}
 .btn-primary {
     background-color: $color1;
     border-color: $color1;

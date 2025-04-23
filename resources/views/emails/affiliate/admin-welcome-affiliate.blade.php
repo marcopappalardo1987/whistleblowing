@@ -4,6 +4,8 @@
     <title>{{ $subject }}</title>
 </head>
 <body style="max-width: 600px; margin: 0 auto; padding: 20px; color: #003a5c;">
+    
+    <img class="logo" src="{{ asset('logo.png') }}" alt="{{ __('Whistleblowing Tool Logo') }}" style="max-width: 165px;">
     <h1>{{__('Nuovo Affiliato Registrato')}}</h1>
     
     <p>{{__('Siamo lieti di informarti che un nuovo affiliato si è registrato con successo nel programma di affiliazione di')}} {{ config('app.name') }}.</p>

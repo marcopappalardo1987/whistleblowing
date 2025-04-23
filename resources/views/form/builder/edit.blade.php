@@ -5,7 +5,7 @@
     </x-slot>
 
     <!-- Start Generation Here -->
-    <div class="content-page mt-4">
+    <div class="content-page">
         <div class="row">
             <div class="col-12">
                 @include('layouts.alert-message')
@@ -26,11 +26,12 @@
                                 </div>
 
                                 <div class="col-6">
-                                    <x-input-label for="location" :value="__('Tipo')" />
+                                    <x-input-label for="location" :value="__('Tipologia di utilizzo')" />
+                                    <div type="button" class="btn tooltip-btn" data-toggle="tooltip" data-placement="top" title="{{__('Puoi creare due tipologia di form, uno per la richiesta degli appuntamenti e uno per l\'invio delle segnalazioni')}}">?</div>
                                     <select id="location" name="location" class="form-select" required>
                                         <option value="" disabled {{ old('location') ? '' : 'selected' }}>{{ __('Seleziona il tipo di utilizzo') }}</option>
-                                        <option value="notice" {{ old('location', $form->location) == 'notice' ? 'selected' : '' }}>{{ __('Segnalazione') }}</option>
-                                        <option value="appointment" {{ old('location', $form->location) == 'appointment' ? 'selected' : '' }}>{{ __('Appuntamento') }}</option>
+                                        <option value="notice" {{ old('location', $form->location) == 'notice' ? 'selected' : '' }}>{{ __('Per la gestione delle segnalazioni') }}</option>
+                                        <option value="appointment" {{ old('location', $form->location) == 'appointment' ? 'selected' : '' }}>{{ __('Per la gestione degli appuntamenti') }}</option>
                                     </select>
                                     @error('location')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -70,68 +71,16 @@
                             <div class="form-fields-container">
                                 <h4 class="mb-3">{{ __('Campi del Form') }}</h4>
                                 <div class="fields-repeater">
-                                    {{-- <template id="field-template">
-                                        <div class="field-item border p-3 mb-3">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <x-input-label :value="__('Etichetta')" />
-                                                    <x-text-input type="text" name="fields[%index%][label]" class="field-label" maxlength="255" required />
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <x-input-label :value="__('Tipo')" />
-                                                    <select name="fields[%index%][type]" class="form-select field-type">
-                                                        <option value="text">{{ __('Text') }}</option>
-                                                        <option value="textarea">{{ __('Textarea') }}</option>
-                                                        <option value="select">{{ __('Select') }}</option>
-                                                        <option value="radio">{{ __('Radio') }}</option>
-                                                        <option value="checkbox">{{ __('Checkbox') }}</option>
-                                                        <option value="file">{{ __('File') }}</option>
-                                                        <option value="date">{{ __('Data') }}</option>
-                                                        <option value="date-time">{{ __('Data e Ora') }}</option>
-                                                        <option value="public-data">{{ __('Dati Utente Pubblici') }}</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <x-input-label :value="__('Ordine')" />
-                                                    <x-text-input type="number" name="fields[%index%][order]" class="field-order" value="0" />
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <button type="button" class="btn btn-danger remove-field mt-4" onclick="removeField(this)">
-                                                        <x-bi-trash />
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                            <div class="row mt-3">
-                                                <div class="col-md-6">
-                                                    <x-input-label :value="__('Testo di aiuto')" />
-                                                    <textarea name="fields[%index%][help_text]" class="form-control field-help"></textarea>
-                                                </div>
-                                                <div class="col-md-6 options-container" style="display: none;">
-                                                    <x-input-label :value="__('Opzioni (una per riga)')" />
-                                                    <textarea name="fields[%index%][options]" class="form-control field-options"></textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="row mt-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input" name="fields[%index%][required]" value="1">
-                                                        <label class="form-check-label">{{ __('Campo obbligatorio') }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </template> --}}
                                     <template id="field-template">
                                         <div class="field-item border p-3 mb-3">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <x-input-label :value="__('Etichetta')" />
+                                                    <x-input-label :value="__('Nome del campo')" />
+                                                    <div type="button" class="btn tooltip-btn" data-toggle="tooltip" data-placement="top" title="{{__('Questo è il nome del campo che apparirà al segnalatore durante la compilazione del form')}}">?</div>
                                                     <x-text-input type="text" name="fields[%index%][label]" class="field-label" maxlength="255" required />
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <x-input-label :value="__('Tipo')" />
+                                                    <x-input-label :value="__('Tipo di campo')" />
                                                     <select name="fields[%index%][type]" class="form-select field-type">
                                                         <option value="text">{{ __('Text') }}</option>
                                                         <option value="textarea">{{ __('Textarea') }}</option>
@@ -144,12 +93,13 @@
                                                         <option value="public-data">{{ __('Dati Utente Pubblici') }}</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <x-input-label :value="__('Ordine')" />
+                                                <div class="col-md-3">
+                                                    <x-input-label :value="__('Ordine di visualizzazione')" />
+                                                    <div type="button" class="btn tooltip-btn" data-toggle="tooltip" data-placement="top" title="{{__('Questo campo determina l\'ordine di visualizzazione dei campi del form')}}">?</div>
                                                     <x-text-input type="number" name="fields[%index%][order]" class="field-order" value="0" />
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <x-input-label :value="__('Lunghezza')" />
+                                                <div class="col-md-2">
+                                                    <x-input-label :value="__('Lunghezza della colonna')" />
                                                     <select name="fields[%index%][column_length]" class="form-select field-length">
                                                         <option value="100" selected>{{ __('100') }}</option>
                                                         <option value="75">{{ __('75') }}</option>
@@ -168,6 +118,7 @@
                                             <div class="row mt-3">
                                                 <div class="col-md-6">
                                                     <x-input-label :value="__('Testo di aiuto')" />
+                                                    <div type="button" class="btn tooltip-btn" data-toggle="tooltip" data-placement="top" title="{{__('Questo è il testo di aiuto che apparirà al segnalatore durante la compilazione del form')}}">?</div>
                                                     <textarea name="fields[%index%][help_text]" class="form-control field-help"></textarea>
                                                 </div>
                                                 <div class="col-md-6 options-container" style="display: none;">
@@ -180,7 +131,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input" name="fields[%index%][required]" value="1">
-                                                        <label class="form-check-label">{{ __('Campo obbligatorio') }}</label>
+                                                        <label class="form-check-label">{{ __('Rendi questo campo obbligatorio da compilare quando un utente compila i dati') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,11 +141,12 @@
                                         <div class="field-item border p-3 mb-3">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <x-input-label :value="__('Etichetta')" />
+                                                    <x-input-label :value="__('Nome del campo')" />
+                                                    <div type="button" class="btn tooltip-btn" data-toggle="tooltip" data-placement="top" title="{{__('Questo è il nome del campo che apparirà al segnalatore durante la compilazione del form')}}">?</div>
                                                     <x-text-input type="text" name="fields[{{ $index }}][label]" class="field-label" value="{{ old('fields.'.$index.'.label', $field->label) }}" maxlength="255" required />
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <x-input-label :value="__('Tipo')" />
+                                                    <x-input-label :value="__('Tipo di campo')" />
                                                     <select name="fields[{{ $index }}][type]" class="form-select field-type">
                                                         <option value="text" {{ old('fields.'.$index.'.type', $field->type) == 'text' ? 'selected' : '' }}>{{ __('Text') }}</option>
                                                         <option value="textarea" {{ old('fields.'.$index.'.type', $field->type) == 'textarea' ? 'selected' : '' }}>{{ __('Textarea') }}</option>
@@ -207,12 +159,13 @@
                                                         <option value="public-data" {{ old('fields.'.$index.'.type', $field->type) == 'public-data' ? 'selected' : '' }}>{{ __('Dati Utente Pubblici') }}</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <x-input-label :value="__('Ordine')" />
+                                                <div class="col-md-3">
+                                                    <x-input-label :value="__('Ordine di visualizzazione')" />
+                                                    <div type="button" class="btn tooltip-btn" data-toggle="tooltip" data-placement="top" title="{{__('Questo campo determina l\'ordine di visualizzazione dei campi del form')}}">?</div>
                                                     <x-text-input type="number" name="fields[{{ $index }}][order]" class="field-order" value="{{ old('fields.'.$index.'.order', $field->order) }}" />
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <x-input-label :value="__('Lunghezza')" />
+                                                <div class="col-md-2">
+                                                    <x-input-label :value="__('Lunghezza della colonna')" />
                                                     <select name="fields[{{ $index }}][column_length]" class="form-select field-length">
                                                         <option value="100" {{ old('fields.'.$index.'.column_length', $field->column_length ?? 100) == '100' ? 'selected' : '' }}>100</option>
                                                         <option value="75" {{ old('fields.'.$index.'.column_length', $field->column_length ?? 100) == '75' ? 'selected' : '' }}>75</option>
@@ -231,6 +184,7 @@
                                             <div class="row mt-3">
                                                 <div class="col-md-6">
                                                     <x-input-label :value="__('Testo di aiuto')" />
+                                                    <div type="button" class="btn tooltip-btn" data-toggle="tooltip" data-placement="top" title="{{__('Questo è il testo di aiuto che apparirà al segnalatore durante la compilazione del form')}}">?</div> 
                                                     <textarea name="fields[{{ $index }}][help_text]" class="form-control field-help">{{ old('fields.'.$index.'.help_text', $field->help_text) }}</textarea>
                                                 </div>
                                                 <div class="col-md-6 options-container" style="display: {{ in_array($field->type, ['select', 'radio', 'checkbox']) ? 'block' : 'none' }};">
@@ -294,9 +248,8 @@
 
                 // Gestione campi per public-data
                 const labelInput = fieldItem.querySelector('.field-label').closest('.col-md-3');
-                /* const nameInput = fieldItem.querySelector('.field-name').closest('.col-md-3'); */
-                const orderInput = fieldItem.querySelector('.field-order').closest('.col-md-2');
-                const helpText = fieldItem.querySelector('.field-help')?.closest('.col-md-5');
+                const orderInput = fieldItem.querySelector('.field-order').closest('.col-md-3');
+                const helpText = fieldItem.querySelector('.field-help')?.closest('.col-md-6');
                 if (helpText) {
                     helpText.style.display = 'none';
                 }
@@ -309,21 +262,19 @@
 
                 if (typeSelect.value === 'public-data') {
                     // Nascondi i campi non necessari
-                    labelInput.style.display = 'none';
-                    nameInput.style.display = 'none';
+                    /* labelInput.style.display = 'none'; */
                     orderInput.style.display = 'none';
                     helpText.style.display = 'none';
                     requiredCheckbox.style.display = 'none';
                     // Espandi la select a tutta la larghezza
                     if (typeSelectCol) {
-                        typeSelectCol.className = 'col-md-11';
+                        typeSelectCol.className = 'col-md-8';
                     }
                 } else {
                     // Mostra tutti i campi
-                    labelInput.style.display = '';
-                    /* nameInput.style.display = ''; */
+                    /* labelInput.style.display = ''; */
                     orderInput.style.display = '';
-                    /* helpText.style.display = ''; */
+                    helpText.style.display = '';
                     requiredCheckbox.style.display = '';
                     // Ripristina la larghezza originale della select
                     if (typeSelectCol) {

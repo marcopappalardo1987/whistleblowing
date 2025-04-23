@@ -5,6 +5,7 @@
 </head>
 <body style="max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
     
+    <img class="logo" src="{{ asset('logo.png') }}" alt="{{ __('Whistleblowing Tool Logo') }}" style="max-width: 165px;">
     <h1 style="color: #2d3748;">{{__('🔔 Notifica: Abbonamento Cancellato')}}</h1>
     
     <p>{{__('Ciao')}},</p>

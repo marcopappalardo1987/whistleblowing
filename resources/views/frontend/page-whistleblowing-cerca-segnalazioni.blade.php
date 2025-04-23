@@ -3,12 +3,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center mb-5">
+            <div class="col-12 text-center mb-5 mt-5">
                 <a href="{{ route('page-whistleblowing', [
                     'slug' => $settings->slug, 
                     'branch_id' => request()->route('branch_id')
                 ]) }}">
-                    <img src="{{$settings->logo_url}}" style="max-width: 200px">
+                    <img id="logo-azienda" src="{{$settings->logo_url}}" style="max-width: 200px">
                 </a>
             </div>
         </div>

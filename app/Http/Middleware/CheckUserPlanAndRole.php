@@ -26,25 +26,33 @@ class CheckUserPlanAndRole
         if(!$user) {
             return redirect()->route(app()->getLocale() . '.login', ['locale' => app()->getLocale()]);
         }
-        
+
         // Controlla se l'utente ha un piano e se il ruolo è 'azienda'
         $subscription = $user->subscription;
         $isActive = $user->subscription && $user->subscription->stripe_status === 'active';
         $isTrial = $user->subscription && $user->subscription->stripe_status === 'trialing';
 
         if (!$subscription && $user->getRoleNames()->first() === 'azienda' || $user->getRoleNames()->first() === 'azienda' && !$isActive && !$isTrial) {
-            //dd($user->subscription);
-            return redirect()->route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()])
-                ->with('error', 'Per accedere alla dashboard, è necessario avere un piano attivo.');
+            return redirect()->route(app()->getLocale() . '.global-errors', ['locale' => app()->getLocale()])
+                ->with('error', 'Per utilizzare la piattaforma, è necessario avere un piano attivo.')
+                ->with('button', [
+                    'text' => 'Visualizza piani disponibili',
+                    'url' => route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()])
+                ]);
         }
 
         if($user->getRoleNames()->first() === 'investigatore') {
             $investigator = Investigator::where('investigator_id', $user->id)->first();
+            if(!$investigator) {
+                return redirect()->route(app()->getLocale() . '.global-errors', ['locale' => app()->getLocale()])
+                    ->with('error', 'Non hai i permessi per accedere a questa pagina come investigatore.');
+            }
             $company = User::where('id', $investigator->company_id)->first();
             $subscription = $company->subscription;
             
             if (!$subscription->stripe_status) {
-                return redirect()->route(app()->getLocale() . '.plans', ['locale' => app()->getLocale()])
+                
+                return redirect()->route(app()->getLocale() . '.global-errors', ['locale' => app()->getLocale()])
                     ->with('error', 'L\'azienda non ha un piano attivo. Contatta l\'amministratore dell\'azienda.');
             }
             return $next($request);
